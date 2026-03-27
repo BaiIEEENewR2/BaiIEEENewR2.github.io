@@ -757,6 +757,38 @@
             z-index: 1;
         }
 
+        .membership-highlight {
+            margin-top: 60px;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--ieee-gold) 0%, #ffdb4d 100%);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(255, 199, 44, 0.3);
+        }
+
+        .membership-stat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .membership-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--ieee-dark);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .membership-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ieee-dark);
+            max-width: 500px;
+            text-align: left;
+        }
+
         /* Robotics Workshop Section */
         .robotics-workshop {
             padding: 120px 0;
@@ -1047,6 +1079,20 @@
 
         .advocacy .section-subtitle {
             color: rgba(255, 255, 255, 0.85);
+        }
+
+        .advocacy-image {
+            margin: 40px auto 60px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .advocacy-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 4px solid rgba(255, 255, 255, 0.2);
         }
 
         .advocacy-content {
@@ -1538,6 +1584,19 @@
 
             .activities-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .membership-highlight {
+                padding: 24px;
+            }
+
+            .membership-stat {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .membership-text {
+                text-align: center;
             }
 
             .workshop-content {
@@ -2050,6 +2109,9 @@
                     innovation for America's future.
                 </p>
             </div>
+            <div class="advocacy-image animate-on-scroll">
+                <img src="congressional.jpeg" alt="Dr. Li Bai at Congressional Visit">
+            </div>
             <div class="advocacy-content">
                 <div class="advocacy-card animate-on-scroll">
                     <div class="advocacy-icon">
@@ -2137,19 +2199,19 @@
     <section class="student-activities" id="activities">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="section-label">Organizing Chair</span>
+                <span class="section-label">Joint Regions 1 & 2</span>
                 <h2 class="section-title">Student Activities Conferences</h2>
                 <p class="section-subtitle">
-                    As Organizing Chair, Dr. Li Bai has led three consecutive student activities conferences bringing 
-                    together hundreds of students for a day of workshops, competitions, and WIE panels that inspire 
-                    the next generation of IEEE leaders.
+                    As Organizing Chair, Dr. Li Bai has united Regions 1 and 2 through three consecutive joint student activities conferences, 
+                    showcasing his exceptional ability to bridge diverse student experiences into unified, successful events that have grown 
+                    IEEE student membership with <strong>#1 largest growth in 2025 among all US regions</strong>.
                 </p>
             </div>
             <div class="activities-grid">
                 <div class="activity-card animate-on-scroll">
                     <div class="activity-year">2026</div>
-                    <h4>Student Activities Conference</h4>
-                    <p>A full day of hands-on workshops, technical competitions, and inspiring WIE panel discussions designed to engage students and foster lifelong IEEE involvement.</p>
+                    <h4>SAC 2026</h4>
+                    <p>Joint Regions 1 & 2 conference featuring workshops, competitions, and WIE panels. A testament to Dr. Bai's leadership in unifying student experiences across regions.</p>
                     <a href="https://attend.ieee.org/sac-2026/" target="_blank" class="btn btn-primary">
                         Learn More
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -2159,8 +2221,8 @@
                 </div>
                 <div class="activity-card animate-on-scroll">
                     <div class="activity-year">2025</div>
-                    <h4>Student Conference</h4>
-                    <p>Bridging Regions 1 & 2 with competitions, networking, and empowering WIE discussions that connect students with industry professionals and mentors.</p>
+                    <h4>StuCon 2025</h4>
+                    <p>Bridging Regions 1 & 2 with competitions, networking, and empowering WIE discussions. Under Dr. Bai's leadership, these events achieved the #1 membership growth in 2025.</p>
                     <a href="https://attend.ieee.org/stucon-2025/" target="_blank" class="btn btn-primary">
                         Learn More
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -2170,14 +2232,20 @@
                 </div>
                 <div class="activity-card animate-on-scroll">
                     <div class="activity-year">2024</div>
-                    <h4>Student Activities Conference</h4>
-                    <p>Featuring technical workshops, exciting competitions, and impactful WIE panels that showcase the opportunities available through IEEE membership.</p>
+                    <h4>SAC 2024</h4>
+                    <p>Featuring technical workshops, exciting competitions, and impactful WIE panels. The success of these joint events helped achieve the #1 membership growth in 2025.</p>
                     <a href="https://attend.ieee.org/sac-2024/" target="_blank" class="btn btn-primary">
                         Learn More
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
+                </div>
+            </div>
+            <div class="membership-highlight animate-on-scroll">
+                <div class="membership-stat">
+                    <span class="membership-number">#1</span>
+                    <span class="membership-text">in US Regional Student Membership Growth (2025)</span>
                 </div>
             </div>
         </div>
