@@ -28,6 +28,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -35,6 +36,7 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
@@ -49,11 +51,14 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 12px 0;
+            height: 70px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+            padding: 0 24px;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
 
         nav.scrolled {
@@ -61,6 +66,9 @@
         }
 
         nav .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -94,6 +102,7 @@
             z-index: 1001;
             transition: right 0.3s ease;
             overflow-y: auto;
+            list-style: none;
         }
 
         .nav-links.active {
@@ -181,23 +190,23 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.4);
             z-index: 1000;
+            transition: opacity 0.3s ease;
         }
 
         .nav-overlay.active {
             display: block;
         }
-            transition: var(--transition);
-        }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
+            width: 100%;
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, var(--ieee-dark) 0%, var(--ieee-blue) 50%, var(--ieee-light) 100%);
             position: relative;
-            overflow: hidden;
-            padding-top: 80px;
+            overflow: visible;
+            padding-top: 70px;
         }
 
         .hero::before {
@@ -218,10 +227,16 @@
             align-items: center;
             position: relative;
             z-index: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         .hero-text {
-            color: var(--white);
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-badge {
@@ -259,6 +274,12 @@
             margin-bottom: 32px;
             max-width: 500px;
             animation: fadeInUp 0.8s ease 0.3s backwards;
+        }
+
+        .hero-ieee-logo {
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease 0.15s backwards;
+            display: inline-block;
         }
 
         .hero-buttons {
@@ -1395,6 +1416,10 @@
             margin-bottom: 40px;
         }
 
+        .footer-ieee-logo {
+            margin-bottom: 20px;
+        }
+
         .footer-brand h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
@@ -1653,19 +1678,6 @@
                 </div>
                 <span style="margin-left: 8px; font-weight: 600;">Dr. Li Bai</span>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <button class="nav-close" id="navClose">&times;</button>
-                <li><a href="#about">About</a></li>
-                <li><a href="#vision">Vision</a></li>
-                <li><a href="#pipeline">Mentorship</a></li>
-                <li><a href="#activities">Activities</a></li>
-                <li><a href="#robotics">Robotics</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#advocacy">Advocacy</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
                 <span></span>
@@ -1673,11 +1685,25 @@
             </button>
         </div>
     </nav>
+    
+    <!-- Navigation Links (outside nav for proper positioning) -->
+    <ul class="nav-links" id="navLinks">
+        <button class="nav-close" id="navClose">&times;</button>
+        <li><a href="#about">About</a></li>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#pipeline">Mentorship</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#robotics">Robotics</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#advocacy">Advocacy</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
+        <div class="hero-content">
                 <div class="hero-text">
                     <span class="hero-badge">IEEE New Region 2 Director-Elect 2027</span>
                     <h1>Dr. Li Bai</h1>
@@ -1687,6 +1713,9 @@
                         bridging industry partnerships, fostering student engagement, and strengthening 
                         the unified Regions 1 & 2 community.
                     </p>
+                    <div class="hero-ieee-logo">
+                         <img src="ieee_logo.png" alt="IEEE Logo" style="height: 100px; width: auto; filter: brightness(0) invert(1); padding: 10px 20px; border-radius: 8px;">
+                    </div>
                     <div class="hero-buttons">
                         <a href="#vision" class="btn btn-primary">
                             <span>Our Vision</span>
@@ -1706,7 +1735,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- About Section -->
@@ -2374,8 +2402,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="ieee-logo" style="margin-bottom: 16px;">
-                        <span class="i" style="color: #00629B;">I</span><span class="e" style="color: #FFC72C;">E</span><span class="i" style="color: #00629B;">E</span><span class="e" style="color: #FFC72C;">E</span>
+                    <div class="footer-ieee-logo">
+                         <img src="ieee_logo.png" alt="IEEE Logo" style="height: 60px; width: auto; filter: brightness(10) invert(0);">
                     </div>
                     <h3>Dr. Li Bai</h3>
                     <p>
