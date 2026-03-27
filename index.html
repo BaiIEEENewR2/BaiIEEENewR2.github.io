@@ -1088,11 +1088,83 @@
             z-index: 1;
         }
 
-        .advocacy-image img {
-            max-width: 100%;
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            background: #000;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 98, 155, 0.8);
+            color: white;
+            border: none;
+            padding: 16px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 98, 155, 1);
+        }
+
+        .carousel-prev {
+            left: 16px;
+        }
+
+        .carousel-next {
+            right: 16px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--ieee-gold);
         }
 
         .advocacy-content {
@@ -1216,6 +1288,42 @@
 
         .region-connector {
             color: var(--ieee-gold);
+        }
+
+        /* Student Carousel Section */
+        .student-carousel-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--ieee-blue) 0%, var(--ieee-light) 100%);
+            color: var(--white);
+        }
+
+        .student-carousel-section .section-label {
+            color: var(--ieee-gold);
+        }
+
+        .student-carousel-section .section-title {
+            color: var(--white);
+        }
+
+        .student-carousel-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .student-carousel {
+            margin-top: 40px;
+        }
+
+        .student-carousel .carousel {
+            max-width: 700px;
+        }
+
+        .student-carousel .carousel-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--ieee-blue);
+        }
+
+        .student-carousel .carousel-btn:hover {
+            background: white;
         }
 
         /* Research Section */
@@ -2111,7 +2219,34 @@
                 </p>
             </div>
             <div class="advocacy-image animate-on-scroll">
-                <img src="congressional.jpeg" alt="Dr. Li Bai at Congressional Visit">
+                <div class="carousel" id="advocacyCarousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="congressional.jpeg" alt="Dr. Li Bai at Congressional Visit">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="congressional_2.jpeg" alt="Dr. Li Bai at Congressional Visit">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="congressional_3.jpeg" alt="Dr. Li Bai at Congressional Visit">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="congressional_4.jpeg" alt="Dr. Li Bai at Congressional Visit">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="congressional_5.jpeg" alt="Dr. Li Bai at Congressional Visit">
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" onclick="moveSlide(-1)">&#10094;</button>
+                    <button class="carousel-btn carousel-next" onclick="moveSlide(1)">&#10095;</button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="goToSlide(0)"></span>
+                        <span class="dot" onclick="goToSlide(1)"></span>
+                        <span class="dot" onclick="goToSlide(2)"></span>
+                        <span class="dot" onclick="goToSlide(3)"></span>
+                        <span class="dot" onclick="goToSlide(4)"></span>
+                    </div>
+                </div>
             </div>
             <div class="advocacy-content">
                 <div class="advocacy-card animate-on-scroll">
@@ -2140,6 +2275,49 @@
                     </div>
                     <h4>Education & Workforce</h4>
                     <p>Championing STEM education initiatives and advocating for programs that prepare the next generation of American engineers and innovators.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Activities Carousel Section -->
+    <section class="student-carousel-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Student Activities Conferences</span>
+                <h2 class="section-title">Student Activities</h2>
+                <p class="section-subtitle">
+                    See the energy and enthusiasm of our joint Regions 1 & 2 student conferences.
+                </p>
+            </div>
+            <div class="student-carousel animate-on-scroll">
+                <div class="carousel" id="studentCarousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="student_1.jpg" alt="Student Activities">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="student_2jpg.jpg" alt="Student Activities">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="student_3.jpg" alt="Student Activities">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="student_4.png" alt="Student Activities">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="student_5.png" alt="Student Activities">
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" onclick="moveStudentSlide(-1)">&#10094;</button>
+                    <button class="carousel-btn carousel-next" onclick="moveStudentSlide(1)">&#10095;</button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="goToStudentSlide(0)"></span>
+                        <span class="dot" onclick="goToStudentSlide(1)"></span>
+                        <span class="dot" onclick="goToStudentSlide(2)"></span>
+                        <span class="dot" onclick="goToStudentSlide(3)"></span>
+                        <span class="dot" onclick="goToStudentSlide(4)"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2712,6 +2890,69 @@
                 }
             });
         });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const track = document.querySelector('.carousel-track');
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-play carousel every 5 seconds
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        // Student Carousel functionality
+        let currentStudentSlide = 0;
+        const studentCarousel = document.getElementById('studentCarousel');
+        const studentSlides = studentCarousel ? studentCarousel.querySelectorAll('.carousel-slide') : [];
+        const studentDots = studentCarousel ? studentCarousel.querySelectorAll('.dot') : [];
+        const studentTrack = studentCarousel ? studentCarousel.querySelector('.carousel-track') : null;
+
+        function updateStudentCarousel() {
+            if (studentTrack) {
+                studentTrack.style.transform = `translateX(-${currentStudentSlide * 100}%)`;
+                studentDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentStudentSlide);
+                });
+            }
+        }
+
+        function moveStudentSlide(direction) {
+            if (studentSlides.length > 0) {
+                currentStudentSlide = (currentStudentSlide + direction + studentSlides.length) % studentSlides.length;
+                updateStudentCarousel();
+            }
+        }
+
+        function goToStudentSlide(index) {
+            if (studentSlides.length > 0) {
+                currentStudentSlide = index;
+                updateStudentCarousel();
+            }
+        }
+
+        // Auto-play student carousel every 5 seconds
+        setInterval(() => {
+            moveStudentSlide(1);
+        }, 5000);
     </script>
 </body>
 </html>
