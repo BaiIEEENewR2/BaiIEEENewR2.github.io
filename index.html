@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Li Bai - IEEE New Region 2 Director-Elect 2027</title>
+    <title>Dr. Li Bai - 2027-2028 IEEE Region 2 Delegate-Elect/Director Elect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -1872,7 +1872,7 @@
     <section class="hero">
         <div class="hero-content">
                 <div class="hero-text">
-                    <span class="hero-badge">IEEE New Region 2 Director-Elect 2027</span>
+                    <span class="hero-badge">2027-2028 IEEE Region 2 Delegate-Elect/Director Elect</span>
                     <h1>Dr. Li Bai</h1>
                     <p class="hero-subtitle">Uniting Students, Industry & Academia for Innovation</p>
                     <p class="hero-description">
@@ -1935,7 +1935,7 @@
                 <div class="about-text animate-on-scroll">
                     <h3>Bridging Academia & Industry</h3>
                     <p>
-                        Dr. Li Bai is Professor and Department Chair in the Department of Electrical & 
+                        Dr. Li Bai is Professor in the Department of Electrical & 
                         Computer Engineering at Temple University, and newly appointed Associate Dean for Research, 
                         Graduate Studies & Faculty Affairs (July 2025). With a Ph.D. in Electrical Engineering 
                         from Drexel University, he brings a powerful combination of academic excellence and industry experience.
@@ -2654,7 +2654,7 @@
                     </div>
                     <h3>Dr. Li Bai</h3>
                     <p>
-                        IEEE New Region 2 Director-Elect Candidate 2027<br>
+                        2027-2028 IEEE Region 2 Delegate-Elect/Director Elect Candidate<br>
                         Uniting Students, Industry & Academia
                     </p>
                 </div>
@@ -2691,7 +2691,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Dr. Li Bai for IEEE New Region 2 Director-Elect</p>
+                <p>&copy; 2026 Dr. Li Bai for 2027-2028 IEEE Region 2 Delegate-Elect/Director Elect</p>
                 <p>IEEE New Region 2 | Regions 1 & 2 Unity</p>
             </div>
         </div>
@@ -2893,31 +2893,40 @@
 
         // Carousel functionality
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        const track = document.querySelector('.carousel-track');
+        const advocacyCarousel = document.getElementById('advocacyCarousel');
+        const slides = advocacyCarousel ? advocacyCarousel.querySelectorAll('.carousel-slide') : [];
+        const dots = advocacyCarousel ? advocacyCarousel.querySelectorAll('.dot') : [];
+        const track = advocacyCarousel ? advocacyCarousel.querySelector('.carousel-track') : null;
 
         function updateCarousel() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
+            if (track) {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
         }
 
         function moveSlide(direction) {
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            updateCarousel();
+            if (slides.length > 0) {
+                currentSlide = (currentSlide + direction + slides.length) % slides.length;
+                updateCarousel();
+            }
         }
 
         function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
+            if (slides.length > 0) {
+                currentSlide = index;
+                updateCarousel();
+            }
         }
 
         // Auto-play carousel every 5 seconds
-        setInterval(() => {
-            moveSlide(1);
-        }, 5000);
+        if (slides.length > 0) {
+            setInterval(() => {
+                moveSlide(1);
+            }, 5000);
+        }
 
         // Student Carousel functionality
         let currentStudentSlide = 0;
