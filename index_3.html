@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vote Dr. Li Bai — IEEE Region 2 Director-Elect, 2027–2028</title>
+<meta name="description" content="One Unified Region, For All. Dr. Li Bai for IEEE Region 2 Director-Elect. Voting: 17 August – 1 October 2026.">
+<meta property="og:title" content="Vote Dr. Li Bai — IEEE Region 2 Director-Elect">
+<meta property="og:description" content="One Unified Region, For All. Voting opens 17 August 2026.">
+<meta property="og:image" content="https://baiieeenewr2.github.io/bai.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  Image assets are served from the existing campaign repo:
+  https://baiieeenewr2.github.io/  — bai.png, congressional*.jpeg, student_*.jpg/png,
+  robot_dog.png, celus.png, regions.png, ieee_logo.png, qr_vote.svg, Li_Bai_s_CV.pdf
+  Motion effects derived from vue-bits by DavidHDev (MIT).
+-->
+
+<style>
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+:root{
+  --ink:#08182A; --ink-2:#0E2438; --ink-3:#16304A; --ink-hover:#16324D;
+  --paper:#EDF2F6; --paper-2:#FFFFFF; --paper-3:#DCE5EC; --paper-hover:#F6F9FB;
+  --brand:#00629B; --brand-lift:#0A81C4;
+  --signal:#F5B921; --signal-lift:#FFC93F;
+  --text-d1:#F2F6FA; --text-d2:#A9BCCC; --text-d3:#6E8599;
+  --text-l1:#0A1B2A; --text-l2:#3C566C; --text-l3:#6E8599;
+  --ink-rgb:8,24,42; --paper-rgb:237,242,246; --brand-rgb:0,98,155;
+  --signal-rgb:245,185,33; --text-d1-rgb:242,246,250;
+  --success:#2E9E6B; --error:#D14343; --warning:#F5B921;
+  --mask-opaque:#000;            /* mask stop only — never painted */
+  --ease-cinema:cubic-bezier(.16,1,.3,1);
+  --ease-snap:cubic-bezier(.34,1.4,.64,1);
+  --display:'Big Shoulders Display','Big Shoulders','Archivo Narrow',Impact,sans-serif;
+  --body:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --wrap:1240px; --narrow:760px;
+  --pad:clamp(1.25rem,5vw,3rem);
+  --sect:clamp(5rem,10vw,8rem);
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--text-d2);
+  font-family:var(--body);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{margin:0;color:var(--text-d1)}
+p{margin:0 0 1rem}
+p:last-child{margin-bottom:0}
+:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.narrow{max-width:var(--narrow)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.section{padding-block:var(--sect);position:relative}
+.on-paper{background:var(--paper);color:var(--text-l2)}
+.on-paper h1,.on-paper h2,.on-paper h3,.on-paper h4{color:var(--text-l1)}
+.on-ink{background:var(--ink);color:var(--text-d2)}
+
+h1,h2,.display{font-family:var(--display);font-weight:800;letter-spacing:-.015em;line-height:.86}
+h2{font-size:clamp(2.6rem,6vw,5rem);font-weight:700;line-height:.9}
+h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.lead{font-size:clamp(1.05rem,1.6vw,1.28rem);line-height:1.6;max-width:62ch}
+.body-max{max-width:68ch}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-d3);
+  display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;
+}
+.eyebrow::before{content:'';width:26px;height:2px;background:var(--brand-lift);flex:none}
+.on-paper .eyebrow{color:var(--text-l3)}
+.on-paper .eyebrow::before{background:var(--brand)}
+
+/* ============================================================
+   3. COMPONENTS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  min-height:52px;padding:0 1.6rem;border-radius:4px;border:1px solid transparent;
+  font-family:var(--body);font-size:.95rem;font-weight:700;letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;
+  transition:background-color .25s var(--ease-cinema),border-color .25s var(--ease-cinema),
+             color .25s var(--ease-cinema),transform .35s var(--ease-snap),box-shadow .3s var(--ease-cinema);
+}
+.btn-primary{background:var(--signal);color:var(--ink);box-shadow:0 4px 0 0 rgba(var(--ink-rgb),.55)}
+.btn-primary:hover{background:var(--signal-lift);transform:translateY(-2px);box-shadow:0 6px 0 0 rgba(var(--ink-rgb),.55)}
+.btn-primary:active{transform:translateY(2px);box-shadow:0 1px 0 0 rgba(var(--ink-rgb),.55)}
+.btn-ghost{background:transparent;color:var(--text-d1);border-color:var(--ink-3)}
+.btn-ghost:hover{background:var(--ink-hover);border-color:var(--text-d3)}
+.on-paper .btn-ghost{color:var(--text-l1);border-color:var(--paper-3)}
+.on-paper .btn-ghost:hover{background:var(--paper-hover);border-color:var(--brand)}
+.btn:disabled,.btn[aria-disabled='true']{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+.card{
+  position:relative;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:6px;
+  padding:2rem;overflow:hidden;
+  transition:border-color .3s var(--ease-cinema),transform .45s var(--ease-cinema),box-shadow .45s var(--ease-cinema);
+  box-shadow:0 8px 24px -18px rgba(var(--ink-rgb),.4);
+}
+.card::before{
+  content:'';position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(var(--brand-rgb),.10),transparent 62%);
+  transition:opacity .35s var(--ease-cinema);
+}
+.card:hover{transform:translateY(-4px);border-color:var(--brand);box-shadow:0 18px 40px -24px rgba(var(--ink-rgb),.45)}
+.card:hover::before{opacity:1}
+.card:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(var(--brand-rgb),.18)}
+
+.tag{
+  display:inline-flex;align-items:center;min-height:30px;padding:0 .7rem;
+  border:1px solid var(--ink-3);border-radius:999px;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-d2);
+  transition:border-color .25s ease,color .25s ease;
+}
+.tag:hover{border-color:var(--brand-lift);color:var(--text-d1)}
+.on-paper .tag{border-color:var(--paper-3);color:var(--text-l2)}
+.on-paper .tag:hover{border-color:var(--brand);color:var(--text-l1)}
+
+.link{
+  color:var(--brand-lift);text-decoration:none;
+  background-image:linear-gradient(var(--signal),var(--signal));
+  background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size .35s var(--ease-cinema),color .25s ease;
+}
+.link:hover{background-size:100% 2px;color:var(--text-d1)}
+.on-paper .link{color:var(--brand)}
+.on-paper .link:hover{color:var(--text-l1)}
+
+.vote-pill{
+  display:inline-flex;align-items:center;gap:.55rem;padding:.45rem .9rem;
+  border:1px solid rgba(var(--signal-rgb),.4);border-radius:999px;background:rgba(var(--signal-rgb),.08);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);
+}
+.vote-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--signal);animation:pulse 2.4s ease-in-out infinite}
+
+.grid{display:grid;gap:1.5rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+
+/* ============================================================
+   4. NAV
+   ============================================================ */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;gap:1.5rem;
+  padding:1rem var(--pad);background:transparent;border-bottom:1px solid transparent;
+  transition:background-color .4s var(--ease-cinema),border-color .4s var(--ease-cinema),padding .4s var(--ease-cinema);
+}
+.nav[data-scrolled='true']{
+  background:rgba(var(--ink-rgb),.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom-color:var(--ink-3);padding-block:.6rem;
+}
+.nav-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto}
+.nav-brand img{height:22px;width:auto;filter:brightness(0) invert(1);opacity:.9}
+.nav-brand span{font-family:var(--display);font-size:1.3rem;font-weight:800;letter-spacing:.02em;color:var(--text-d1);line-height:1}
+.nav-links{display:flex;gap:1.4rem;align-items:center}
+.nav-links a{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-d2);text-decoration:none;transition:color .25s ease;
+}
+.nav-links a:hover{color:var(--text-d1)}
+.nav .btn{min-height:44px;padding:0 1.1rem;font-size:.85rem}
+.nav-toggle{display:none;background:none;border:1px solid var(--ink-3);border-radius:4px;
+  color:var(--text-d1);min-width:44px;min-height:44px;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-block:8rem 3rem;overflow:hidden;isolation:isolate}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(60% 55% at 18% 22%,rgba(var(--brand-rgb),.42),transparent 60%),
+    radial-gradient(45% 45% at 82% 12%,rgba(var(--signal-rgb),.16),transparent 62%),
+    radial-gradient(70% 60% at 60% 95%,rgba(var(--brand-rgb),.22),transparent 65%);
+  background-size:180% 180%,170% 170%,200% 200%;
+  background-position:0% 50%,100% 0%,50% 100%;
+  animation:drift 26s ease-in-out infinite alternate;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(var(--ink-rgb),.35) 0%,rgba(var(--ink-rgb),.75) 55%,var(--ink) 100%);
+}
+.hero-inner{position:relative;width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad);z-index:2}
+
+.hero-top{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-bottom:2rem}
+.hero-role{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-d2)}
+
+.hero h1{
+  font-size:clamp(4.2rem,13vw,11rem);line-height:.82;letter-spacing:-.015em;
+  text-shadow:0 0 60px rgba(var(--signal-rgb),.16);margin-bottom:.6rem;
+}
+.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.06em}
+.hero h1 .word i{display:inline-block;font-style:normal;transform:translateY(105%);animation:maskUp .95s var(--ease-cinema) forwards}
+.hero-tag{
+  font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,3.4vw,2.6rem);
+  color:var(--signal);line-height:1;letter-spacing:.01em;margin-bottom:1.6rem;
+}
+.hero-sub{max-width:46ch;margin-bottom:2rem;color:var(--text-d2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+
+.countdown{
+  display:flex;gap:1.4rem;align-items:flex-end;margin:2.4rem 0 0;
+  padding-top:1.6rem;border-top:1px solid var(--ink-3);flex-wrap:wrap;
+}
+.cd-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-d3);width:100%;margin-bottom:.4rem}
+.cd-unit{display:flex;flex-direction:column;gap:.2rem;min-width:64px}
+.cd-num{font-family:var(--mono);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.6rem);color:var(--signal);line-height:1;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.cd-cap{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d3)}
+.cd-dates{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--text-d3);align-self:flex-end;margin-left:auto}
+
+/* portrait + constellation */
+.hero-media{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-portrait{
+  position:absolute;right:2%;bottom:0;height:92%;width:auto;max-width:46vw;
+  object-fit:contain;object-position:bottom right;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,var(--mask-opaque) 18%,var(--mask-opaque) 82%,transparent 100%);
+          mask-image:linear-gradient(180deg,transparent 0%,var(--mask-opaque) 18%,var(--mask-opaque) 82%,transparent 100%);
+  opacity:.92;
+}
+.constellation{position:absolute;inset:0;perspective:1400px;transform-style:preserve-3d}
+.star-card{
+  position:absolute;top:50%;left:50%;width:var(--w,190px);
+  border-radius:8px;overflow:hidden;border:1px solid rgba(var(--text-d1-rgb),.14);
+  box-shadow:0 28px 70px -30px rgba(var(--ink-rgb),.85);
+  transform:translate3d(-50%,-50%,0) rotate(var(--r,0deg));
+  opacity:var(--o,.5);will-change:transform;
+}
+.star-card img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+
+/* ============================================================
+   6. MARQUEE + STATS
+   ============================================================ */
+.marquee{
+  border-block:1px solid var(--ink-3);padding-block:1.4rem;overflow:hidden;
+  background:var(--ink);white-space:nowrap;
+}
+.marquee-track{display:inline-flex;gap:3rem;animation:marquee 34s linear infinite;will-change:transform}
+.marquee span{
+  font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,4rem);line-height:1;
+  color:transparent;-webkit-text-stroke:1px var(--text-d3);letter-spacing:.01em;
+}
+.marquee span:nth-child(odd){color:var(--signal);-webkit-text-stroke:0}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-3);border:1px solid var(--ink-3)}
+.stat{background:var(--ink);padding:2.2rem 1.6rem;display:flex;flex-direction:column;gap:.5rem}
+.stat-num{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,7vw,6rem);line-height:.85;color:var(--text-d1);letter-spacing:-.01em}
+.stat-num em{font-style:normal;color:var(--signal)}
+.stat-cap{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text-d3);line-height:1.5}
+
+/* ============================================================
+   7. MANIFESTO
+   ============================================================ */
+.manifesto blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:-.01em;color:var(--text-l1)}
+.manifesto .w{opacity:.16;transition:opacity .3s linear}
+.manifesto cite{display:block;margin-top:1.6rem;font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-l3)}
+
+/* ============================================================
+   8. PIN SWAP — PILLARS
+   ============================================================ */
+.pin-swap{height:300vh;position:relative}
+.pin-swap-inner{
+  position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1.1fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+  max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad);
+}
+.pillar-index{display:flex;gap:.6rem;margin-bottom:1.6rem}
+.pi-dot{width:34px;height:3px;background:var(--paper-3);transition:background-color .4s var(--ease-cinema)}
+.pi-dot[data-on='true']{background:var(--brand)}
+.pillar-copy h2{font-size:clamp(2.4rem,5vw,4.2rem);margin-bottom:1rem}
+.pillar-copy p{max-width:46ch;font-size:1.0625rem}
+.pillar-kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin-bottom:1rem}
+.scene-stack{position:relative;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:var(--paper-3)}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease-cinema)}
+.scene[data-on='true']{opacity:1}
+.scene img{width:100%;height:100%;object-fit:cover}
+.scene figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:1.4rem;
+  background:linear-gradient(0deg,rgba(var(--ink-rgb),.9),transparent);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-d1);
+}
+
+/* ============================================================
+   9. REGION ASSEMBLY (WebGL)
+   ============================================================ */
+.region{height:220vh;position:relative;background:var(--ink)}
+.region-inner{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.webgl-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.webgl-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.5}
+.region-copy{position:relative;z-index:2;text-align:center;max-width:640px;padding-inline:var(--pad);pointer-events:none}
+.region-copy h2{font-size:clamp(2.6rem,7vw,5.4rem);margin-bottom:1rem}
+.region-copy p{color:var(--text-d2);margin-inline:auto;max-width:52ch}
+.region-legend{display:flex;gap:1.6rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.rl{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text-d3)}
+.rl b{width:9px;height:9px;border-radius:50%;display:block}
+
+/* ============================================================
+   10. INITIATIVES + RECORD
+   ============================================================ */
+.init-num{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--brand);margin-bottom:1rem;display:block}
+.card h3{margin-bottom:.8rem}
+.card p{font-size:1rem;color:var(--text-l2)}
+
+.bento{display:grid;gap:1rem;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto)}
+.b-wide{grid-column:span 4}
+.b-tall{grid-column:span 2;grid-row:span 2}
+.b-unit{grid-column:span 2}
+.b-tall{display:flex;flex-direction:column;justify-content:space-between}
+.award-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.award-list li{padding:.85rem 0;border-bottom:1px solid var(--paper-3);display:flex;gap:1rem;align-items:baseline;font-size:.98rem}
+.award-list li:last-child{border-bottom:0;padding-bottom:0}
+.award-list time{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--text-l3);flex:none;width:52px}
+.b-quiet{background:transparent;border-style:dashed;box-shadow:none}
+.b-quiet:hover{transform:none;box-shadow:none}
+
+/* ============================================================
+   11. GALLERY
+   ============================================================ */
+.gallery{overflow:hidden;padding-block:var(--sect)}
+.gal-track{display:flex;gap:1rem;width:max-content;animation:marquee 60s linear infinite;will-change:transform}
+.photo-tile{position:relative;overflow:hidden;border-radius:6px;width:clamp(220px,26vw,340px);aspect-ratio:4/3;flex:none;border:1px solid var(--ink-3)}
+.photo-tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-cinema)}
+.photo-tile:hover img{transform:scale(1.05)}
+.photo-tile::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 38%,rgba(var(--text-d1-rgb),.22) 50%,transparent 62%);
+  transform:translateX(-100%);transition:transform .8s var(--ease-cinema);
+}
+.photo-tile:hover::after{transform:translateX(100%)}
+.gallery:hover .gal-track{animation-play-state:paused}
+
+/* ============================================================
+   12. FINAL CTA + FOOTER
+   ============================================================ */
+.final{position:relative;overflow:hidden;isolation:isolate;text-align:center}
+.final::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(50% 60% at 50% 0%,rgba(var(--signal-rgb),.18),transparent 62%),
+    radial-gradient(60% 60% at 50% 110%,rgba(var(--brand-rgb),.38),transparent 65%);
+  background-size:180% 180%,180% 180%;animation:drift 30s ease-in-out infinite alternate;
+}
+.final h2{font-size:clamp(3rem,9vw,7rem);margin-bottom:1rem}
+.final .lead{margin-inline:auto;margin-bottom:2.4rem}
+.final-cta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center}
+.qr{display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--ink-3);border-radius:6px;background:var(--ink-2);text-decoration:none}
+.qr img{width:76px;height:76px;background:var(--paper-2);padding:5px;border-radius:4px}
+.qr div{text-align:left}
+.qr strong{display:block;color:var(--text-d1);font-size:.9rem}
+.qr span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text-d3)}
+
+.footer{border-top:1px solid var(--ink-3);padding-block:3rem;font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2rem}
+.footer h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d3);margin-bottom:1rem;font-weight:500}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55rem}
+.footer a{color:var(--text-d2);text-decoration:none;transition:color .2s ease}
+.footer a:hover{color:var(--signal)}
+.footer-base{margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--text-d3)}
+.thanks{
+  margin-top:2rem;text-align:center;font-family:var(--body);font-style:italic;
+  font-size:.95rem;color:var(--text-d3);opacity:0;transition:opacity 1.2s var(--ease-cinema);
+}
+.thanks.is-in{opacity:1}
+
+/* ============================================================
+   13. KEYFRAMES
+   ============================================================ */
+@keyframes riseIn{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+@keyframes maskUp{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes drift{to{background-position:60% 40%,30% 70%,80% 20%}}
+@keyframes marquee{to{transform:translate3d(-50%,0,0)}}
+.reveal{opacity:0}
+.reveal.is-in{animation:riseIn .9s var(--ease-cinema) forwards}
+.shown{opacity:1;animation:none}
+.ch{display:inline-block;will-change:transform}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .pin-swap{height:auto}
+  .pin-swap-inner{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:2rem;padding-block:var(--sect)}
+  .scene{position:relative;opacity:1;display:none}
+  .scene[data-on='true']{display:block}
+  .bento>*{grid-column:span 3;grid-row:auto}
+  .hero-portrait{max-width:60vw;opacity:.35}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  html{font-size:15.5px}
+  .constellation{display:none}
+  .hero{align-items:center;padding-block:7rem 3rem}
+  .hero-portrait{max-width:100%;right:-10%;opacity:.22}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .bento>*{grid-column:span 6;grid-row:auto}
+  .webgl-canvas{display:none}
+  .webgl-fallback{display:block}
+  .region{height:auto}
+  .region-inner{position:relative;top:auto;height:auto;min-height:80vh;padding-block:var(--sect)}
+  .nav-links{display:none}
+  .nav-toggle{display:inline-flex}
+  .footer-grid{grid-template-columns:1fr}
+  .cd-dates{margin-left:0;width:100%}
+  .scene-stack{aspect-ratio:3/2}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;animation:none}
+  .hero h1 .word i{transform:none;animation:none}
+  .constellation{display:none}
+  .pin-swap{height:auto}
+  .pin-swap-inner{position:relative;top:auto;height:auto;grid-template-columns:1fr}
+  .scene{position:relative;opacity:1}
+  .region{height:auto}
+  .region-inner{position:relative;top:auto;height:auto;min-height:70vh}
+  .webgl-canvas{display:none}
+  .webgl-fallback{display:block}
+  .manifesto .w{opacity:1}
+  .thanks{opacity:1}
+  .marquee-track,.gal-track,.hero-bg,.final::before{animation:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#top">
+    <img src="https://baiieeenewr2.github.io/ieee_logo.png" alt="">
+    <span>LI&nbsp;BAI</span>
+  </a>
+  <div class="nav-links">
+    <a href="#platform">Platform</a>
+    <a href="#region">The Region</a>
+    <a href="#initiatives">Initiatives</a>
+    <a href="#record">Record</a>
+  </div>
+  <a class="btn btn-primary" href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">Vote now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Jump to sections">☰</button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-media" aria-hidden="true">
+    <div class="constellation" id="constellation">
+      <div class="star-card" style="--w:200px;--r:-5deg;--o:.62;top:26%;left:16%">
+        <img src="https://baiieeenewr2.github.io/congressional.jpeg" alt="">
+      </div>
+      <div class="star-card" style="--w:160px;--r:6deg;--o:.42;top:66%;left:11%">
+        <img src="https://baiieeenewr2.github.io/student_3.jpg" alt="">
+      </div>
+      <div class="star-card" style="--w:135px;--r:-9deg;--o:.32;top:16%;left:41%">
+        <img src="https://baiieeenewr2.github.io/robot_dog.png" alt="">
+      </div>
+      <div class="star-card" style="--w:150px;--r:8deg;--o:.30;top:78%;left:44%">
+        <img src="https://baiieeenewr2.github.io/student_1.jpg" alt="">
+      </div>
+      <div class="star-card" style="--w:120px;--r:-4deg;--o:.24;top:38%;left:60%">
+        <img src="https://baiieeenewr2.github.io/celus.png" alt="">
+      </div>
+    </div>
+    <img class="hero-portrait" src="https://baiieeenewr2.github.io/bai.png" alt="">
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-top">
+      <span class="vote-pill" id="votePill">Ballot opens 17 August</span>
+      <span class="hero-role">IEEE Region 2 Director-Elect · 2027–2028</span>
+    </div>
+
+    <h1 id="heroName" aria-label="Li Bai">
+      <span class="word"><i style="animation-delay:.12s">LI</i></span>
+      <span class="word"><i style="animation-delay:.24s">BAI</i></span>
+    </h1>
+    <p class="hero-tag">One Unified Region, For All</p>
+
+    <p class="hero-sub lead">
+      Three joint R1&amp;R2 conferences. Four trips to Congress for engineers.
+      Twenty years of turning up for this region. Now, one voice for all of it.
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-magnet href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">
+        Cast your ballot →
+      </a>
+      <a class="btn btn-ghost" href="#platform">See the platform</a>
+    </div>
+
+    <div class="countdown" id="countdown" aria-live="polite">
+      <span class="cd-label" id="cdLabel">Voting opens in</span>
+      <span class="cd-unit"><span class="cd-num" id="cdD">—</span><span class="cd-cap">Days</span></span>
+      <span class="cd-unit"><span class="cd-num" id="cdH">—</span><span class="cd-cap">Hours</span></span>
+      <span class="cd-unit"><span class="cd-num" id="cdM">—</span><span class="cd-cap">Minutes</span></span>
+      <span class="cd-unit"><span class="cd-num" id="cdS">—</span><span class="cd-cap">Seconds</span></span>
+      <span class="cd-dates">Ballot open 17 Aug – 1 Oct 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>ONE UNIFIED REGION</span><span>FOR ALL</span><span>ONE UNIFIED REGION</span><span>FOR ALL</span>
+    <span>ONE UNIFIED REGION</span><span>FOR ALL</span><span>ONE UNIFIED REGION</span><span>FOR ALL</span>
+  </div>
+</div>
+
+<!-- ================= STATS ================= -->
+<section class="section on-ink" style="padding-block:clamp(3rem,6vw,5rem)" aria-label="Record at a glance">
+  <div class="wrap">
+    <div class="stats" id="stats">
+      <div class="stat">
+        <span class="stat-num" data-count="20" data-suffix="+">0</span>
+        <span class="stat-cap">Years of IEEE service,<br>section through region</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="3">0</span>
+        <span class="stat-cap">Consecutive joint R1&amp;R2<br>conferences, each in surplus</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="4">0</span>
+        <span class="stat-cap">Trips to Congress<br>as an IEEE-USA delegate</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="1995" data-from="1975">0</span>
+        <span class="stat-cap">IEEE-HKN member<br>since</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MANIFESTO ================= -->
+<section class="section on-paper manifesto">
+  <div class="wrap narrow">
+    <span class="eyebrow">Why this election matters</span>
+    <blockquote id="manifesto">
+      As Region 1 and Region 2 come together, this isn't about adding complexity.
+      It's about finding one unified voice — so we can support each other and grow
+      into the strongest engineering hub in IEEE.
+    </blockquote>
+    <cite>Dr. Li Bai · Temple University</cite>
+  </div>
+</section>
+
+<!-- ================= PILLARS (PIN 1) ================= -->
+<section class="pin-swap on-paper" id="platform">
+  <div class="pin-swap-inner">
+    <div class="pillar-copy">
+      <span class="eyebrow">The platform</span>
+      <div class="pillar-index" id="pillarIndex" aria-hidden="true">
+        <span class="pi-dot" data-on="true"></span><span class="pi-dot"></span><span class="pi-dot"></span>
+      </div>
+      <p class="pillar-kicker" id="pillarKicker">Pillar 1 — World-class education &amp; research</p>
+      <h2 id="pillarTitle" data-float>Research to Revenue</h2>
+      <p id="pillarBody">
+        Extraordinary research is already happening across our universities. Trained volunteers
+        will turn it into professional workshops — giving members real access to advances in their
+        field, and generating revenue the region can reinvest.
+      </p>
+      <p style="margin-top:1.6rem">
+        <a class="link" href="#initiatives">How this becomes a program →</a>
+      </p>
+    </div>
+
+    <div class="scene-stack" id="sceneStack">
+      <figure class="scene" data-on="true" style="margin:0">
+        <img src="https://baiieeenewr2.github.io/celus.png" alt="Remote PCB design training program brought from CELUS in Germany to US members">
+        <figcaption>Technical upskilling brought in from Region 8</figcaption>
+      </figure>
+      <figure class="scene" style="margin:0">
+        <img src="https://baiieeenewr2.github.io/student_3.jpg" alt="Students at a joint Region 1 and Region 2 student activities conference">
+        <figcaption>Joint R1&amp;R2 student activities conference</figcaption>
+      </figure>
+      <figure class="scene" style="margin:0">
+        <img src="https://baiieeenewr2.github.io/congressional.jpeg" alt="Dr. Li Bai representing IEEE-USA on a congressional visit in Washington DC">
+        <figcaption>IEEE-USA congressional delegation, Washington D.C.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REGION ASSEMBLY (PIN 2 — SIGNATURE) ================= -->
+<section class="region" id="region">
+  <div class="region-inner">
+    <canvas class="webgl-canvas" id="regionCanvas" aria-hidden="true"></canvas>
+    <img class="webgl-fallback" src="https://baiieeenewr2.github.io/regions.png" alt="Map of IEEE Region 1 and Region 2">
+    <div class="region-copy">
+      <span class="eyebrow" style="color:var(--text-d3)">Better together</span>
+      <h2 data-float>One Region</h2>
+      <p>
+        From New York's density to Washington's policy reach to the sections that have been
+        underserved for years — one network, sharing talent, funding and opportunity, so a member's
+        experience no longer depends on their zip code.
+      </p>
+      <div class="region-legend">
+        <span class="rl"><b style="background:var(--brand-lift)"></b> R1 · Northeast</span>
+        <span class="rl"><b style="background:var(--signal)"></b> R2 · Mid-Atlantic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INITIATIVES ================= -->
+<section class="section on-paper" id="initiatives">
+  <div class="wrap">
+    <span class="eyebrow">From vision to action</span>
+    <h2 data-float style="margin-bottom:1rem">Three things I will start</h2>
+    <p class="lead body-max" style="margin-bottom:3rem">
+      Not aspirations. Three programs with owners, venues and a first milestone at the next regional meeting.
+    </p>
+
+    <div class="grid grid-3">
+      <article class="card" tabindex="0">
+        <span class="init-num">Initiative 01</span>
+        <h3>Industry Advisory Committee</h3>
+        <p>Launching at the next regional meeting. Industry leaders sit at the table where programs,
+           workshops and member benefits get decided — so what we build matches what the profession
+           is actually hiring for.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <span class="init-num">Initiative 02</span>
+        <h3>Regional Capstone Projects</h3>
+        <p>Sections run capstones locally and nominate their strongest work for recognition at the
+           regional level. A real ladder from a single campus to the whole region.</p>
+        <p style="margin-top:1rem"><a class="link" href="https://athena.tu.temple.edu/capstone">See the working model →</a></p>
+      </article>
+      <article class="card" tabindex="0">
+        <span class="init-num">Initiative 03</span>
+        <h3>Digital Certificates for Service</h3>
+        <p>Volunteers earn verifiable credentials for the hours and expertise they give. Service
+           becomes documented and portable — something you can put in front of an employer.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECORD ================= -->
+<section class="section on-paper" id="record" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">The receipts</span>
+    <h2 data-float style="margin-bottom:2.5rem">Twenty years, on the record</h2>
+
+    <div class="bento">
+      <article class="card b-wide">
+        <h3>Three joint R1&amp;R2 conferences, all in surplus</h3>
+        <p>General Chair for SAC 2024, StuCon 2025 and SAC 2026 — the run that brought student
+           participation back after the pandemic and left money behind for the programs that follow.</p>
+        <p style="margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="tag" href="https://attend.ieee.org/sac-2026/">SAC 2026</a>
+          <a class="tag" href="https://attend.ieee.org/stucon-2025/">StuCon 2025</a>
+          <a class="tag" href="https://attend.ieee.org/sac-2024/">SAC 2024</a>
+        </p>
+      </article>
+
+      <article class="card b-tall">
+        <div>
+          <h3 style="margin-bottom:1.2rem">Recognition</h3>
+          <ul class="award-list">
+            <li><time>2016</time> Benjamin Franklin Key Award — the Philadelphia Section's highest honor</li>
+            <li><time>2011</time> IEEE Philadelphia Section Service Award</li>
+            <li><time>2010</time> Lindback Award for Distinguished Teaching</li>
+            <li><time>2004</time> Young Engineer of the Year</li>
+          </ul>
+        </div>
+        <p style="margin-top:1.4rem"><a class="link" href="https://baiieeenewr2.github.io/Li_Bai_s_CV.pdf">Full CV (PDF) →</a></p>
+      </article>
+
+      <article class="card b-unit">
+        <h3>Region 2 Student Activities Coordinator</h3>
+        <p>Since 2022 — student programs, budgets and regional resources.</p>
+      </article>
+
+      <article class="card b-unit">
+        <h3>Philadelphia Section Adcom</h3>
+        <p>Since 2002 — Chair, Vice Chair and Membership Chair.</p>
+      </article>
+
+      <article class="card b-wide">
+        <h3>Associate Dean for Research · Temple University College of Engineering</h3>
+        <p>Tenured Professor of Electrical &amp; Computer Engineering, with research funded by NSF,
+           DOT and DoD. TPC Chair for IEEE Metacom 2026. The budgets, hiring and program oversight
+           a region director actually has to do.</p>
+      </article>
+
+      <article class="card b-quiet b-unit">
+        <h3>Robotics across the region</h3>
+        <p>MiniPupper workshops and a cross-regional robot-dog challenge with Region 10.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery on-ink" aria-label="Campaign photographs">
+  <div class="wrap" style="margin-bottom:2.5rem">
+    <span class="eyebrow">In the room</span>
+    <h2 data-float>Where the work happened</h2>
+  </div>
+  <div class="gal-track">
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_2.jpeg" alt="Congressional visit"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/student_1.jpg" alt="Student conference"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_3.jpeg" alt="Congressional visit"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/student_4.png" alt="Student conference"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/robot_dog.png" alt="MiniPupper robotics workshop"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_4.jpeg" alt="Congressional visit"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/student_5.png" alt="Student conference"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_5.jpeg" alt="Congressional visit"></a>
+    <!-- duplicate set for seamless loop -->
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_2.jpeg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/student_1.jpg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_3.jpeg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/student_4.png" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/robot_dog.png" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_4.jpeg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/student_5.png" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_5.jpeg" alt=""></a>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="section final on-ink" id="vote">
+  <div class="wrap">
+    <span class="vote-pill" id="votePill2" style="margin-bottom:2rem">Ballot open 17 Aug – 1 Oct 2026</span>
+    <h2 data-float>Vote Dr. Li Bai</h2>
+    <p class="lead">One unified region, for all. It takes two minutes on the IEEE ballot.</p>
+    <div class="final-cta">
+      <a class="btn btn-primary" data-magnet href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">
+        Open the IEEE ballot →
+      </a>
+      <a class="qr" href="https://ieeer2.s.gy/decision27">
+        <img src="https://baiieeenewr2.github.io/qr_vote.svg" alt="QR code linking to this campaign site">
+        <div>
+          <strong>Share this page</strong>
+          <span>ieeer2.s.gy/decision27</span>
+        </div>
+      </a>
+    </div>
+    <p style="margin-top:2.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--text-d3)">
+      Questions? <a class="link" href="mailto:lbai@ieee.org">lbai@ieee.org</a>
+    </p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer on-ink">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Candidate</h4>
+        <p style="color:var(--text-d2);max-width:34ch">
+          <strong style="color:var(--text-d1)">Dr. Li Bai</strong><br>
+          IEEE Region 2 Director-Elect Candidate, 2027–2028<br>
+          Temple University, Philadelphia, PA
+        </p>
+      </div>
+      <div>
+        <h4>The campaign</h4>
+        <ul>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#initiatives">Initiatives</a></li>
+          <li><a href="#record">Record</a></li>
+          <li><a href="https://baiieeenewr2.github.io/Li_Bai_s_CV.pdf">Full CV (PDF)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Vote</h4>
+        <ul>
+          <li><a href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">IEEE election ballot</a></li>
+          <li><a href="mailto:lbai@ieee.org">lbai@ieee.org</a></li>
+          <li><a href="https://www.ieee.org">IEEE.org</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="thanks" id="thanks">You read to the end. That's the attention I'll bring to the Region.</p>
+
+    <div class="footer-base">
+      <span>© 2026 Dr. Li Bai — Candidate, IEEE Region 2 Director-Elect</span>
+      <span>The opinions expressed herein are the author's and not necessarily those of IEEE.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+
+  /* ---------- capability gate ---------- */
+  var perf = {
+    mobile:  matchMedia('(max-width: 720px)').matches,
+    lowCore: (navigator.hardwareConcurrency || 8) < 4,
+    reduce:  matchMedia('(prefers-reduced-motion: reduce)').matches,
+    hover:   matchMedia('(hover: hover)').matches
+  };
+  perf.heavy = !perf.mobile && !perf.lowCore && !perf.reduce;
+  document.documentElement.dataset.motion = perf.reduce ? 'reduce' : (perf.heavy ? 'full' : 'lite');
+
+  var css = getComputedStyle(document.documentElement);
+  var tok = function (n) { return css.getPropertyValue(n).trim(); };
+
+  /* ---------- nav ---------- */
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.dataset.scrolled = String(window.scrollY > 40); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  var toggle = document.getElementById('navToggle');
+  if (toggle) toggle.addEventListener('click', function () {
+    document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  /* ---------- countdown ---------- */
+  var OPEN  = new Date('2026-08-17T00:00:00-04:00');
+  var CLOSE = new Date('2026-10-01T23:59:59-04:00');
+  var els = {
+    label: document.getElementById('cdLabel'),
+    d: document.getElementById('cdD'), h: document.getElementById('cdH'),
+    m: document.getElementById('cdM'), s: document.getElementById('cdS'),
+    pill: document.getElementById('votePill')
+  };
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+
+  function tickClock() {
+    var now = new Date(), target, label, pill;
+    if (now < OPEN)       { target = OPEN;  label = 'Voting opens in';   pill = 'Ballot opens 17 August'; }
+    else if (now < CLOSE) { target = CLOSE; label = 'Time left to vote'; pill = 'Voting is open now'; }
+    else {
+      els.label.textContent = 'Voting has closed';
+      els.d.textContent = els.h.textContent = els.m.textContent = els.s.textContent = '00';
+      if (els.pill) els.pill.textContent = 'Ballot closed';
+      return;
+    }
+    var t = Math.max(0, target - now);
+    els.label.textContent = label;
+    if (els.pill) els.pill.textContent = pill;
+    els.d.textContent = pad(Math.floor(t / 86400000));
+    els.h.textContent = pad(Math.floor(t / 3600000) % 24);
+    els.m.textContent = pad(Math.floor(t / 60000) % 60);
+    els.s.textContent = pad(Math.floor(t / 1000) % 60);
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  /* ---------- text splitting ---------- */
+  // ScrollFloat: per-character rise on section headings
+  document.querySelectorAll('[data-float]').forEach(function (el) {
+    var text = el.textContent;
+    el.textContent = '';
+    text.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = c === ' ' ? '\u00A0' : c;
+      el.appendChild(s);
+    });
+  });
+
+  // ScrollReveal: per-word opacity on the manifesto
+  var quote = document.getElementById('manifesto');
+  if (quote) {
+    var words = quote.textContent.trim().split(/\s+/);
+    quote.textContent = '';
+    words.forEach(function (w) {
+      var s = document.createElement('span');
+      s.className = 'w';
+      s.textContent = w + ' ';
+      quote.appendChild(s);
+    });
+  }
+
+  /* ---------- CountUp ---------- */
+  function countUp(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    var to = parseFloat(el.dataset.count);
+    var from = parseFloat(el.dataset.from || '0');
+    var suffix = el.dataset.suffix || '';
+    if (perf.reduce) { el.textContent = to + suffix; return; }
+    var start = performance.now(), dur = 1400;
+    (function step(now) {
+      var p = Math.min(1, (now - start) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = Math.round(from + (to - from) * eased) + (suffix ? '<em>' + suffix + '</em>' : '');
+      if (p < 1) requestAnimationFrame(step);
+    })(start);
+  }
+
+  /* ---------- IntersectionObserver reveals ---------- */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var t = e.target;
+      if (t.dataset.count !== undefined) { countUp(t); }
+      else {
+        t.classList.add('is-in');
+        t.addEventListener('animationend', function handoff() {
+          t.classList.remove('reveal', 'is-in');
+          t.classList.add('shown');
+          t.removeEventListener('animationend', handoff);
+        });
+      }
+      io.unobserve(t);
+    });
+  }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('[data-count]').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.card, .stat, .thanks').forEach(function (el) {
+    if (!el.classList.contains('thanks')) el.classList.add('reveal');
+    io.observe(el);
+  });
+
+  /* ---------- Magnetic CTA ---------- */
+  if (perf.hover && !perf.reduce) {
+    document.querySelectorAll('[data-magnet]').forEach(function (btn) {
+      var raf = null, tx = 0, ty = 0;
+      btn.addEventListener('pointermove', function (e) {
+        var r = btn.getBoundingClientRect();
+        tx = (e.clientX - (r.left + r.width / 2)) * 0.18;
+        ty = (e.clientY - (r.top + r.height / 2)) * 0.28;
+        if (!raf) raf = requestAnimationFrame(function () {
+          btn.style.transform = 'translate3d(' + tx + 'px,' + (ty - 2) + 'px,0)';
+          raf = null;
+        });
+      });
+      btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+    });
+  }
+
+  /* ---------- SpotlightCard pointer tracking ---------- */
+  if (perf.hover) {
+    document.querySelectorAll('.card').forEach(function (card) {
+      var raf = null, mx = 0, my = 0;
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        mx = e.clientX - r.left; my = e.clientY - r.top;
+        if (!raf) raf = requestAnimationFrame(function () {
+          card.style.setProperty('--mx', mx + 'px');
+          card.style.setProperty('--my', my + 'px');
+          raf = null;
+        });
+      });
+    });
+  }
+
+  /* ---------- Pillars: left pin / right swap ---------- */
+  var PILLARS = [
+    { kicker: 'Pillar 1 — World-class education & research', title: 'Research to Revenue',
+      body: 'Extraordinary research is already happening across our universities. Trained volunteers will turn it into professional workshops — giving members real access to advances in their field, and generating revenue the region can reinvest.' },
+    { kicker: 'Pillar 2 — A seamless pipeline for our next engineers', title: 'Student to Professional',
+      body: 'Graduation should not be the moment someone quietly leaves IEEE. Mentorship, industry connections and clear pathways so no one loses momentum on the walk from the classroom into a career.' },
+    { kicker: 'Pillar 3 — Every member shaping the region', title: 'Voice in Governance',
+      body: 'A member in an underserved section should have the same say as one in a major metro. As two regions become one, governance has to reflect the whole community — not just the loudest part of it.' }
+  ];
+  var kicker = document.getElementById('pillarKicker');
+  var title  = document.getElementById('pillarTitle');
+  var bodyEl = document.getElementById('pillarBody');
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('#sceneStack .scene'));
+  var dots   = Array.prototype.slice.call(document.querySelectorAll('#pillarIndex .pi-dot'));
+  var current = 0;
+
+  function setPillar(i) {
+    if (i === current) return;
+    current = i;
+    var p = PILLARS[i];
+    kicker.textContent = p.kicker;
+    bodyEl.textContent = p.body;
+    title.textContent = '';
+    p.title.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = c === ' ' ? '\u00A0' : c;
+      title.appendChild(s);
+    });
+    if (window.gsap && !perf.reduce) {
+      gsap.from(title.querySelectorAll('.ch'), { yPercent: 110, opacity: 0, duration: .55, ease: 'power3.out', stagger: .02 });
+      gsap.from([kicker, bodyEl], { opacity: 0, y: 12, duration: .5, ease: 'power2.out' });
+    }
+    scenes.forEach(function (s, n) { s.dataset.on = String(n === i); });
+    dots.forEach(function (d, n) { d.dataset.on = String(n === i); });
+  }
+
+  /* ---------- GSAP timelines ---------- */
+  if (window.gsap && window.ScrollTrigger && !perf.reduce) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ScrollFloat on every data-float heading
+    document.querySelectorAll('[data-float]').forEach(function (el) {
+      if (el === title) return;
+      gsap.from(el.querySelectorAll('.ch'), {
+        yPercent: 110, opacity: 0, duration: .7, ease: 'power3.out', stagger: .018,
+        scrollTrigger: { trigger: el, start: 'top 84%' }
+      });
+    });
+
+    // ScrollReveal on the manifesto
+    if (quote) {
+      gsap.to(quote.querySelectorAll('.w'), {
+        opacity: 1, ease: 'none', stagger: .3,
+        scrollTrigger: { trigger: quote, start: 'top 78%', end: 'bottom 55%', scrub: .6 }
+      });
+    }
+
+    // Hero parallax
+    gsap.to('.hero-media', {
+      yPercent: -12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Pattern 2 — card collapse: constellation converges as the hero leaves
+    if (perf.heavy) {
+      gsap.to('.star-card', {
+        x: 0, y: 0, scale: .15, opacity: 0, rotation: 0,
+        stagger: { amount: .6, from: 'random' }, ease: 'power2.in',
+        scrollTrigger: { trigger: '.hero', start: 'bottom 88%', end: 'bottom top', scrub: 1 }
+      });
+
+      // pointer parallax on the constellation
+      var stage = document.getElementById('constellation');
+      var cards = gsap.utils.toArray('.star-card');
+      var praf = null, pdx = 0, pdy = 0;
+      if (perf.hover && stage) {
+        window.addEventListener('pointermove', function (e) {
+          pdx = (e.clientX - innerWidth / 2) / innerWidth;
+          pdy = (e.clientY - innerHeight / 2) / innerHeight;
+          if (!praf) praf = requestAnimationFrame(function () {
+            cards.forEach(function (c, i) {
+              var depth = (i + 1) * 6;
+              gsap.to(c, { x: pdx * depth, y: pdy * depth, duration: .9, ease: 'power3.out', overwrite: 'auto' });
+            });
+            praf = null;
+          });
+        }, { passive: true });
+      }
+    }
+
+    // PIN 1 — pillars
+    if (window.innerWidth > 1024) {
+      ScrollTrigger.create({
+        trigger: '.pin-swap', start: 'top top', end: 'bottom bottom', scrub: .4,
+        onUpdate: function (self) {
+          var i = Math.min(Math.floor(self.progress * 3), 2);
+          setPillar(i);
+        }
+      });
+    }
+  }
+
+  /* ---------- PIN 2 — Region Assembly (WebGL signature) ---------- */
+  (function regionAssembly() {
+    var canvas = document.getElementById('regionCanvas');
+    var still = document.querySelector('.webgl-fallback');
+    if (!canvas || !window.THREE || !perf.heavy) {
+      if (canvas) canvas.style.display = 'none';
+      if (still) still.style.display = 'block';
+      return;
+    }
+
+    var host = canvas.parentElement;
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(host.clientWidth, host.clientHeight, false);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(46, host.clientWidth / host.clientHeight, 0.1, 100);
+    camera.position.z = 6.2;
+
+    var group = new THREE.Group();
+    scene.add(group);
+
+    var N = 220, R = 2.5;
+    var homeA = [], homeB = [], target = [], colors = [];
+    var c1 = new THREE.Color(tok('--brand-lift'));
+    var c2 = new THREE.Color(tok('--signal'));
+
+    for (var i = 0; i < N; i++) {
+      // final position: even distribution on a sphere
+      var y = 1 - (i / (N - 1)) * 2;
+      var rad = Math.sqrt(Math.max(0, 1 - y * y));
+      var theta = Math.PI * (3 - Math.sqrt(5)) * i;
+      var fx = Math.cos(theta) * rad * R, fy = y * R, fz = Math.sin(theta) * rad * R;
+      target.push(fx, fy, fz);
+
+      // start: two separated clusters
+      var isR1 = i % 2 === 0;
+      var ox = isR1 ? -3.4 : 3.4;
+      var oy = isR1 ? 0.9 : -0.9;
+      homeA.push(fx * 0.55 + ox, fy * 0.55 + oy, fz * 0.55);
+
+      var col = isR1 ? c1 : c2;
+      colors.push(col.r, col.g, col.b);
+    }
+
+    var pos = new Float32Array(N * 3);
+    for (var k = 0; k < N * 3; k++) pos[k] = homeA[k];
+
+    var pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    pGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    var points = new THREE.Points(pGeo, new THREE.PointsMaterial({
+      size: 0.075, vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true
+    }));
+    group.add(points);
+
+    // wiring: connect nodes that end up near each other
+    var pairs = [];
+    for (var a = 0; a < N; a++) {
+      for (var b = a + 1; b < N; b++) {
+        var dx = target[a * 3] - target[b * 3];
+        var dy = target[a * 3 + 1] - target[b * 3 + 1];
+        var dz = target[a * 3 + 2] - target[b * 3 + 2];
+        if (dx * dx + dy * dy + dz * dz < 0.62) pairs.push(a, b);
+      }
+    }
+    var lPos = new Float32Array(pairs.length * 3);
+    var lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
+    var lMat = new THREE.LineBasicMaterial({
+      color: new THREE.Color(tok('--brand-lift')), transparent: true, opacity: 0
+    });
+    var lines = new THREE.LineSegments(lGeo, lMat);
+    group.add(lines);
+
+    var progress = 0, visible = false;
+
+    function applyProgress(p) {
+      var e = p * p * (3 - 2 * p); // smoothstep
+      var arr = pGeo.attributes.position.array;
+      for (var i2 = 0; i2 < N * 3; i2++) arr[i2] = homeA[i2] + (target[i2] - homeA[i2]) * e;
+      pGeo.attributes.position.needsUpdate = true;
+
+      var la = lGeo.attributes.position.array;
+      for (var j = 0; j < pairs.length; j++) {
+        var idx = pairs[j] * 3;
+        la[j * 3] = arr[idx]; la[j * 3 + 1] = arr[idx + 1]; la[j * 3 + 2] = arr[idx + 2];
+      }
+      lGeo.attributes.position.needsUpdate = true;
+      lMat.opacity = Math.max(0, (e - 0.45) / 0.55) * 0.3;
+      group.rotation.y = -0.6 + e * 1.5;
+      group.rotation.x = 0.18 - e * 0.1;
+    }
+    applyProgress(0);
+
+    var vis = new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0 });
+    vis.observe(host);
+
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!visible) return;
+      group.rotation.y += 0.0012;
+      renderer.render(scene, camera);
+    })();
+
+    if (window.gsap && window.ScrollTrigger) {
+      ScrollTrigger.create({
+        trigger: '.region', start: 'top top', end: 'bottom bottom', scrub: .5,
+        onUpdate: function (self) { progress = self.progress; applyProgress(progress); }
+      });
+    }
+
+    var ro = new ResizeObserver(function () {
+      renderer.setSize(host.clientWidth, host.clientHeight, false);
+      camera.aspect = host.clientWidth / host.clientHeight;
+      camera.updateProjectionMatrix();
+    });
+    ro.observe(host);
+  })();
+});
+</script>
+</body>
+</html>
