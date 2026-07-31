@@ -1,3571 +1,1338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vote Dr. Li Bai - IEEE Region 2 Director-Elect 2027-2028</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ieee-blue: #00629B;
-            --ieee-dark: #003047;
-            --ieee-light: #00A0DF;
-            --ieee-gold: #FFC72C;
-            --white: #ffffff;
-            --off-white: #f8f9fa;
-            --text-dark: #1a1a2e;
-            --text-gray: #5a5a72;
-            --card-navy: #1B2A4A;
-            --card-teal: #00A9A5;
-            --card-teal-dark: #0E8A87;
-            --card-cream: #F7F5F0;
-            --card-gold: #F0C244;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1002;
-            padding: 0 24px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--ieee-blue);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .nav-links {
-            position: fixed;
-            top: 0;
-            right: -320px;
-            width: 320px;
-            height: 100vh;
-            background: var(--white);
-            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-            flex-direction: column;
-            padding: 80px 32px 32px;
-            gap: 8px;
-            z-index: 1001;
-            transition: right 0.3s ease;
-            overflow-y: auto;
-            list-style: none;
-        }
-
-        .nav-links.active {
-            right: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--ieee-dark);
-            font-weight: 500;
-            font-size: 1.1rem;
-            padding: 14px 16px;
-            transition: var(--transition);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav-links a:hover {
-            background: var(--off-white);
-            color: var(--ieee-blue);
-            padding-left: 24px;
-        }
-
-        .nav-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--off-white);
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--ieee-dark);
-            z-index: 1002;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-close:hover {
-            background: var(--ieee-blue);
-            color: var(--white);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .nav-vote-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--card-gold);
-            color: var(--card-navy);
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 8px 16px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .nav-vote-btn:hover {
-            background: #ffd54f;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(240, 194, 68, 0.4);
-        }
-
-        .nav-vote-btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1003;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: var(--ieee-dark);
-            margin: 6px 0;
-            transition: var(--transition);
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Nav overlay backdrop */
-        .nav-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-overlay.active {
-            display: block;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--ieee-dark) 0%, var(--ieee-blue) 50%, var(--ieee-light) 100%);
-            position: relative;
-            overflow: visible;
-            padding-top: 70px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .hero-text {
-            color: #ffffff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--ieee-gold);
-            color: var(--ieee-dark);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        /* Vote Call-to-Action Banner */
-        .vote-banner {
-            background: var(--card-navy);
-            border-top: 3px solid var(--card-gold);
-            border-bottom: 3px solid var(--card-gold);
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .vote-banner-label {
-            display: inline-block;
-            background: var(--ieee-gold);
-            color: var(--ieee-dark);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-
-        .vote-banner-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--white);
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .vote-banner-title span {
-            color: var(--ieee-gold);
-        }
-
-        .vote-banner-tagline {
-            color: var(--white);
-            opacity: 0.9;
-            font-size: 1.15rem;
-            font-style: italic;
-            margin-bottom: 24px;
-        }
-
-        .vote-banner-stats {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            color: var(--white);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 28px;
-        }
-
-        .vote-banner-stats .stat-divider {
-            color: var(--ieee-gold);
-            font-weight: 700;
-        }
-
-        .vote-banner .btn-primary {
-            font-size: 1.05rem;
-        }
-
-        .vote-banner-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .vote-scan {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            margin-top: 32px;
-            background: var(--white);
-            padding: 18px 24px 14px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .vote-scan:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-        }
-
-        .vote-scan img {
-            width: 150px;
-            height: 150px;
-            display: block;
-        }
-
-        .vote-scan-label {
-            color: var(--card-navy);
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .vote-scan-url {
-            color: var(--ieee-blue);
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .vote-dates {
-            margin-top: 24px;
-            color: var(--card-gold);
-            font-weight: 600;
-            letter-spacing: 2px;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 600px) {
-            .vote-banner-title {
-                font-size: 1.6rem;
-            }
-            .vote-banner-stats .stat-divider {
-                display: none;
-            }
-            .vote-banner-stats {
-                flex-direction: column;
-                gap: 8px;
-            }
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 16px;
-            animation: fadeInUp 0.8s ease 0.1s backwards;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            opacity: 0.85;
-            margin-bottom: 32px;
-            max-width: 500px;
-            animation: fadeInUp 0.8s ease 0.3s backwards;
-        }
-
-        .hero-ieee-logo {
-            margin-bottom: 32px;
-            animation: fadeInUp 0.8s ease 0.15s backwards;
-            display: inline-block;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--ieee-gold);
-            color: var(--ieee-dark);
-        }
-
-        .btn-primary:hover {
-            background: #ffd54f;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 199, 44, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--ieee-blue);
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeInRight 1s ease 0.5s backwards;
-        }
-
-        .profile-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-        }
-
-        .profile-avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 24px;
-            display: block;
-            object-fit: cover;
-            object-position: center 28%;
-            border: 4px solid var(--ieee-gold);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--ieee-dark);
-            margin-bottom: 8px;
-        }
-
-        .profile-title {
-            color: var(--ieee-blue);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 16px;
-        }
-
-        .profile-affiliation {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            padding-top: 16px;
-            border-top: 1px solid #eee;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* About Section */
-        .about {
-            padding: 120px 0;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            display: inline-block;
-            color: var(--ieee-blue);
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.75rem;
-            color: var(--ieee-dark);
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image-main {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-stats {
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            background: var(--ieee-blue);
-            color: var(--white);
-            padding: 24px 32px;
-            border-radius: 12px;
-            display: flex;
-            gap: 32px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-        }
-
-        .about-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--ieee-dark);
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            color: var(--text-gray);
-            margin-bottom: 16px;
-            font-size: 1.05rem;
-        }
-
-        .about-highlights {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .highlight-tag {
-            background: var(--off-white);
-            color: var(--ieee-blue);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        /* Vision Section — styled after the campaign card */
-        .vision {
-            padding: 120px 0;
-            background: var(--card-navy);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        .vision .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .vision .section-label {
-            color: var(--card-teal);
-            letter-spacing: 3px;
-        }
-
-        .vision .section-title {
-            color: var(--card-cream);
-        }
-
-        .vision .section-subtitle {
-            color: rgba(247, 245, 240, 0.85);
-        }
-
-        .pillars-visual {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto 60px;
-            overflow: hidden;
-            border-radius: 16px;
-        }
-
-        .pillars-visual img {
-            width: 100%;
-            display: block;
-            border-radius: 16px;
-            border: 1px solid rgba(247, 245, 240, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .pillar-overlay {
-            position: absolute;
-            top: 63%;
-            width: 24%;
-            transform: translateX(-50%);
-            padding: 11px 10px;
-            border-radius: 16px;
-            text-align: center;
-            background: rgba(7, 18, 58, 0.52);
-            border: 1px solid rgba(247, 245, 240, 0.18);
-            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
-            backdrop-filter: blur(8px);
-        }
-
-        .pillar-overlay.left {
-            left: 16.5%;
-        }
-
-        .pillar-overlay.center {
-            left: 50%;
-        }
-
-        .pillar-overlay.right {
-            left: 83.5%;
-        }
-
-        .pillar-overlay .pillar-kicker {
-            display: block;
-            margin-bottom: 6px;
-            color: rgba(255, 255, 255, 0.78);
-            letter-spacing: 1.4px;
-            font-size: 0.68rem;
-        }
-
-        .pillar-overlay h3 {
-            margin-bottom: 6px;
-            color: var(--white);
-            font-size: clamp(0.72rem, 0.95vw, 0.92rem);
-            line-height: 1.15;
-        }
-
-        .pillar-overlay p {
-            color: rgba(247, 245, 240, 0.9);
-            font-size: clamp(0.54rem, 0.72vw, 0.68rem);
-            line-height: 1.28;
-        }
-
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .vision-card {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 40px;
-            transition: var(--transition);
-            border: 1px solid rgba(247, 245, 240, 0.15);
-            backdrop-filter: blur(10px);
-        }
-
-        .vision-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-            border-color: var(--card-gold);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .pillar-marker {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .pillar-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--card-gold);
-            flex-shrink: 0;
-        }
-
-        .pillar-kicker {
-            color: var(--card-teal);
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .vision-card h3 {
-            font-size: 1.4rem;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-
-        .vision-card p {
-            color: rgba(247, 245, 240, 0.85);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .vision-card .pillar-sub {
-            color: var(--card-gold);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .card-divider {
-            width: 60px;
-            height: 4px;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--card-teal-dark), var(--card-teal));
-            margin: 16px 0 18px;
-        }
-
-        /* Initiatives Section — styled after the campaign card */
-        .initiatives {
-            padding: 120px 0;
-            background: var(--card-cream);
-        }
-
-        .initiatives .section-label {
-            color: var(--card-teal-dark);
-            letter-spacing: 3px;
-        }
-
-        .initiatives .section-title {
-            color: var(--card-navy);
-        }
-
-        .initiatives .card-divider {
-            margin: 0 auto 40px;
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .initiative-card {
-            background: var(--card-navy);
-            border-radius: 12px;
-            padding: 40px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(27, 42, 74, 0.15);
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(27, 42, 74, 0.3);
-            border-color: var(--card-gold);
-        }
-
-        .initiative-badge {
-            display: inline-block;
-            background: var(--card-gold);
-            color: var(--card-navy);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .initiative-card h3 {
-            font-size: 1.25rem;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-
-        .initiative-card p {
-            color: rgba(247, 245, 240, 0.85);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .initiative-flow {
-            margin-top: 14px;
-            color: var(--card-teal);
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .initiatives-quote {
-            margin-top: 60px;
-            text-align: center;
-            max-width: 760px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 32px 40px;
-            background: linear-gradient(135deg, var(--card-navy) 0%, var(--card-teal-dark) 100%);
-            border-radius: 16px;
-            color: var(--card-cream);
-        }
-
-        .initiatives-quote p {
-            font-size: 1.15rem;
-            font-style: italic;
-            line-height: 1.8;
-        }
-
-        .initiatives-quote span {
-            color: var(--card-gold);
-            font-weight: 600;
-            font-style: normal;
-        }
-
-        @media (max-width: 1024px) {
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Mentorship Pipeline Section */
-        .pipeline {
-            padding: 120px 0;
-            background: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
-        }
-
-        .pipeline-flow {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-        }
-
-        .pipeline-step {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-            max-width: 280px;
-        }
-
-        .pipeline-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--ieee-blue), var(--ieee-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            position: relative;
-        }
-
-        .pipeline-icon svg {
-            width: 36px;
-            height: 36px;
-            color: var(--white);
-        }
-
-        .pipeline-number {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 28px;
-            height: 28px;
-            background: var(--ieee-gold);
-            color: var(--ieee-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.875rem;
-        }
-
-        .pipeline-step h4 {
-            font-size: 1.1rem;
-            color: var(--ieee-dark);
-            margin-bottom: 8px;
-        }
-
-        .pipeline-step p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .pipeline-arrow {
-            display: flex;
-            align-items: center;
-            padding-top: 20px;
-        }
-
-        .pipeline-arrow svg {
-            width: 40px;
-            height: 40px;
-            color: var(--ieee-blue);
-        }
-
-        .mentorship-highlights {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .mentorship-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .mentorship-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--ieee-gold);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        .mentorship-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--off-white);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .mentorship-icon svg {
-            width: 28px;
-            height: 28px;
-            color: var(--ieee-blue);
-        }
-
-        .mentorship-card h4 {
-            font-size: 1.15rem;
-            color: var(--ieee-dark);
-            margin-bottom: 12px;
-        }
-
-        .mentorship-card p {
-            font-size: 0.95rem;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        /* Student Activities Section */
-        .student-activities {
-            padding: 120px 0;
-            background: var(--white);
-        }
-
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 60px;
-        }
-
-        .activity-card {
-            background: linear-gradient(135deg, var(--ieee-dark) 0%, var(--ieee-blue) 100%);
-            border-radius: 16px;
-            padding: 40px;
-            color: var(--white);
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .activity-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .activity-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .activity-year {
-            font-size: 3rem;
-            font-weight: 800;
-            font-family: 'Playfair Display', serif;
-            color: var(--ieee-gold);
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .activity-card h4 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .activity-card p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            margin-bottom: 24px;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        .activity-card .btn {
-            position: relative;
-            z-index: 1;
-        }
-
-        .membership-highlight {
-            margin-top: 60px;
-            text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, var(--ieee-gold) 0%, #ffdb4d 100%);
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(255, 199, 44, 0.3);
-        }
-
-        .membership-stat {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-        }
-
-        .membership-number {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--ieee-dark);
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-        }
-
-        .membership-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--ieee-dark);
-            max-width: 500px;
-            text-align: left;
-        }
-
-        /* Robotics Workshop Section */
-        .robotics-workshop {
-            padding: 120px 0;
-            background: var(--off-white);
-        }
-
-        .workshop-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .workshop-image {
-            position: relative;
-        }
-
-        .robot-image {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .workshop-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--ieee-dark);
-            margin-bottom: 20px;
-        }
-
-        .workshop-text p {
-            color: var(--text-gray);
-            font-size: 1.05rem;
-            margin-bottom: 16px;
-            line-height: 1.7;
-        }
-
-        .workshop-text strong {
-            color: var(--ieee-blue);
-        }
-
-        .workshop-highlights {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .celus-section {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .celus-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .celus-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .celus-text {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .celus-icon {
-            width: 64px;
-            height: 64px;
-            min-width: 64px;
-            background: linear-gradient(135deg, var(--ieee-blue), var(--ieee-light));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .celus-icon svg {
-            width: 32px;
-            height: 32px;
-            color: var(--white);
-        }
-
-        .celus-content h4 {
-            font-size: 1.25rem;
-            color: var(--ieee-dark);
-            margin-bottom: 12px;
-        }
-
-        .celus-content p {
-            color: var(--text-gray);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .celus-content strong {
-            color: var(--ieee-blue);
-        }
-
-        /* Experience Section */
-        .experience {
-            padding: 120px 0;
-            background: var(--white);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--ieee-blue), var(--ieee-light));
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 24px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            grid-column: 2;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline-content {
-            background: var(--off-white);
-            padding: 24px;
-            border-radius: 12px;
-            transition: var(--transition);
-        }
-
-        .timeline-content:hover {
-            background: var(--white);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--ieee-gold);
-            border: 4px solid var(--white);
-            border-radius: 50%;
-            top: 32px;
-            box-shadow: 0 0 0 4px var(--ieee-blue);
-        }
-
-        .timeline-date {
-            color: var(--ieee-blue);
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 8px;
-        }
-
-        .timeline-title {
-            font-weight: 700;
-            color: var(--ieee-dark);
-            margin-bottom: 4px;
-        }
-
-        .timeline-org {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Achievements Section */
-        .achievements {
-            padding: 120px 0;
-            background: linear-gradient(135deg, var(--ieee-dark) 0%, var(--ieee-blue) 100%);
-            color: var(--white);
-        }
-
-        .achievements .section-title {
-            color: var(--white);
-        }
-
-        .achievements .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-        }
-
-        .achievement-card {
-            text-align: center;
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        .achievement-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .achievement-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--ieee-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-        }
-
-        .achievement-icon svg {
-            width: 28px;
-            height: 28px;
-            color: var(--ieee-dark);
-        }
-
-        .achievement-card h4 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .achievement-card p {
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        /* Advocacy Section */
-        .advocacy {
-            padding: 120px 0;
-            background: linear-gradient(135deg, var(--ieee-dark) 0%, var(--ieee-blue) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .advocacy::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.3;
-        }
-
-        .advocacy .section-label {
-            color: var(--ieee-gold);
-        }
-
-        .advocacy .section-title {
-            color: var(--white);
-        }
-
-        .advocacy .section-subtitle {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .advocacy-image {
-            margin: 40px auto 60px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .carousel {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            background: #000;
-            display: block;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 98, 155, 0.8);
-            color: white;
-            border: none;
-            padding: 16px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(0, 98, 155, 1);
-        }
-
-        .carousel-prev {
-            left: 16px;
-        }
-
-        .carousel-next {
-            right: 16px;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .dot.active {
-            background: var(--ieee-gold);
-        }
-
-        .advocacy-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 60px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .advocacy-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 40px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .advocacy-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
-            border-color: var(--ieee-gold);
-        }
-
-        .advocacy-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--ieee-gold);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .advocacy-icon svg {
-            width: 32px;
-            height: 32px;
-            color: var(--ieee-dark);
-        }
-
-        .advocacy-card h4 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            color: var(--white);
-        }
-
-        .advocacy-card p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* Regions Unity Section */
-        .regions-unity {
-            padding: 100px 0;
-            background: var(--off-white);
-        }
-
-        .regions-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .regions-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
-        }
-
-        .regions-image img:hover {
-            transform: scale(1.02);
-        }
-
-        .regions-text h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.25rem;
-            color: var(--ieee-dark);
-            margin-bottom: 24px;
-        }
-
-        .regions-text p {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .regions-stats {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 24px;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 2px solid rgba(0, 98, 155, 0.1);
-        }
-
-        .region-stat {
-            text-align: center;
-        }
-
-        .region-stat .stat-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--ieee-blue);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .region-stat .stat-desc {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-gray);
-        }
-
-        .region-connector {
-            color: var(--ieee-gold);
-        }
-
-        .blueprint-visual {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .blueprint-visual img {
-            width: 100%;
-            display: block;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        .blueprint-caption {
-            margin-top: 16px;
-            color: var(--text-gray);
-            font-style: italic;
-            font-size: 0.95rem;
-        }
-
-        /* Student Carousel Section */
-        .student-carousel-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--ieee-blue) 0%, var(--ieee-light) 100%);
-            color: var(--white);
-        }
-
-        .student-carousel-section .section-label {
-            color: var(--ieee-gold);
-        }
-
-        .student-carousel-section .section-title {
-            color: var(--white);
-        }
-
-        .student-carousel-section .section-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .student-carousel {
-            margin-top: 40px;
-        }
-
-        .student-carousel .carousel {
-            max-width: 700px;
-        }
-
-        .student-carousel .carousel-btn {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--ieee-blue);
-        }
-
-        .student-carousel .carousel-btn:hover {
-            background: white;
-        }
-
-        /* Research Section */
-        .research {
-            padding: 120px 0;
-            background: var(--white);
-        }
-
-        .research-areas {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 24px;
-        }
-
-        .research-card {
-            background: var(--off-white);
-            padding: 32px;
-            border-radius: 16px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .research-card:hover {
-            background: var(--ieee-blue);
-            color: var(--white);
-        }
-
-        .research-card:hover p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .research-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--white);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-        }
-
-        .research-card h4 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .research-card p {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 120px 0;
-            background: var(--off-white);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--ieee-dark);
-            margin-bottom: 24px;
-        }
-
-        .contact-info p {
-            color: var(--text-gray);
-            margin-bottom: 32px;
-            font-size: 1.05rem;
-        }
-
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: var(--white);
-            border-radius: 12px;
-            transition: var(--transition);
-        }
-
-        .contact-method:hover {
-            transform: translateX(8px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-method-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--ieee-blue);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-method-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--white);
-        }
-
-        .contact-method-text {
-            flex: 1;
-        }
-
-        .contact-method-label {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .contact-method-value {
-            font-weight: 600;
-            color: var(--ieee-dark);
-        }
-
-        .contact-form-wrapper {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-form h4 {
-            font-size: 1.25rem;
-            color: var(--ieee-dark);
-            margin-bottom: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--ieee-blue);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-status {
-            padding: 16px;
-            border-radius: 8px;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        #submitBtn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .message-counter {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: linear-gradient(135deg, var(--ieee-blue), var(--ieee-light));
-            padding: 20px 24px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            color: var(--white);
-        }
-
-        .counter-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .counter-icon svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .counter-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .counter-number {
-            font-size: 2rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-        }
-
-        .counter-label {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--ieee-dark);
-            color: var(--white);
-            padding: 60px 0 24px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-ieee-logo {
-            margin-bottom: 20px;
-        }
-
-        .footer-brand h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-        }
-
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        .footer-links h4 {
-            font-size: 1rem;
-            margin-bottom: 16px;
-            color: var(--ieee-gold);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .footer-disclaimer {
-            margin-top: 16px;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-        }
-
-        .footer-bottom a {
-            color: var(--ieee-gold);
-            text-decoration: none;
-        }
-
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .vision-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pillar-overlay {
-                top: 64%;
-                width: 26%;
-                padding: 12px 10px;
-            }
-
-            .achievements-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .research-areas {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .regions-content {
-                grid-template-columns: 1fr;
-            }
-
-            .regions-image {
-                order: -1;
-            }
-
-            .pipeline-flow {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .pipeline-arrow {
-                transform: rotate(90deg);
-                padding: 10px 0;
-            }
-
-            .mentorship-highlights {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .activities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .membership-highlight {
-                padding: 24px;
-            }
-
-            .membership-stat {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .membership-text {
-                text-align: center;
-            }
-
-            .workshop-content {
-                grid-template-columns: 1fr;
-            }
-
-            .celus-content {
-                grid-template-columns: 1fr;
-            }
-
-            .advocacy-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-                padding-left: 60px;
-            }
-
-            .timeline-item .timeline-content {
-                text-align: left !important;
-                grid-column: 1 !important;
-            }
-
-            .timeline-dot {
-                left: 20px !important;
-                transform: translateX(-50%) !important;
-            }
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                right: -100%;
-                width: 100%;
-                padding-top: 80px;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.25rem;
-                padding: 18px 20px;
-            }
-
-            .nav-overlay {
-                display: none !important;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.25rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .achievements-grid,
-            .research-areas {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                position: relative;
-                bottom: 0;
-                right: 0;
-                margin-top: 24px;
-                justify-content: center;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .pillars-visual {
-                margin-bottom: 36px;
-            }
-
-            .pillar-overlay {
-                top: 63%;
-                width: 28%;
-                padding: 9px 7px;
-                border-radius: 12px;
-            }
-
-            .pillar-overlay .pillar-kicker {
-                margin-bottom: 4px;
-                font-size: 0.58rem;
-                letter-spacing: 1.2px;
-            }
-
-            .pillar-overlay h3 {
-                font-size: clamp(0.56rem, 1.5vw, 0.72rem);
-                margin-bottom: 4px;
-            }
-
-            .pillar-overlay p {
-                font-size: clamp(0.42rem, 1.15vw, 0.56rem);
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-            }
-        }
-
-        /* Animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* IEEE Logo */
-        .ieee-logo {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .ieee-logo .i {
-            font-weight: 800;
-            font-style: italic;
-            color: var(--ieee-blue);
-        }
-
-        .ieee-logo .e {
-            font-weight: 800;
-            font-style: italic;
-            color: var(--ieee-gold);
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vote Dr. Li Bai — IEEE Region 2 Director-Elect, 2027–2028</title>
+<meta name="description" content="One Unified Region, For All. Dr. Li Bai for IEEE Region 2 Director-Elect. Voting: 17 August – 1 October 2026.">
+<meta property="og:title" content="Vote Dr. Li Bai — IEEE Region 2 Director-Elect">
+<meta property="og:description" content="One Unified Region, For All. Voting opens 17 August 2026.">
+<meta property="og:image" content="https://baiieeenewr2.github.io/bai.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  Image assets are served from the existing campaign repo:
+  https://baiieeenewr2.github.io/  — bai.png, congressional*.jpeg, student_*.jpg/png,
+  robot_dog.png, celus.png, regions.png, ieee_logo.png, qr_vote.svg, Li_Bai_s_CV.pdf
+  Motion effects derived from vue-bits by DavidHDev (MIT).
+-->
+
+<style>
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+:root{
+  --ink:#08182A; --ink-2:#0E2438; --ink-3:#16304A; --ink-hover:#16324D;
+  --paper:#EDF2F6; --paper-2:#FFFFFF; --paper-3:#DCE5EC; --paper-hover:#F6F9FB;
+  --brand:#00629B; --brand-lift:#0A81C4;
+  --signal:#F5B921; --signal-lift:#FFC93F;
+  --text-d1:#F2F6FA; --text-d2:#A9BCCC; --text-d3:#6E8599;
+  --text-l1:#0A1B2A; --text-l2:#3C566C; --text-l3:#6E8599;
+  --ink-rgb:8,24,42; --paper-rgb:237,242,246; --brand-rgb:0,98,155;
+  --signal-rgb:245,185,33; --text-d1-rgb:242,246,250;
+  --success:#2E9E6B; --error:#D14343; --warning:#F5B921;
+  --mask-opaque:#000;            /* mask stop only — never painted */
+  --ease-cinema:cubic-bezier(.16,1,.3,1);
+  --ease-snap:cubic-bezier(.34,1.4,.64,1);
+  --display:'Big Shoulders Display','Big Shoulders','Archivo Narrow',Impact,sans-serif;
+  --body:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --wrap:1240px; --narrow:760px;
+  --pad:clamp(1.25rem,5vw,3rem);
+  --sect:clamp(5rem,10vw,8rem);
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--text-d2);
+  font-family:var(--body);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{margin:0;color:var(--text-d1)}
+p{margin:0 0 1rem}
+p:last-child{margin-bottom:0}
+:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.narrow{max-width:var(--narrow)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.section{padding-block:var(--sect);position:relative}
+.on-paper{background:var(--paper);color:var(--text-l2)}
+.on-paper h1,.on-paper h2,.on-paper h3,.on-paper h4{color:var(--text-l1)}
+.on-ink{background:var(--ink);color:var(--text-d2)}
+
+h1,h2,.display{font-family:var(--display);font-weight:800;letter-spacing:-.015em;line-height:.86}
+h2{font-size:clamp(2.6rem,6vw,5rem);font-weight:700;line-height:.9}
+h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.lead{font-size:clamp(1.05rem,1.6vw,1.28rem);line-height:1.6;max-width:62ch}
+.body-max{max-width:68ch}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-d3);
+  display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;
+}
+.eyebrow::before{content:'';width:26px;height:2px;background:var(--brand-lift);flex:none}
+.on-paper .eyebrow{color:var(--text-l3)}
+.on-paper .eyebrow::before{background:var(--brand)}
+
+/* ============================================================
+   3. COMPONENTS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  min-height:52px;padding:0 1.6rem;border-radius:4px;border:1px solid transparent;
+  font-family:var(--body);font-size:.95rem;font-weight:700;letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;
+  transition:background-color .25s var(--ease-cinema),border-color .25s var(--ease-cinema),
+             color .25s var(--ease-cinema),transform .35s var(--ease-snap),box-shadow .3s var(--ease-cinema);
+}
+.btn-primary{background:var(--signal);color:var(--ink);box-shadow:0 4px 0 0 rgba(var(--ink-rgb),.55)}
+.btn-primary:hover{background:var(--signal-lift);transform:translateY(-2px);box-shadow:0 6px 0 0 rgba(var(--ink-rgb),.55)}
+.btn-primary:active{transform:translateY(2px);box-shadow:0 1px 0 0 rgba(var(--ink-rgb),.55)}
+.btn-ghost{background:transparent;color:var(--text-d1);border-color:var(--ink-3)}
+.btn-ghost:hover{background:var(--ink-hover);border-color:var(--text-d3)}
+.on-paper .btn-ghost{color:var(--text-l1);border-color:var(--paper-3)}
+.on-paper .btn-ghost:hover{background:var(--paper-hover);border-color:var(--brand)}
+.btn:disabled,.btn[aria-disabled='true']{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+.card{
+  position:relative;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:6px;
+  padding:2rem;overflow:hidden;
+  transition:border-color .3s var(--ease-cinema),transform .45s var(--ease-cinema),box-shadow .45s var(--ease-cinema);
+  box-shadow:0 8px 24px -18px rgba(var(--ink-rgb),.4);
+}
+.card::before{
+  content:'';position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(var(--brand-rgb),.10),transparent 62%);
+  transition:opacity .35s var(--ease-cinema);
+}
+.card:hover{transform:translateY(-4px);border-color:var(--brand);box-shadow:0 18px 40px -24px rgba(var(--ink-rgb),.45)}
+.card:hover::before{opacity:1}
+.card:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(var(--brand-rgb),.18)}
+
+.tag{
+  display:inline-flex;align-items:center;min-height:30px;padding:0 .7rem;
+  border:1px solid var(--ink-3);border-radius:999px;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-d2);
+  transition:border-color .25s ease,color .25s ease;
+}
+.tag:hover{border-color:var(--brand-lift);color:var(--text-d1)}
+.on-paper .tag{border-color:var(--paper-3);color:var(--text-l2)}
+.on-paper .tag:hover{border-color:var(--brand);color:var(--text-l1)}
+
+.link{
+  color:var(--brand-lift);text-decoration:none;
+  background-image:linear-gradient(var(--signal),var(--signal));
+  background-size:0 2px;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size .35s var(--ease-cinema),color .25s ease;
+}
+.link:hover{background-size:100% 2px;color:var(--text-d1)}
+.on-paper .link{color:var(--brand)}
+.on-paper .link:hover{color:var(--text-l1)}
+
+.vote-pill{
+  display:inline-flex;align-items:center;gap:.55rem;padding:.45rem .9rem;
+  border:1px solid rgba(var(--signal-rgb),.4);border-radius:999px;background:rgba(var(--signal-rgb),.08);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);
+}
+.vote-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--signal);animation:pulse 2.4s ease-in-out infinite}
+
+.grid{display:grid;gap:1.5rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+
+/* ============================================================
+   4. NAV
+   ============================================================ */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;gap:1.5rem;
+  padding:1rem var(--pad);background:transparent;border-bottom:1px solid transparent;
+  transition:background-color .4s var(--ease-cinema),border-color .4s var(--ease-cinema),padding .4s var(--ease-cinema);
+}
+.nav[data-scrolled='true']{
+  background:rgba(var(--ink-rgb),.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom-color:var(--ink-3);padding-block:.6rem;
+}
+.nav-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto}
+.nav-brand img{height:22px;width:auto;filter:brightness(0) invert(1);opacity:.9}
+.nav-brand span{font-family:var(--display);font-size:1.3rem;font-weight:800;letter-spacing:.02em;color:var(--text-d1);line-height:1}
+.nav-links{display:flex;gap:1.4rem;align-items:center}
+.nav-links a{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-d2);text-decoration:none;transition:color .25s ease;
+}
+.nav-links a:hover{color:var(--text-d1)}
+.nav .btn{min-height:44px;padding:0 1.1rem;font-size:.85rem}
+.nav-toggle{display:none;background:none;border:1px solid var(--ink-3);border-radius:4px;
+  color:var(--text-d1);min-width:44px;min-height:44px;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-block:8rem 3rem;overflow:hidden;isolation:isolate}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(60% 55% at 18% 22%,rgba(var(--brand-rgb),.42),transparent 60%),
+    radial-gradient(45% 45% at 82% 12%,rgba(var(--signal-rgb),.16),transparent 62%),
+    radial-gradient(70% 60% at 60% 95%,rgba(var(--brand-rgb),.22),transparent 65%);
+  background-size:180% 180%,170% 170%,200% 200%;
+  background-position:0% 50%,100% 0%,50% 100%;
+  animation:drift 26s ease-in-out infinite alternate;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(var(--ink-rgb),.35) 0%,rgba(var(--ink-rgb),.75) 55%,var(--ink) 100%);
+}
+.hero-inner{position:relative;width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad);z-index:2}
+
+.hero-top{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-bottom:2rem}
+.hero-role{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-d2)}
+
+.hero h1{
+  font-size:clamp(4.2rem,13vw,11rem);line-height:.82;letter-spacing:-.015em;
+  text-shadow:0 0 60px rgba(var(--signal-rgb),.16);margin-bottom:.6rem;
+}
+.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.06em}
+.hero h1 .word i{display:inline-block;font-style:normal;transform:translateY(105%);animation:maskUp .95s var(--ease-cinema) forwards}
+.hero-tag{
+  font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,3.4vw,2.6rem);
+  color:var(--signal);line-height:1;letter-spacing:.01em;margin-bottom:1.6rem;
+}
+.hero-sub{max-width:46ch;margin-bottom:2rem;color:var(--text-d2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+
+.countdown{
+  display:flex;gap:1.4rem;align-items:flex-end;margin:2.4rem 0 0;
+  padding-top:1.6rem;border-top:1px solid var(--ink-3);flex-wrap:wrap;
+}
+.cd-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-d3);width:100%;margin-bottom:.4rem}
+.cd-unit{display:flex;flex-direction:column;gap:.2rem;min-width:64px}
+.cd-num{font-family:var(--mono);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.6rem);color:var(--signal);line-height:1;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.cd-cap{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d3)}
+.cd-dates{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--text-d3);align-self:flex-end;margin-left:auto}
+
+/* portrait + constellation */
+.hero-media{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-portrait{
+  position:absolute;right:2%;bottom:0;height:92%;width:auto;max-width:46vw;
+  object-fit:contain;object-position:bottom right;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,var(--mask-opaque) 18%,var(--mask-opaque) 82%,transparent 100%);
+          mask-image:linear-gradient(180deg,transparent 0%,var(--mask-opaque) 18%,var(--mask-opaque) 82%,transparent 100%);
+  opacity:.92;
+}
+.constellation{position:absolute;inset:0;perspective:1400px;transform-style:preserve-3d}
+.star-card{
+  position:absolute;top:50%;left:50%;width:var(--w,190px);
+  border-radius:8px;overflow:hidden;border:1px solid rgba(var(--text-d1-rgb),.14);
+  box-shadow:0 28px 70px -30px rgba(var(--ink-rgb),.85);
+  transform:translate3d(-50%,-50%,0) rotate(var(--r,0deg));
+  opacity:var(--o,.5);will-change:transform;
+}
+.star-card img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+
+/* ============================================================
+   6. MARQUEE + STATS
+   ============================================================ */
+.marquee{
+  border-block:1px solid var(--ink-3);padding-block:1.4rem;overflow:hidden;
+  background:var(--ink);white-space:nowrap;
+}
+.marquee-track{display:inline-flex;gap:3rem;animation:marquee 34s linear infinite;will-change:transform}
+.marquee span{
+  font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,4rem);line-height:1;
+  color:transparent;-webkit-text-stroke:1px var(--text-d3);letter-spacing:.01em;
+}
+.marquee span:nth-child(odd){color:var(--signal);-webkit-text-stroke:0}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-3);border:1px solid var(--ink-3)}
+.stat{background:var(--ink);padding:2.2rem 1.6rem;display:flex;flex-direction:column;gap:.5rem}
+.stat-num{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,7vw,6rem);line-height:.85;color:var(--text-d1);letter-spacing:-.01em}
+.stat-num em{font-style:normal;color:var(--signal)}
+.stat-cap{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text-d3);line-height:1.5}
+
+/* ============================================================
+   7. MANIFESTO
+   ============================================================ */
+.manifesto blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:-.01em;color:var(--text-l1)}
+.manifesto .w{opacity:.16;transition:opacity .3s linear}
+.manifesto cite{display:block;margin-top:1.6rem;font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-l3)}
+
+/* ============================================================
+   8. PIN SWAP — PILLARS
+   ============================================================ */
+.pin-swap{height:300vh;position:relative}
+.pin-swap-inner{
+  position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1.1fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+  max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad);
+}
+.pillar-index{display:flex;gap:.6rem;margin-bottom:1.6rem}
+.pi-dot{width:34px;height:3px;background:var(--paper-3);transition:background-color .4s var(--ease-cinema)}
+.pi-dot[data-on='true']{background:var(--brand)}
+.pillar-copy h2{font-size:clamp(2.4rem,5vw,4.2rem);margin-bottom:1rem}
+.pillar-copy p{max-width:46ch;font-size:1.0625rem}
+.pillar-kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin-bottom:1rem}
+.scene-stack{position:relative;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:var(--paper-3)}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease-cinema)}
+.scene[data-on='true']{opacity:1}
+.scene img{width:100%;height:100%;object-fit:cover}
+.scene figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:1.4rem;
+  background:linear-gradient(0deg,rgba(var(--ink-rgb),.9),transparent);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-d1);
+}
+
+/* ============================================================
+   9. REGION ASSEMBLY (WebGL)
+   ============================================================ */
+.region{height:220vh;position:relative;background:var(--ink)}
+.region-inner{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.webgl-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.webgl-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.5}
+.region-copy{position:relative;z-index:2;text-align:center;max-width:640px;padding-inline:var(--pad);pointer-events:none}
+.region-copy h2{font-size:clamp(2.6rem,7vw,5.4rem);margin-bottom:1rem}
+.region-copy p{color:var(--text-d2);margin-inline:auto;max-width:52ch}
+.region-legend{display:flex;gap:1.6rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.rl{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text-d3)}
+.rl b{width:9px;height:9px;border-radius:50%;display:block}
+
+/* ============================================================
+   10. INITIATIVES + RECORD
+   ============================================================ */
+.init-num{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--brand);margin-bottom:1rem;display:block}
+.card h3{margin-bottom:.8rem}
+.card p{font-size:1rem;color:var(--text-l2)}
+
+.bento{display:grid;gap:1rem;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto)}
+.b-wide{grid-column:span 4}
+.b-tall{grid-column:span 2;grid-row:span 2}
+.b-unit{grid-column:span 2}
+.b-tall{display:flex;flex-direction:column;justify-content:space-between}
+.award-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.award-list li{padding:.85rem 0;border-bottom:1px solid var(--paper-3);display:flex;gap:1rem;align-items:baseline;font-size:.98rem}
+.award-list li:last-child{border-bottom:0;padding-bottom:0}
+.award-list time{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--text-l3);flex:none;width:52px}
+.b-quiet{background:transparent;border-style:dashed;box-shadow:none}
+.b-quiet:hover{transform:none;box-shadow:none}
+
+/* ============================================================
+   11. GALLERY
+   ============================================================ */
+.gallery{overflow:hidden;padding-block:var(--sect)}
+.gal-track{display:flex;gap:1rem;width:max-content;animation:marquee 60s linear infinite;will-change:transform}
+.photo-tile{position:relative;overflow:hidden;border-radius:6px;width:clamp(220px,26vw,340px);aspect-ratio:4/3;flex:none;border:1px solid var(--ink-3)}
+.photo-tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-cinema)}
+.photo-tile:hover img{transform:scale(1.05)}
+.photo-tile::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 38%,rgba(var(--text-d1-rgb),.22) 50%,transparent 62%);
+  transform:translateX(-100%);transition:transform .8s var(--ease-cinema);
+}
+.photo-tile:hover::after{transform:translateX(100%)}
+.gallery:hover .gal-track{animation-play-state:paused}
+
+
+/* ============================================================
+   11b. CONNECT
+   ============================================================ */
+.connect-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.connect-facts{margin:0;display:flex;flex-direction:column;gap:1.5rem}
+.fact dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-l3);margin-bottom:.3rem}
+.fact dd{margin:0;color:var(--text-l1);font-weight:600;font-size:1.02rem}
+.form{background:var(--paper-2);border:1px solid var(--paper-3);border-radius:6px;
+  padding:clamp(1.5rem,3vw,2.2rem);box-shadow:0 8px 24px -18px rgba(var(--ink-rgb),.4)}
+.field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.15rem}
+.field label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-l3)}
+.field input,.field textarea{
+  font-family:var(--body);font-size:1rem;color:var(--text-l1);width:100%;
+  background:var(--paper);border:1px solid var(--paper-3);border-radius:4px;
+  padding:.85rem .9rem;min-height:48px;
+  transition:border-color .25s var(--ease-cinema),box-shadow .25s var(--ease-cinema),background-color .25s ease}
+.field textarea{min-height:132px;resize:vertical;line-height:1.55}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-l3)}
+.field input:hover,.field textarea:hover{border-color:var(--text-l3)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--brand);
+  background:var(--paper-2);box-shadow:0 0 0 3px rgba(var(--brand-rgb),.16)}
+.field input:disabled,.field textarea:disabled{opacity:.5;cursor:not-allowed}
+.form-foot{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:.3rem}
+.form-note{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--text-l3)}
+.form-status{margin-top:1rem;font-size:.95rem;min-height:1.45em;color:var(--text-l2)}
+.form-status[data-state='ok']{color:var(--success)}
+.form-status[data-state='err']{color:var(--error)}
+
+/* ============================================================
+   12. FINAL CTA + FOOTER
+   ============================================================ */
+.final{position:relative;overflow:hidden;isolation:isolate;text-align:center}
+.final::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(50% 60% at 50% 0%,rgba(var(--signal-rgb),.18),transparent 62%),
+    radial-gradient(60% 60% at 50% 110%,rgba(var(--brand-rgb),.38),transparent 65%);
+  background-size:180% 180%,180% 180%;animation:drift 30s ease-in-out infinite alternate;
+}
+.final h2{font-size:clamp(3rem,9vw,7rem);margin-bottom:1rem}
+.final .lead{margin-inline:auto;margin-bottom:2.4rem}
+.final-cta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center}
+.qr{display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--ink-3);border-radius:6px;background:var(--ink-2);text-decoration:none}
+.qr img{width:76px;height:76px;background:var(--paper-2);padding:5px;border-radius:4px}
+.qr div{text-align:left}
+.qr strong{display:block;color:var(--text-d1);font-size:.9rem}
+.qr span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text-d3)}
+
+.footer{border-top:1px solid var(--ink-3);padding-block:3rem;font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2rem}
+.footer h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-d3);margin-bottom:1rem;font-weight:500}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55rem}
+.footer a{color:var(--text-d2);text-decoration:none;transition:color .2s ease}
+.footer a:hover{color:var(--signal)}
+.footer-base{margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--text-d3)}
+.thanks{
+  margin-top:2rem;text-align:center;font-family:var(--body);font-style:italic;
+  font-size:.95rem;color:var(--text-d3);opacity:0;transition:opacity 1.2s var(--ease-cinema);
+}
+.thanks.is-in{opacity:1}
+
+/* ============================================================
+   13. KEYFRAMES
+   ============================================================ */
+@keyframes riseIn{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+@keyframes maskUp{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes drift{to{background-position:60% 40%,30% 70%,80% 20%}}
+@keyframes marquee{to{transform:translate3d(-50%,0,0)}}
+.reveal{opacity:0}
+.reveal.is-in{animation:riseIn .9s var(--ease-cinema) forwards}
+.shown{opacity:1;animation:none}
+.ch{display:inline-block;will-change:transform}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .pin-swap{height:auto}
+  .pin-swap-inner{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:2rem;padding-block:var(--sect)}
+  .scene{position:relative;opacity:1;display:none}
+  .scene[data-on='true']{display:block}
+  .bento>*{grid-column:span 3;grid-row:auto}
+  .hero-portrait{max-width:60vw;opacity:.35}
+  .connect-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  html{font-size:15.5px}
+  .constellation{display:none}
+  .hero{align-items:center;padding-block:7rem 3rem}
+  .hero-portrait{max-width:100%;right:-10%;opacity:.22}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .bento>*{grid-column:span 6;grid-row:auto}
+  .webgl-canvas{display:none}
+  .webgl-fallback{display:block}
+  .region{height:auto}
+  .region-inner{position:relative;top:auto;height:auto;min-height:80vh;padding-block:var(--sect)}
+  .nav-links{display:none}
+  .nav-toggle{display:inline-flex}
+  .footer-grid{grid-template-columns:1fr}
+  .cd-dates{margin-left:0;width:100%}
+  .scene-stack{aspect-ratio:3/2}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;animation:none}
+  .hero h1 .word i{transform:none;animation:none}
+  .constellation{display:none}
+  .pin-swap{height:auto}
+  .pin-swap-inner{position:relative;top:auto;height:auto;grid-template-columns:1fr}
+  .scene{position:relative;opacity:1}
+  .region{height:auto}
+  .region-inner{position:relative;top:auto;height:auto;min-height:70vh}
+  .webgl-canvas{display:none}
+  .webgl-fallback{display:block}
+  .manifesto .w{opacity:1}
+  .thanks{opacity:1}
+  .marquee-track,.gal-track,.hero-bg,.final::before{animation:none}
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation Overlay -->
-    <div class="nav-overlay" id="navOverlay"></div>
-    
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="logo">
-                <div class="ieee-logo">
-                    <span class="i">I</span><span class="e">E</span><span class="i">E</span><span class="e">E</span>
-                </div>
-                <span style="margin-left: 8px; font-weight: 600;">Dr. Li Bai</span>
-            </div>
-            <div class="nav-actions">
-                <a class="nav-vote-btn" href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection" target="_blank" rel="noopener">
-                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path d="M9 11l3 3L22 4"/>
-                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-                    </svg>
-                    <span>Vote</span>
-                </a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#top">
+    <img src="https://baiieeenewr2.github.io/ieee_logo.png" alt="">
+    <span>LI&nbsp;BAI</span>
+  </a>
+  <div class="nav-links">
+    <a href="#platform">Platform</a>
+    <a href="#region">The Region</a>
+    <a href="#initiatives">Initiatives</a>
+    <a href="#record">Record</a>
+    <a href="#connect">Connect</a>
+  </div>
+  <a class="btn btn-primary" href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">Vote now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Jump to sections">☰</button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-media" aria-hidden="true">
+    <div class="constellation" id="constellation">
+      <div class="star-card" style="--w:200px;--r:-5deg;--o:.62;top:26%;left:16%">
+        <img src="https://baiieeenewr2.github.io/congressional.jpeg" alt="">
+      </div>
+      <div class="star-card" style="--w:160px;--r:6deg;--o:.42;top:66%;left:11%">
+        <img src="https://baiieeenewr2.github.io/student_3.jpg" alt="">
+      </div>
+      <div class="star-card" style="--w:135px;--r:-9deg;--o:.32;top:16%;left:41%">
+        <img src="https://baiieeenewr2.github.io/robot_dog.png" alt="">
+      </div>
+      <div class="star-card" style="--w:150px;--r:8deg;--o:.30;top:78%;left:44%">
+        <img src="https://baiieeenewr2.github.io/student_1.jpg" alt="">
+      </div>
+      <div class="star-card" style="--w:120px;--r:-4deg;--o:.24;top:38%;left:60%">
+        <img src="https://baiieeenewr2.github.io/celus.png" alt="">
+      </div>
+    </div>
+    <img class="hero-portrait" src="https://baiieeenewr2.github.io/bai.png" alt="">
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-top">
+      <span class="vote-pill" id="votePill">Ballot opens 17 August</span>
+      <span class="hero-role">IEEE Region 2 Director-Elect · 2027–2028</span>
+    </div>
+
+    <h1 id="heroName" aria-label="Li Bai">
+      <span class="word"><i style="animation-delay:.12s">LI</i></span>
+      <span class="word"><i style="animation-delay:.24s">BAI</i></span>
+    </h1>
+    <p class="hero-tag">One Unified Region, For All</p>
+
+    <p class="hero-sub lead">
+      Three joint R1&amp;R2 conferences. Four trips to Congress for engineers.
+      Twenty years of turning up for this region. Now, one voice for all of it.
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-magnet href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">
+        Cast your ballot →
+      </a>
+      <a class="btn btn-ghost" href="#platform">See the platform</a>
+    </div>
+
+    <div class="countdown" id="countdown" aria-live="polite">
+      <span class="cd-label" id="cdLabel">Voting opens in</span>
+      <span class="cd-unit"><span class="cd-num" id="cdD">—</span><span class="cd-cap">Days</span></span>
+      <span class="cd-unit"><span class="cd-num" id="cdH">—</span><span class="cd-cap">Hours</span></span>
+      <span class="cd-unit"><span class="cd-num" id="cdM">—</span><span class="cd-cap">Minutes</span></span>
+      <span class="cd-unit"><span class="cd-num" id="cdS">—</span><span class="cd-cap">Seconds</span></span>
+      <span class="cd-dates">Ballot open 17 Aug – 1 Oct 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>ONE UNIFIED REGION</span><span>FOR ALL</span><span>ONE UNIFIED REGION</span><span>FOR ALL</span>
+    <span>ONE UNIFIED REGION</span><span>FOR ALL</span><span>ONE UNIFIED REGION</span><span>FOR ALL</span>
+  </div>
+</div>
+
+<!-- ================= STATS ================= -->
+<section class="section on-ink" style="padding-block:clamp(3rem,6vw,5rem)" aria-label="Record at a glance">
+  <div class="wrap">
+    <div class="stats" id="stats">
+      <div class="stat">
+        <span class="stat-num" data-count="20" data-suffix="+">0</span>
+        <span class="stat-cap">Years of IEEE service,<br>section through region</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="3">0</span>
+        <span class="stat-cap">Consecutive joint R1&amp;R2<br>conferences, each in surplus</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="4">0</span>
+        <span class="stat-cap">Trips to Congress<br>as an IEEE-USA delegate</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="1995" data-from="1975">0</span>
+        <span class="stat-cap">IEEE-HKN member<br>since</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MANIFESTO ================= -->
+<section class="section on-paper manifesto">
+  <div class="wrap narrow">
+    <span class="eyebrow">Why this election matters</span>
+    <blockquote id="manifesto">
+      As Region 1 and Region 2 come together, this isn't about adding complexity.
+      It's about finding one unified voice — so we can support each other and grow
+      into the strongest engineering hub in IEEE.
+    </blockquote>
+    <cite>Dr. Li Bai · Temple University</cite>
+  </div>
+</section>
+
+<!-- ================= PILLARS (PIN 1) ================= -->
+<section class="pin-swap on-paper" id="platform">
+  <div class="pin-swap-inner">
+    <div class="pillar-copy">
+      <span class="eyebrow">The platform</span>
+      <div class="pillar-index" id="pillarIndex" aria-hidden="true">
+        <span class="pi-dot" data-on="true"></span><span class="pi-dot"></span><span class="pi-dot"></span>
+      </div>
+      <p class="pillar-kicker" id="pillarKicker">Pillar 1 — World-class education &amp; research</p>
+      <h2 id="pillarTitle" data-float>Research to Revenue</h2>
+      <p id="pillarBody">
+        Extraordinary research is already happening across our universities. Trained volunteers
+        will turn it into professional workshops — giving members real access to advances in their
+        field, and generating revenue the region can reinvest.
+      </p>
+      <p style="margin-top:1.6rem">
+        <a class="link" href="#initiatives">How this becomes a program →</a>
+      </p>
+    </div>
+
+    <div class="scene-stack" id="sceneStack">
+      <figure class="scene" data-on="true" style="margin:0">
+        <img src="https://baiieeenewr2.github.io/celus.png" alt="Remote PCB design training program brought from CELUS in Germany to US members">
+        <figcaption>Technical upskilling brought in from Region 8</figcaption>
+      </figure>
+      <figure class="scene" style="margin:0">
+        <img src="https://baiieeenewr2.github.io/student_3.jpg" alt="Students at a joint Region 1 and Region 2 student activities conference">
+        <figcaption>Joint R1&amp;R2 student activities conference</figcaption>
+      </figure>
+      <figure class="scene" style="margin:0">
+        <img src="https://baiieeenewr2.github.io/congressional.jpeg" alt="Dr. Li Bai representing IEEE-USA on a congressional visit in Washington DC">
+        <figcaption>IEEE-USA congressional delegation, Washington D.C.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REGION ASSEMBLY (PIN 2 — SIGNATURE) ================= -->
+<section class="region" id="region">
+  <div class="region-inner">
+    <canvas class="webgl-canvas" id="regionCanvas" aria-hidden="true"></canvas>
+    <img class="webgl-fallback" src="https://baiieeenewr2.github.io/regions.png" alt="Map of IEEE Region 1 and Region 2">
+    <div class="region-copy">
+      <span class="eyebrow" style="color:var(--text-d3)">Better together</span>
+      <h2 data-float>One Region</h2>
+      <p>
+        From New York's density to Washington's policy reach to the sections that have been
+        underserved for years — one network, sharing talent, funding and opportunity, so a member's
+        experience no longer depends on their zip code.
+      </p>
+      <div class="region-legend">
+        <span class="rl"><b style="background:var(--brand-lift)"></b> R1 · Northeast</span>
+        <span class="rl"><b style="background:var(--signal)"></b> R2 · Mid-Atlantic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INITIATIVES ================= -->
+<section class="section on-paper" id="initiatives">
+  <div class="wrap">
+    <span class="eyebrow">From vision to action</span>
+    <h2 data-float style="margin-bottom:1rem">Three things I will start</h2>
+    <p class="lead body-max" style="margin-bottom:3rem">
+      Not aspirations. Three programs with owners, venues and a first milestone at the next regional meeting.
+    </p>
+
+    <div class="grid grid-3">
+      <article class="card" tabindex="0">
+        <span class="init-num">Initiative 01</span>
+        <h3>Industry Advisory Committee</h3>
+        <p>Launching at the next regional meeting. Industry leaders sit at the table where programs,
+           workshops and member benefits get decided — so what we build matches what the profession
+           is actually hiring for.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <span class="init-num">Initiative 02</span>
+        <h3>Regional Capstone Projects</h3>
+        <p>Sections run capstones locally and nominate their strongest work for recognition at the
+           regional level. A real ladder from a single campus to the whole region.</p>
+        <p style="margin-top:1rem"><a class="link" href="https://athena.tu.temple.edu/capstone">See the working model →</a></p>
+      </article>
+      <article class="card" tabindex="0">
+        <span class="init-num">Initiative 03</span>
+        <h3>Digital Certificates for Service</h3>
+        <p>Volunteers earn verifiable credentials for the hours and expertise they give. Service
+           becomes documented and portable — something you can put in front of an employer.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECORD ================= -->
+<section class="section on-paper" id="record" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">The receipts</span>
+    <h2 data-float style="margin-bottom:2.5rem">Twenty years, on the record</h2>
+
+    <div class="bento">
+      <article class="card b-wide">
+        <h3>Three joint R1&amp;R2 conferences, all in surplus</h3>
+        <p>General Chair for SAC 2024, StuCon 2025 and SAC 2026 — the run that brought student
+           participation back after the pandemic and left money behind for the programs that follow.</p>
+        <p style="margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="tag" href="https://attend.ieee.org/sac-2026/">SAC 2026</a>
+          <a class="tag" href="https://attend.ieee.org/stucon-2025/">StuCon 2025</a>
+          <a class="tag" href="https://attend.ieee.org/sac-2024/">SAC 2024</a>
+        </p>
+      </article>
+
+      <article class="card b-tall">
+        <div>
+          <h3 style="margin-bottom:1.2rem">Recognition</h3>
+          <ul class="award-list">
+            <li><time>2016</time> Benjamin Franklin Key Award — the Philadelphia Section's highest honor</li>
+            <li><time>2011</time> IEEE Philadelphia Section Service Award</li>
+            <li><time>2010</time> Lindback Award for Distinguished Teaching</li>
+            <li><time>2004</time> Young Engineer of the Year</li>
+          </ul>
         </div>
-    </nav>
-    
-    <!-- Navigation Links (outside nav for proper positioning) -->
-    <ul class="nav-links" id="navLinks">
-        <button class="nav-close" id="navClose">&times;</button>
-        <li><a href="#about">About</a></li>
-        <li><a href="#vision">Platform</a></li>
-        <li><a href="#initiatives">Initiatives</a></li>
-        <li><a href="#pipeline">Mentorship</a></li>
-        <li><a href="#activities">Activities</a></li>
-        <li><a href="#robotics">Robotics</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#advocacy">Advocacy</a></li>
-        <li><a href="#achievements">Achievements</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+        <p style="margin-top:1.4rem"><a class="link" href="https://baiieeenewr2.github.io/Li_Bai_s_CV.pdf">Full CV (PDF) →</a></p>
+      </article>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-badge">IEEE Region 2 Director-Elect Candidate &bull; 2027&ndash;2028</span>
-                    <h1>Dr. Li Bai</h1>
-                    <p class="hero-subtitle">One Unified Region, For All</p>
-                    <p class="hero-description">
-                        Tenured Professor and Associate Dean for Research at Temple University, Dr. Li Bai is a seasoned IEEE leader
-                        who has brought the Region 2 community together through successful joint conferences, hands-on STEM initiatives,
-                        and national advocacy on behalf of the engineering profession &mdash; ready to lead the region that unites
-                        North America's densest cluster of premier engineering schools.
-                    </p>
-                    <div class="hero-ieee-logo">
-                         <img src="ieee_logo.png" alt="IEEE Logo" style="height: 100px; width: auto; filter: brightness(0) invert(1); padding: 10px 20px; border-radius: 8px;">
-                    </div>
-                    <div class="hero-buttons">
-                        <a href="#vision" class="btn btn-primary">
-                            <span>Our Vision</span>
-                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="profile-card">
-                        <img src="bai.png" alt="Dr. Li Bai" class="profile-avatar">
-                        <h2 class="profile-name">Dr. Li Bai</h2>
-                        <p class="profile-title">Practitioner · Educator · Visionary Leader</p>
-                        <p class="profile-affiliation">Temple University<br>Department of Electrical & Computer Engineering</p>
-                    </div>
-                </div>
-            </div>
-    </section>
+      <article class="card b-unit">
+        <h3>Region 2 Student Activities Coordinator</h3>
+        <p>Since 2022 — student programs, budgets and regional resources.</p>
+      </article>
 
-    <!-- Vote Call-to-Action Banner -->
-    <section class="vote-banner">
-        <div class="container">
-            <span class="vote-banner-label">IEEE Region 2 Director-Elect Election</span>
-            <h2 class="vote-banner-title">VOTE <span>DR. LI BAI</span></h2>
-            <p class="vote-banner-tagline">One Unified Region, For All</p>
-            <div class="vote-banner-stats">
-                <span>20+ Years IEEE Service</span>
-                <span class="stat-divider">|</span>
-                <span>3 Joint R1&amp;R2 Conferences</span>
-                <span class="stat-divider">|</span>
-                <span>4 Congressional Visits</span>
-                <span class="stat-divider">|</span>
-                <span>IEEE-HKN Since 1995</span>
-            </div>
-            <div class="vote-banner-buttons">
-                <a href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection" target="_blank" rel="noopener" class="btn btn-primary">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path d="M9 11l3 3L22 4"/>
-                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-                    </svg>
-                    <span>Vote Now &mdash; IEEE Ballot</span>
-                </a>
-                <a href="#vision" class="btn btn-secondary">
-                    <span>Why Dr. Bai for Region 2</span>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
-            <div>
-                <a class="vote-scan" href="https://ieeer2.s.gy/decision27" target="_blank" rel="noopener">
-                    <img src="qr_vote.svg" alt="QR code &mdash; scan to vote for Dr. Li Bai">
-                    <span class="vote-scan-label">Scan to Vote</span>
-                    <span class="vote-scan-url">ieeer2.s.gy/decision27</span>
-                </a>
-            </div>
-            <p class="vote-dates">Vote August 17 &ndash; October 1, 2026</p>
+      <article class="card b-unit">
+        <h3>Philadelphia Section Adcom</h3>
+        <p>Since 2002 — Chair, Vice Chair and Membership Chair.</p>
+      </article>
+
+      <article class="card b-wide">
+        <h3>Associate Dean for Research · Temple University College of Engineering</h3>
+        <p>Tenured Professor of Electrical &amp; Computer Engineering, with research funded by NSF,
+           DOT and DoD. TPC Chair for IEEE Metacom 2026. The budgets, hiring and program oversight
+           a region director actually has to do.</p>
+      </article>
+
+      <article class="card b-quiet b-unit">
+        <h3>Robotics across the region</h3>
+        <p>MiniPupper workshops and a cross-regional robot-dog challenge with Region 10.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery on-ink" aria-label="Campaign photographs">
+  <div class="wrap" style="margin-bottom:2.5rem">
+    <span class="eyebrow">In the room</span>
+    <h2 data-float>Where the work happened</h2>
+  </div>
+  <div class="gal-track">
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_2.jpeg" alt="Congressional visit"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/student_1.jpg" alt="Student conference"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_3.jpeg" alt="Congressional visit"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/student_4.png" alt="Student conference"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/robot_dog.png" alt="MiniPupper robotics workshop"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_4.jpeg" alt="Congressional visit"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/student_5.png" alt="Student conference"></a>
+    <a class="photo-tile" href="#top"><img src="https://baiieeenewr2.github.io/congressional_5.jpeg" alt="Congressional visit"></a>
+    <!-- duplicate set for seamless loop -->
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_2.jpeg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/student_1.jpg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_3.jpeg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/student_4.png" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/robot_dog.png" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_4.jpeg" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/student_5.png" alt=""></a>
+    <a class="photo-tile" href="#top" aria-hidden="true" tabindex="-1"><img src="https://baiieeenewr2.github.io/congressional_5.jpeg" alt=""></a>
+  </div>
+</section>
+
+<!-- ================= CONNECT ================= -->
+<section class="section on-paper" id="connect">
+  <div class="wrap">
+    <span class="eyebrow">Get in touch</span>
+    <h2 data-float style="margin-bottom:1rem">Let's Connect</h2>
+    <p class="lead body-max" style="margin-bottom:3rem">
+      This campaign is about building a stronger shared future for our unified region. If you have
+      a question, a concern, or something your section needs, I'd rather hear it now than after
+      the election.
+    </p>
+
+    <div class="connect-grid">
+      <dl class="connect-facts">
+        <div class="fact">
+          <dt>Email</dt>
+          <dd><a class="link" href="mailto:lbai@ieee.org">lbai@ieee.org</a></dd>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">About the Candidate</span>
-                <h2 class="section-title">A Leader With Proven Regional Results</h2>
-                <p class="section-subtitle">
-                    Dr. Bai combines academic leadership, policy advocacy, and deep IEEE service across
-                    the Philadelphia Section and the IEEE Region 2 community.
-                </p>
-            </div>
-            <div class="about-content">
-                <div class="about-image animate-on-scroll">
-                    <div class="about-stats">
-                        <div class="stat">
-                            <div class="stat-number">3</div>
-                            <div class="stat-label">Joint Conferences</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">4</div>
-                            <div class="stat-label">Congressional Visits</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">20+</div>
-                            <div class="stat-label">Years of IEEE Service</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-text animate-on-scroll">
-                    <h3>Academic Leadership Grounded in IEEE Service</h3>
-                    <p>
-                        Dr. Li Bai is a tenured Professor and Associate Dean for Research, Graduate Studies & Faculty Affairs 
-                        in the College of Engineering at Temple University. He has built a leadership record that spans 
-                        higher education, technical research, and sustained IEEE service at both section and regional levels.
-                    </p>
-                    <p>
-                        As Region 2 Student Activities Coordinator (SAC), he helped unify student activity operations across the region,
-                        chaired three joint R1&amp;R2 conferences that reactivated post-pandemic engagement, and created surplus funds to support
-                        future programs. An IEEE-HKN member since 1995, he has also been recognized by the IEEE Philadelphia Section with the
-                        Young Engineer of the Year, Engineer of the Year, and Section Service Awards.
-                    </p>
-                    <div class="about-highlights">
-                        <span class="highlight-tag">Temple University Associate Dean</span>
-                        <span class="highlight-tag">Region 2 Student Activities Coordinator (SAC)</span>
-                        <span class="highlight-tag">Philadelphia Section Adcom Board Since 2002</span>
-                        <span class="highlight-tag">IEEE-USA Congressional Delegate</span>
-                        <span class="highlight-tag">IEEE-HKN Member Since 1995</span>
-                        <span class="highlight-tag">IEEE Metacom 2026 TPC Chair</span>
-                        <span class="highlight-tag">NSF, DOT, and DoD Funded Research</span>
-                    </div>
-                </div>
-            </div>
+        <div class="fact">
+          <dt>Where</dt>
+          <dd>Temple University<br>Philadelphia, PA</dd>
         </div>
-    </section>
-
-    <!-- Vision Section -->
-    <section class="vision" id="vision">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Platform</span>
-                <h2 class="section-title">A Platform Built on Three Pillars</h2>
-                <p class="section-subtitle">
-                    As we move through this important moment of merging Region 1 and Region 2,
-                    Dr. Bai's platform rests on three pillars: world-class education and research,
-                    a stronger student-to-professional pipeline, and a real voice in governance for every member.
-                </p>
-            </div>
-            <div class="pillars-visual animate-on-scroll">
-                <img src="pillars_bridge.png" alt="Three glowing pillars — education, growth, and voice — supporting one unified bridge">
-                <div class="pillar-overlay left">
-                    <span class="pillar-kicker">Pillar 1</span>
-                    <h3>Research to Revenue</h3>
-                    <p>World-Class Education &amp; Research</p>
-                </div>
-                <div class="pillar-overlay center">
-                    <span class="pillar-kicker">Pillar 2</span>
-                    <h3>Student to Professional</h3>
-                    <p>A Seamless Pipeline for Our Next Engineers</p>
-                </div>
-                <div class="pillar-overlay right">
-                    <span class="pillar-kicker">Pillar 3</span>
-                    <h3>Voice in Governance</h3>
-                    <p>Every Member Shaping Our Region&rsquo;s Future</p>
-                </div>
-            </div>
-            <div class="vision-grid">
-                <div class="vision-card animate-on-scroll">
-                    <div class="pillar-marker">
-                        <span class="pillar-dot"></span>
-                        <span class="pillar-kicker">Pillar 1</span>
-                    </div>
-                    <h3>Research to Revenue</h3>
-                    <p class="pillar-sub">World-Class Education &amp; Research, From University to Industry</p>
-                    <div class="card-divider"></div>
-                    <p>
-                        Incredible research is happening across our universities. Dr. Bai will build a direct pipeline that
-                        translates cutting-edge research into professional workshops, delivered by trained volunteers &mdash;
-                        generating new revenue for the region while giving professionals real access to the latest advances in their fields.
-                    </p>
-                </div>
-                <div class="vision-card animate-on-scroll">
-                    <div class="pillar-marker">
-                        <span class="pillar-dot"></span>
-                        <span class="pillar-kicker">Pillar 2</span>
-                    </div>
-                    <h3>Student to Professional</h3>
-                    <p class="pillar-sub">A Seamless Pipeline for Our Next Engineers</p>
-                    <div class="card-divider"></div>
-                    <p>
-                        The transition from student member to young professional should be seamless. Dr. Bai will make sure
-                        no one loses momentum or connection to IEEE as they move from the classroom into their careers.
-                    </p>
-                </div>
-                <div class="vision-card animate-on-scroll">
-                    <div class="pillar-marker">
-                        <span class="pillar-dot"></span>
-                        <span class="pillar-kicker">Pillar 3</span>
-                    </div>
-                    <h3>Voice in Governance</h3>
-                    <p class="pillar-sub">Every Member Shaping Our Region&rsquo;s Future</p>
-                    <div class="card-divider"></div>
-                    <p>
-                        Every member should have a real voice in shaping the direction of our region. As we come together as one region,
-                        Dr. Bai is committed to making sure governance reflects the perspectives of our whole community.
-                    </p>
-                </div>
-            </div>
+        <div class="fact">
+          <dt>IEEE</dt>
+          <dd>Section and regional leadership since 2002</dd>
         </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">From Vision to Action</span>
-                <h2 class="section-title">Three Concrete Initiatives</h2>
-                <p class="section-subtitle">
-                    To bring these pillars to life, Dr. Bai is proposing three concrete initiatives
-                    that connect industry, sections, and volunteers to the region as a whole.
-                </p>
-            </div>
-            <div class="card-divider"></div>
-            <div class="initiatives-grid">
-                <div class="initiative-card animate-on-scroll">
-                    <span class="initiative-badge">Initiative 1</span>
-                    <h3>Industry Advisory Committee</h3>
-                    <p>
-                        To be launched at our upcoming regional meeting, the Industry Advisory Committee will connect
-                        industry leaders directly with our region's priorities &mdash; keeping programs, workshops, and
-                        member benefits aligned with what the profession actually needs.
-                    </p>
-                </div>
-                <div class="initiative-card animate-on-scroll">
-                    <span class="initiative-badge">Initiative 2</span>
-                    <h3>Regional Capstone Projects</h3>
-                    <p>
-                        Sections run their own capstone programs locally and nominate their best projects to be recognized
-                        and celebrated at the regional level &mdash; creating a real connection between our sections and
-                        the region as a whole.
-                    </p>
-                    <p class="initiative-flow">Section &rarr; Region</p>
-                    <a href="https://athena.tu.temple.edu/capstone" target="_blank" rel="noopener" class="btn btn-primary">
-                        Regional Capstone Projects
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="initiative-card animate-on-scroll">
-                    <span class="initiative-badge">Initiative 3</span>
-                    <h3>Digital Certificates for Service</h3>
-                    <p>
-                        Volunteers will be recognized with verifiable digital credentials for the time and expertise they
-                        give to the region, so their service is documented and portable throughout their careers.
-                    </p>
-                </div>
-            </div>
-            <div class="initiatives-quote animate-on-scroll">
-                <p>
-                    &ldquo;As Region 1 and Region 2 come together, this isn't about adding complexity. It's about finding
-                    <span>one unified voice</span>, so we can support each other and grow into the
-                    <span>strongest engineering hub in IEEE</span>.&rdquo;
-                </p>
-            </div>
+        <div class="fact">
+          <dt>Reply time</dt>
+          <dd>Usually within a few days</dd>
         </div>
-    </section>
+      </dl>
 
-    <!-- Regions Unity Section -->
-    <section class="regions-unity">
-        <div class="container">
-            <div class="regions-content">
-                <div class="regions-image animate-on-scroll">
-                    <img src="regions.png" alt="IEEE Region 2">
-                </div>
-                <div class="regions-text animate-on-scroll">
-                    <h2>Better Together: One Unified Region</h2>
-                    <p>
-                        We are moving through an important moment: the merging of Region 1 and Region 2. From the prosperity
-                        and dynamism of New York City to the policy influence of Washington, D.C. to communities that remain
-                        deeply underserved, our combined region spans remarkable diversity.
-                    </p>
-                    <p>
-                        This isn't about adding complexity. It's about finding one unified voice, so we can support each other
-                        and grow into the strongest engineering hub in IEEE &mdash; sharing talent, ideas, and opportunity across
-                        sections so that every member benefits, regardless of geography or career stage.
-                    </p>
-                    <div class="regions-stats">
-                        <div class="region-stat">
-                            <span class="stat-number">R1</span>
-                            <span class="stat-desc">Northeast United States</span>
-                        </div>
-                        <div class="region-connector">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M12 5v14M5 12l7 7 7-7"/>
-                            </svg>
-                        </div>
-                        <div class="region-stat">
-                            <span class="stat-number">R2</span>
-                            <span class="stat-desc">Mid-Atlantic United States</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <form class="form" id="connectForm" data-endpoint="" novalidate>
+        <div class="field">
+          <label for="f_name">Your name</label>
+          <input id="f_name" name="name" type="text" autocomplete="name" required placeholder="Jane Okafor">
         </div>
-    </section>
-
-    <!-- Mentorship Pipeline Section -->
-    <section class="pipeline" id="pipeline">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Member Growth</span>
-                <h2 class="section-title">From Students to Young Professionals, Without Losing Momentum</h2>
-                <p class="section-subtitle">
-                    A seamless transition from student member to young professional is central to the platform:
-                    stronger student engagement, meaningful mentorship, and clearer professional pathways
-                    so no one loses connection to IEEE as they move into their careers.
-                </p>
-            </div>
-            <div class="pipeline-flow">
-                <div class="pipeline-step animate-on-scroll">
-                    <div class="pipeline-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M12 14l9-5-9-5-9 5 9 5z"/>
-                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
-                        </svg>
-                    </div>
-                    <div class="pipeline-number">1</div>
-                    <h4>Student Engagement</h4>
-                    <p>Expand hands-on conferences, competitions, and workshops that bring students back into active regional participation.</p>
-                </div>
-                <div class="pipeline-arrow">
-                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-                <div class="pipeline-step animate-on-scroll">
-                    <div class="pipeline-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        </svg>
-                    </div>
-                    <div class="pipeline-number">2</div>
-                    <h4>Mentorship Networks</h4>
-                    <p>Connect students, young professionals, and senior volunteers through visible, region-wide mentorship pathways.</p>
-                </div>
-                <div class="pipeline-arrow">
-                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-                <div class="pipeline-step animate-on-scroll">
-                    <div class="pipeline-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        </svg>
-                    </div>
-                    <div class="pipeline-number">3</div>
-                    <h4>Professional Growth</h4>
-                    <p>Create more industry connections and development opportunities so members in every section can advance.</p>
-                </div>
-            </div>
-            <div class="mentorship-highlights">
-                <div class="mentorship-card animate-on-scroll">
-                    <div class="mentorship-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </div>
-                    <h4>Profitable Joint Programming</h4>
-                    <p>Use the proven joint conference model to deliver strong member experiences while also generating surplus funds that can sustain future student and section programming.</p>
-                </div>
-                <div class="mentorship-card animate-on-scroll">
-                    <div class="mentorship-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <h4>Cross-Section Collaboration</h4>
-                    <p>Bring sections together around shared activities and coordinated planning, reducing duplication and making regional resources easier to access.</p>
-                </div>
-                <div class="mentorship-card animate-on-scroll">
-                    <div class="mentorship-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </div>
-                    <h4>Visible Value for Members</h4>
-                    <p>Focus on benefits members can feel directly: mentorship, technical training, networking, and leadership opportunities that reach both large metros and underserved areas.</p>
-                </div>
-            </div>
+        <div class="field">
+          <label for="f_email">Email</label>
+          <input id="f_email" name="email" type="email" autocomplete="email" required placeholder="jane@example.org">
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Leadership Journey</span>
-                <h2 class="section-title">IEEE & Professional Experience</h2>
-                <p class="section-subtitle">
-                    IEEE leadership, section service, academic administration, and national representation that directly support the Region 2 Director role.
-                </p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2026</span>
-                        <h4 class="timeline-title">TPC Chair, IEEE Metacom 2026</h4>
-                        <p class="timeline-org">Leading the Technical Program Committee for the IEEE International Conference on Metaverse Computing, Networking and Applications</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2025</span>
-                        <h4 class="timeline-title">Track Chair, IEEE Metacom 2025</h4>
-                        <p class="timeline-org">Leading metaverse architecture and applications programming</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022 - Present</span>
-                        <h4 class="timeline-title">Region 2 Student Activities Coordinator (SAC)</h4>
-                        <p class="timeline-org">Oversight of student programs, coordination, budgeting, and regional resources</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024 - 2026</span>
-                        <h4 class="timeline-title">General Chair for Three Joint R1&amp;R2 Student Conferences</h4>
-                        <p class="timeline-org">Reactivated engagement and delivered surplus funds for future events</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2002 - Present</span>
-                        <h4 class="timeline-title">IEEE Philadelphia Section Adcom Board</h4>
-                        <p class="timeline-org">Including Chair, Vice Chair, and Membership Chair roles</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2025 - Present</span>
-                        <h4 class="timeline-title">Associate Dean for Research, Graduate Studies & Faculty Affairs</h4>
-                        <p class="timeline-org">College of Engineering, Temple University</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Ongoing</span>
-                        <h4 class="timeline-title">Tenured Professor</h4>
-                        <p class="timeline-org">Temple University</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2005, 2006, 2024, 2025</span>
-                        <h4 class="timeline-title">IEEE USA Congressional Delegate</h4>
-                        <p class="timeline-org">Representing engineers in national policy discussions on research, education, and workforce issues</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-date">1995 - Present</span>
-                        <h4 class="timeline-title">IEEE-HKN Member</h4>
-                        <p class="timeline-org">Eta Kappa Nu, the IEEE honor society</p>
-                    </div>
-                    <div class="timeline-dot"></div>
-                </div>
-            </div>
+        <div class="field">
+          <label for="f_msg">Message</label>
+          <textarea id="f_msg" name="message" required placeholder="What would you like the region to do differently?"></textarea>
         </div>
-    </section>
-
-    <!-- Advocacy Section -->
-    <section class="advocacy" id="advocacy">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Voice for Engineers</span>
-                <h2 class="section-title">Advocating for the Engineering Profession</h2>
-                <p class="section-subtitle">
-                    Dr. Bai has represented IEEE-USA in Washington, D.C. in 2005, 2006, 2024, and 2025, 
-                    helping ensure that engineers are heard in national conversations about education, research, and workforce development.
-                </p>
-            </div>
-            <div class="advocacy-image animate-on-scroll">
-                <div class="carousel" id="advocacyCarousel">
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="congressional.jpeg" alt="Dr. Li Bai at Congressional Visit">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="congressional_2.jpeg" alt="Dr. Li Bai at Congressional Visit">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="congressional_3.jpeg" alt="Dr. Li Bai at Congressional Visit">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="congressional_4.jpeg" alt="Dr. Li Bai at Congressional Visit">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="congressional_5.jpeg" alt="Dr. Li Bai at Congressional Visit">
-                        </div>
-                    </div>
-                    <button class="carousel-btn carousel-prev" onclick="moveSlide(-1)">&#10094;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveSlide(1)">&#10095;</button>
-                    <div class="carousel-dots">
-                        <span class="dot active" onclick="goToSlide(0)"></span>
-                        <span class="dot" onclick="goToSlide(1)"></span>
-                        <span class="dot" onclick="goToSlide(2)"></span>
-                        <span class="dot" onclick="goToSlide(3)"></span>
-                        <span class="dot" onclick="goToSlide(4)"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="advocacy-content">
-                <div class="advocacy-card animate-on-scroll">
-                    <div class="advocacy-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
-                        </svg>
-                    </div>
-                    <h4>Policy Advocacy</h4>
-                    <p>Engaging lawmakers on policies that support engineering research, technical education, and the future engineering workforce.</p>
-                </div>
-                <div class="advocacy-card animate-on-scroll">
-                    <div class="advocacy-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                    </div>
-                    <h4>National Representation</h4>
-                    <p>Serving as a visible IEEE voice in discussions that affect members across academia, industry, and public-sector engineering.</p>
-                </div>
-                <div class="advocacy-card animate-on-scroll">
-                    <div class="advocacy-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
-                    </div>
-                    <h4>Education & Workforce</h4>
-                    <p>Championing programs that strengthen STEM pipelines, expand opportunity, and prepare the next generation of engineers and innovators.</p>
-                </div>
-            </div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit" id="formSubmit">Send message</button>
+          <span class="form-note">Goes straight to Dr. Bai</span>
         </div>
-    </section>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <!-- Student Activities Carousel Section -->
-    <section class="student-carousel-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Student Activities Conferences</span>
-                <h2 class="section-title">Student Activities</h2>
-                <p class="section-subtitle">
-                    These conferences helped reactivate post-pandemic engagement and demonstrate how the two regions can succeed together.
-                </p>
-            </div>
-            <div class="student-carousel animate-on-scroll">
-                <div class="carousel" id="studentCarousel">
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="student_1.jpg" alt="Student Activities">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="student_2jpg.jpg" alt="Student Activities">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="student_3.jpg" alt="Student Activities">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="student_4.png" alt="Student Activities">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="student_5.png" alt="Student Activities">
-                        </div>
-                    </div>
-                    <button class="carousel-btn carousel-prev" onclick="moveStudentSlide(-1)">&#10094;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveStudentSlide(1)">&#10095;</button>
-                    <div class="carousel-dots">
-                        <span class="dot active" onclick="goToStudentSlide(0)"></span>
-                        <span class="dot" onclick="goToStudentSlide(1)"></span>
-                        <span class="dot" onclick="goToStudentSlide(2)"></span>
-                        <span class="dot" onclick="goToStudentSlide(3)"></span>
-                        <span class="dot" onclick="goToStudentSlide(4)"></span>
-                    </div>
-                </div>
-            </div>
+<!-- ================= FINAL CTA ================= -->
+<section class="section final on-ink" id="vote">
+  <div class="wrap">
+    <span class="vote-pill" id="votePill2" style="margin-bottom:2rem">Ballot open 17 Aug – 1 Oct 2026</span>
+    <h2 data-float>Vote Dr. Li Bai</h2>
+    <p class="lead">One unified region, for all. It takes two minutes on the IEEE ballot.</p>
+    <div class="final-cta">
+      <a class="btn btn-primary" data-magnet href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">
+        Open the IEEE ballot →
+      </a>
+      <a class="qr" href="https://ieeer2.s.gy/decision27">
+        <img src="https://baiieeenewr2.github.io/qr_vote.svg" alt="QR code linking to this campaign site">
+        <div>
+          <strong>Share this page</strong>
+          <span>ieeer2.s.gy/decision27</span>
         </div>
-    </section>
+      </a>
+    </div>
+    <p style="margin-top:2.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--text-d3)">
+      Questions? <a class="link" href="mailto:lbai@ieee.org">lbai@ieee.org</a>
+    </p>
+  </div>
+</section>
 
-    <!-- Achievements Section -->
-    <section class="achievements" id="achievements">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Recognition</span>
-                <h2 class="section-title">Awards & Accomplishments</h2>
-                <p class="section-subtitle">
-                    Excellence recognized by peers and professional organizations.
-                </p>
-            </div>
-            <div class="achievements-grid">
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                        </svg>
-                    </div>
-                    <h4>IEEE Philadelphia Section Benjamin Franklin Key Award, 2016</h4>
-                    <p>Highest section recognition</p>
-                </div>
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </div>
-                    <h4>Lindback Award for Distinguished Teaching, 2010</h4>
-                    <p>Temple University</p>
-                </div>
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        </svg>
-                    </div>
-                    <h4>IEEE Philadelphia Section Service Award, 2011</h4>
-                    <p>Leadership excellence</p>
-                </div>
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h4>Young Engineer of the Year, 2004</h4>
-                    <p>IEEE Philadelphia Section</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= FOOTER ================= -->
+<footer class="footer on-ink">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Candidate</h4>
+        <p style="color:var(--text-d2);max-width:34ch">
+          <strong style="color:var(--text-d1)">Dr. Li Bai</strong><br>
+          IEEE Region 2 Director-Elect Candidate, 2027–2028<br>
+          Temple University, Philadelphia, PA
+        </p>
+      </div>
+      <div>
+        <h4>The campaign</h4>
+        <ul>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#initiatives">Initiatives</a></li>
+          <li><a href="#record">Record</a></li>
+          <li><a href="#connect">Connect</a></li>
+          <li><a href="https://baiieeenewr2.github.io/Li_Bai_s_CV.pdf">Full CV (PDF)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Vote</h4>
+        <ul>
+          <li><a href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">IEEE election ballot</a></li>
+          <li><a href="mailto:lbai@ieee.org">lbai@ieee.org</a></li>
+          <li><a href="https://www.ieee.org">IEEE.org</a></li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Student Activities Section -->
-    <section class="student-activities" id="activities">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">IEEE Region 2</span>
-                <h2 class="section-title">Student Activities Conferences</h2>
-                <p class="section-subtitle">
-                    As organizing leader for three consecutive joint R1&amp;R2 student activities conferences, Dr. Bai has shown how shared planning
-                    across the region can deliver stronger member experiences, renewed engagement, and financial sustainability for future events.
-                </p>
-            </div>
-            <div class="activities-grid">
-                <div class="activity-card animate-on-scroll">
-                    <div class="activity-year">2026</div>
-                    <h4>SAC 2026</h4>
-                    <p>A joint R1&amp;R2 conference built around workshops, competitions, and community building, extending the proven model of unified regional programming.</p>
-                    <a href="https://attend.ieee.org/sac-2026/" target="_blank" class="btn btn-primary">
-                        Learn More
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="activity-card animate-on-scroll">
-                    <div class="activity-year">2025</div>
-                    <h4>StuCon 2025</h4>
-                    <p>A collaboration-centered conference that strengthened networking, technical exchange, and volunteer momentum across the entire region.</p>
-                    <a href="https://attend.ieee.org/stucon-2025/" target="_blank" class="btn btn-primary">
-                        Learn More
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="activity-card animate-on-scroll">
-                    <div class="activity-year">2024</div>
-                    <h4>SAC 2024</h4>
-                    <p>The first conference in the three-event run that helped bring student participation back after the pandemic and set up sustainable future programming.</p>
-                    <a href="https://attend.ieee.org/sac-2024/" target="_blank" class="btn btn-primary">
-                        Learn More
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="membership-highlight animate-on-scroll">
-                <div class="membership-stat">
-                    <span class="membership-number">3</span>
-                    <span class="membership-text">consecutive joint R1&amp;R2 conferences with surplus funds for future events</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <p class="thanks" id="thanks">You read to the end. That's the attention I'll bring to the Region.</p>
 
-    <!-- Robotics Workshop Section -->
-    <section class="robotics-workshop" id="robotics">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Innovation in Action</span>
-                <h2 class="section-title">Bringing Robotics & AI Across the Region</h2>
-                <p class="section-subtitle">
-                    Dr. Bai has expanded regional reach with hands-on robotics and technical training initiatives that connect IEEE members to emerging tools and global collaborators.
-                </p>
-            </div>
-            <div class="workshop-content">
-                <div class="workshop-image animate-on-scroll">
-                    <img src="robot_dog.png" alt="MiniPupper Robot Dog" class="robot-image">
-                </div>
-                <div class="workshop-text animate-on-scroll">
-                    <h3>MiniPupper Robotics Workshop</h3>
-                    <p>
-                        Dr. Bai has led MiniPupper robot workshops across Region 2, using hands-on robotics experiences
-                        to inspire students and volunteers around AI, ROS, and practical engineering problem solving.
-                    </p>
-                    <p>
-                        He is also collaborating with IEEE Region 10 on international robotics activities, including a Tug-of-War 
-                        challenge using robotic dogs, to create cross-regional opportunities that strengthen the global IEEE community.
-                    </p>
-                    <div class="workshop-highlights">
-                        <span class="highlight-tag">ROS Integration</span>
-                        <span class="highlight-tag">AI Programming</span>
-                        <span class="highlight-tag">Cross-Regional Outreach</span>
-                        <span class="highlight-tag">Hands-on Learning</span>
-                    </div>
-                </div>
-            </div>
-            <div class="celus-section animate-on-scroll">
-                <div class="celus-content">
-                    <div class="celus-image">
-                        <img src="celus.png" alt="CELUS PCB Design AI Tool">
-                    </div>
-                    <div class="celus-text">
-                        <div class="celus-icon">
-                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-                            </svg>
-                        </div>
-                        <h4>CELUS PCB Design AI Tool</h4>
-                        <p>
-                            Dr. Bai promoted a remote PCB design training program from <strong>CELUS</strong> in Germany (Region 8) 
-                            to IEEE members in the United States, broadening access to technical upskilling while creating stronger 
-                            global collaboration between regions.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="footer-base">
+      <span>© 2026 Dr. Li Bai — Candidate, IEEE Region 2 Director-Elect</span>
+      <span>The opinions expressed herein are the author's and not necessarily those of IEEE.</span>
+    </div>
+  </div>
+</footer>
 
-    <!-- Research Section -->
-    <section class="research" id="research">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Professional Profile</span>
-                <h2 class="section-title">Research, Recognition, and Technical Leadership</h2>
-                <p class="section-subtitle">
-                    Dr. Bai's academic and technical record complements his IEEE leadership with funded research and recognized service.
-                </p>
-            </div>
-            <div class="research-areas">
-                <div class="research-card animate-on-scroll">
-                    <div class="research-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        </svg>
-                    </div>
-                    <h4>NSF, DOT, and DoD Research Support</h4>
-                    <p>Research programs backed by major federal agencies</p>
-                </div>
-                <div class="research-card animate-on-scroll">
-                    <div class="research-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M12 14l9-5-9-5-9 5 9 5z"/>
-                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
-                        </svg>
-                    </div>
-                    <h4>Temple University Leadership</h4>
-                    <p>Tenured professor and Associate Dean for Research</p>
-                </div>
-                <div class="research-card animate-on-scroll">
-                    <div class="research-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <h4>IEEE Philadelphia Section Honors</h4>
-                    <p>Young Engineer, Engineer of the Year, and Section Service recognition</p>
-                </div>
-                <div class="research-card animate-on-scroll">
-                    <div class="research-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                        </svg>
-                    </div>
-                    <h4>Technical Outreach</h4>
-                    <p>Robotics, AI, and hands-on STEM engagement across the region</p>
-                </div>
-                <div class="research-card animate-on-scroll">
-                    <div class="research-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                        </svg>
-                    </div>
-                    <h4>Operational Experience</h4>
-                    <p>Budgeting, coordination, and regional program oversight</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-label">Get in Touch</span>
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">
-                    Interested in supporting this vision? Get in touch to learn more about 
-                    Dr. Bai's plans for the IEEE Region 2 community.
-                </p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info animate-on-scroll">
-                    <h3>Connect With the Campaign</h3>
-                    <p>
-                        The campaign is focused on one practical goal: building a stronger shared future for our unified region
-                        through better coordination, stronger member benefits, and broader opportunity across the entire region.
-                        Thank you for considering Dr. Bai's candidacy &mdash; he'd welcome the chance to hear your thoughts.
-                    </p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-method-icon">
-                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">Email</span>
-                                <span class="contact-method-value">lbai@ieee.org</span>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-method-icon">
-                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">Location</span>
-                                <span class="contact-method-value">Temple University, Philadelphia, PA</span>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-method-icon">
-                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path d="M16 8v6m-4-4h8M6 16a6 6 0 1112 0v-4M6 12h12"/>
-                                </svg>
-                            </div>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">IEEE Member</span>
-                                <span class="contact-method-value">Section and regional leadership since 2002</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form-wrapper animate-on-scroll">
-                    <div class="message-counter">
-                        <div class="counter-icon">
-                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                            </svg>
-                        </div>
-                        <div class="counter-content">
-                            <span class="counter-number" id="messageCount">0</span>
-                            <span class="counter-label">Messages Received</span>
-                        </div>
-                    </div>
-                    <h4>Send a Message</h4>
-                    <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycby30b2eBy69YzbGD7CczsUmJFXK8VvqGgq2XQZ3bGowmmDsy-x3d6wXCscU2Ya3AM9O/exec" method="POST"> 
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Your message..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
-                            <span id="btnText">Send Message</span>
-                            <svg id="btnIcon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                            </svg>
-                        </button>
-                    </form>
-                    <div id="formStatus" class="form-status" style="display: none; margin-top: 16px; padding: 12px; border-radius: 8px; text-align: center;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+  /* ---------- capability gate ---------- */
+  var perf = {
+    mobile:  matchMedia('(max-width: 720px)').matches,
+    lowCore: (navigator.hardwareConcurrency || 8) < 4,
+    reduce:  matchMedia('(prefers-reduced-motion: reduce)').matches,
+    hover:   matchMedia('(hover: hover)').matches
+  };
+  perf.heavy = !perf.mobile && !perf.lowCore && !perf.reduce;
+  document.documentElement.dataset.motion = perf.reduce ? 'reduce' : (perf.heavy ? 'full' : 'lite');
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-ieee-logo">
-                         <img src="ieee_logo.png" alt="IEEE Logo" style="height: 60px; width: auto; filter: brightness(10) invert(0);">
-                    </div>
-                    <h3>Dr. Li Bai</h3>
-                    <p>
-                        IEEE Region 2 Director-Elect Candidate, 2027&ndash;2028<br>
-                        One Unified Region, For All
-                    </p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#vision">Platform</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#pipeline">Mentorship</a></li>
-                        <li><a href="#activities">Activities</a></li>
-                        <li><a href="#robotics">Robotics</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#advocacy">Advocacy</a></li>
-                        <li><a href="#achievements">Achievements</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#research">Research</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="Li_Bai_s_CV.pdf" target="_blank">Download CV</a></li>
-                        <li><a href="https://attend.ieee.org/sac-2026/" target="_blank">SAC 2026</a></li>
-                        <li><a href="https://attend.ieee.org/stucon-2025/" target="_blank">StuCon 2025</a></li>
-                        <li><a href="https://attend.ieee.org/sac-2024/" target="_blank">SAC 2024</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="mailto:lbai@ieee.org">Email</a></li>
-                        <li><a href="https://www.ieee.org" target="_blank">IEEE.org</a></li>
-                        <li><a href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection" target="_blank">IEEE Election Ballot</a></li>
-                        <li><a href="https://ieeer2.s.gy/decision27" target="_blank">Vote Online</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Dr. Li Bai &mdash; Candidate for IEEE Region 2 Director-Elect, 2027&ndash;2028</p>
-                <p>IEEE Region 2 | Unity Through Service</p>
-            </div>
-            <p class="footer-disclaimer">The opinions expressed herein are the opinions of the author and not necessarily the opinions of IEEE.</p>
-        </div>
-    </footer>
+  var css = getComputedStyle(document.documentElement);
+  var tok = function (n) { return css.getPropertyValue(n).trim(); };
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        const navClose = document.getElementById('navClose');
-        const navOverlay = document.getElementById('navOverlay');
+  /* ---------- nav ---------- */
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.dataset.scrolled = String(window.scrollY > 40); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-        function closeMenu() {
-            mobileMenuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-            navOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+  var toggle = document.getElementById('navToggle');
+  if (toggle) toggle.addEventListener('click', function () {
+    document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
+  });
 
-        function openMenu() {
-            mobileMenuBtn.classList.add('active');
-            navLinks.classList.add('active');
-            navOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+  /* ---------- countdown ---------- */
+  var OPEN  = new Date('2026-08-17T00:00:00-04:00');
+  var CLOSE = new Date('2026-10-01T23:59:59-04:00');
+  var els = {
+    label: document.getElementById('cdLabel'),
+    d: document.getElementById('cdD'), h: document.getElementById('cdH'),
+    m: document.getElementById('cdM'), s: document.getElementById('cdS'),
+    pill: document.getElementById('votePill')
+  };
+  var pad = function (n) { return String(n).padStart(2, '0'); };
 
-        mobileMenuBtn.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+  function tickClock() {
+    var now = new Date(), target, label, pill;
+    if (now < OPEN)       { target = OPEN;  label = 'Voting opens in';   pill = 'Ballot opens 17 August'; }
+    else if (now < CLOSE) { target = CLOSE; label = 'Time left to vote'; pill = 'Voting is open now'; }
+    else {
+      els.label.textContent = 'Voting has closed';
+      els.d.textContent = els.h.textContent = els.m.textContent = els.s.textContent = '00';
+      if (els.pill) els.pill.textContent = 'Ballot closed';
+      return;
+    }
+    var t = Math.max(0, target - now);
+    els.label.textContent = label;
+    if (els.pill) els.pill.textContent = pill;
+    els.d.textContent = pad(Math.floor(t / 86400000));
+    els.h.textContent = pad(Math.floor(t / 3600000) % 24);
+    els.m.textContent = pad(Math.floor(t / 60000) % 60);
+    els.s.textContent = pad(Math.floor(t / 1000) % 60);
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  /* ---------- text splitting ---------- */
+  // ScrollFloat: per-character rise on section headings
+  document.querySelectorAll('[data-float]').forEach(function (el) {
+    var text = el.textContent;
+    el.textContent = '';
+    text.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = c === ' ' ? '\u00A0' : c;
+      el.appendChild(s);
+    });
+  });
+
+  // ScrollReveal: per-word opacity on the manifesto
+  var quote = document.getElementById('manifesto');
+  if (quote) {
+    var words = quote.textContent.trim().split(/\s+/);
+    quote.textContent = '';
+    words.forEach(function (w) {
+      var s = document.createElement('span');
+      s.className = 'w';
+      s.textContent = w + ' ';
+      quote.appendChild(s);
+    });
+  }
+
+  /* ---------- CountUp ---------- */
+  function countUp(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    var to = parseFloat(el.dataset.count);
+    var from = parseFloat(el.dataset.from || '0');
+    var suffix = el.dataset.suffix || '';
+    if (perf.reduce) { el.textContent = to + suffix; return; }
+    var start = performance.now(), dur = 1400;
+    (function step(now) {
+      var p = Math.min(1, (now - start) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = Math.round(from + (to - from) * eased) + (suffix ? '<em>' + suffix + '</em>' : '');
+      if (p < 1) requestAnimationFrame(step);
+    })(start);
+  }
+
+  /* ---------- IntersectionObserver reveals ---------- */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var t = e.target;
+      if (t.dataset.count !== undefined) { countUp(t); }
+      else {
+        t.classList.add('is-in');
+        t.addEventListener('animationend', function handoff() {
+          t.classList.remove('reveal', 'is-in');
+          t.classList.add('shown');
+          t.removeEventListener('animationend', handoff);
         });
+      }
+      io.unobserve(t);
+    });
+  }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' });
 
-        // Close menu when clicking X button
-        navClose.addEventListener('click', closeMenu);
+  document.querySelectorAll('[data-count]').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.card, .stat, .thanks').forEach(function (el) {
+    if (!el.classList.contains('thanks')) el.classList.add('reveal');
+    io.observe(el);
+  });
 
-        // Close menu when clicking overlay
-        navOverlay.addEventListener('click', closeMenu);
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+  /* ---------- Magnetic CTA ---------- */
+  if (perf.hover && !perf.reduce) {
+    document.querySelectorAll('[data-magnet]').forEach(function (btn) {
+      var raf = null, tx = 0, ty = 0;
+      btn.addEventListener('pointermove', function (e) {
+        var r = btn.getBoundingClientRect();
+        tx = (e.clientX - (r.left + r.width / 2)) * 0.18;
+        ty = (e.clientY - (r.top + r.height / 2)) * 0.28;
+        if (!raf) raf = requestAnimationFrame(function () {
+          btn.style.transform = 'translate3d(' + tx + 'px,' + (ty - 2) + 'px,0)';
+          raf = null;
         });
+      });
+      btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+    });
+  }
 
-        // Close menu when pressing Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                closeMenu();
-            }
+  /* ---------- SpotlightCard pointer tracking ---------- */
+  if (perf.hover) {
+    document.querySelectorAll('.card').forEach(function (card) {
+      var raf = null, mx = 0, my = 0;
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        mx = e.clientX - r.left; my = e.clientY - r.top;
+        if (!raf) raf = requestAnimationFrame(function () {
+          card.style.setProperty('--mx', mx + 'px');
+          card.style.setProperty('--my', my + 'px');
+          raf = null;
         });
+      });
+    });
+  }
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+  /* ---------- Connect form ----------
+     GitHub Pages serves static files only, so it cannot receive a POST.
+     Two supported modes:
+       1. Paste a form endpoint (Formspree, Basin, Getform, Netlify Forms...)
+          into data-endpoint on the <form> and submissions post there as JSON.
+       2. Leave data-endpoint empty and the button composes a pre-filled email
+          to lbai@ieee.org in the sender's own mail client. Works with no setup.
+  */
+  var form = document.getElementById('connectForm');
+  if (form) {
+    var status = document.getElementById('formStatus');
+    var submit = document.getElementById('formSubmit');
+    var MAILTO = 'lbai@ieee.org';
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    function say(msg, state) {
+      status.textContent = msg;
+      if (state) status.dataset.state = state; else status.removeAttribute('data-state');
+    }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var name  = document.getElementById('f_name').value.trim();
+      var email = document.getElementById('f_email').value.trim();
+      var msg   = document.getElementById('f_msg').value.trim();
+      var endpoint = (form.dataset.endpoint || '').trim();
+
+      if (!endpoint) {
+        var subject = 'Campaign message from ' + name;
+        var body = name + ' <' + email + '>\n\n' + msg;
+        window.location.href = 'mailto:' + MAILTO +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+        say('Opening your email app. If nothing happens, write to ' + MAILTO + ' directly.');
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      say('Sending…');
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, message: msg })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('bad status');
+        form.reset();
+        say('Thank you — your message is on its way.', 'ok');
+      }).catch(function () {
+        say('That did not go through. Please email ' + MAILTO + ' instead.', 'err');
+      }).then(function () {
+        submit.disabled = false;
+        submit.textContent = 'Send message';
+      });
+    });
+  }
+
+  /* ---------- Pillars: left pin / right swap ---------- */
+  var PILLARS = [
+    { kicker: 'Pillar 1 — World-class education & research', title: 'Research to Revenue',
+      body: 'Extraordinary research is already happening across our universities. Trained volunteers will turn it into professional workshops — giving members real access to advances in their field, and generating revenue the region can reinvest.' },
+    { kicker: 'Pillar 2 — A seamless pipeline for our next engineers', title: 'Student to Professional',
+      body: 'Graduation should not be the moment someone quietly leaves IEEE. Mentorship, industry connections and clear pathways so no one loses momentum on the walk from the classroom into a career.' },
+    { kicker: 'Pillar 3 — Every member shaping the region', title: 'Voice in Governance',
+      body: 'A member in an underserved section should have the same say as one in a major metro. As two regions become one, governance has to reflect the whole community — not just the loudest part of it.' }
+  ];
+  var kicker = document.getElementById('pillarKicker');
+  var title  = document.getElementById('pillarTitle');
+  var bodyEl = document.getElementById('pillarBody');
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('#sceneStack .scene'));
+  var dots   = Array.prototype.slice.call(document.querySelectorAll('#pillarIndex .pi-dot'));
+  var current = 0;
+
+  function setPillar(i) {
+    if (i === current) return;
+    current = i;
+    var p = PILLARS[i];
+    kicker.textContent = p.kicker;
+    bodyEl.textContent = p.body;
+    title.textContent = '';
+    p.title.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = c === ' ' ? '\u00A0' : c;
+      title.appendChild(s);
+    });
+    if (window.gsap && !perf.reduce) {
+      gsap.from(title.querySelectorAll('.ch'), { yPercent: 110, opacity: 0, duration: .55, ease: 'power3.out', stagger: .02 });
+      gsap.from([kicker, bodyEl], { opacity: 0, y: 12, duration: .5, ease: 'power2.out' });
+    }
+    scenes.forEach(function (s, n) { s.dataset.on = String(n === i); });
+    dots.forEach(function (d, n) { d.dataset.on = String(n === i); });
+  }
+
+  /* ---------- GSAP timelines ---------- */
+  if (window.gsap && window.ScrollTrigger && !perf.reduce) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ScrollFloat on every data-float heading
+    document.querySelectorAll('[data-float]').forEach(function (el) {
+      if (el === title) return;
+      gsap.from(el.querySelectorAll('.ch'), {
+        yPercent: 110, opacity: 0, duration: .7, ease: 'power3.out', stagger: .018,
+        scrollTrigger: { trigger: el, start: 'top 84%' }
+      });
+    });
+
+    // ScrollReveal on the manifesto
+    if (quote) {
+      gsap.to(quote.querySelectorAll('.w'), {
+        opacity: 1, ease: 'none', stagger: .3,
+        scrollTrigger: { trigger: quote, start: 'top 78%', end: 'bottom 55%', scrub: .6 }
+      });
+    }
+
+    // Hero parallax
+    gsap.to('.hero-media', {
+      yPercent: -12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Pattern 2 — card collapse: constellation converges as the hero leaves
+    if (perf.heavy) {
+      gsap.to('.star-card', {
+        x: 0, y: 0, scale: .15, opacity: 0, rotation: 0,
+        stagger: { amount: .6, from: 'random' }, ease: 'power2.in',
+        scrollTrigger: { trigger: '.hero', start: 'bottom 88%', end: 'bottom top', scrub: 1 }
+      });
+
+      // pointer parallax on the constellation
+      var stage = document.getElementById('constellation');
+      var cards = gsap.utils.toArray('.star-card');
+      var praf = null, pdx = 0, pdy = 0;
+      if (perf.hover && stage) {
+        window.addEventListener('pointermove', function (e) {
+          pdx = (e.clientX - innerWidth / 2) / innerWidth;
+          pdy = (e.clientY - innerHeight / 2) / innerHeight;
+          if (!praf) praf = requestAnimationFrame(function () {
+            cards.forEach(function (c, i) {
+              var depth = (i + 1) * 6;
+              gsap.to(c, { x: pdx * depth, y: pdy * depth, duration: .9, ease: 'power3.out', overwrite: 'auto' });
             });
-        }, observerOptions);
+            praf = null;
+          });
+        }, { passive: true });
+      }
+    }
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Fetch message count from Google Sheet
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby30b2eBy69YzbGD7CczsUmJFXK8VvqGgq2XQZ3bGowmmDsy-x3d6wXCscU2Ya3AM9O/exec';
-        const messageCountEl = document.getElementById('messageCount');
-        
-        function updateMessageCount() {
-            fetch(GOOGLE_SCRIPT_URL + '?action=getCount')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.count !== undefined && data.count >= 0) {
-                        messageCountEl.textContent = Math.max(0, data.count);
-                    }
-                })
-                .catch(() => {
-                    // Use localStorage fallback
-                    const storedCount = parseInt(localStorage.getItem('messageCount')) || 0;
-                    messageCountEl.textContent = Math.max(0, storedCount);
-                });
+    // PIN 1 — pillars
+    if (window.innerWidth > 1024) {
+      ScrollTrigger.create({
+        trigger: '.pin-swap', start: 'top top', end: 'bottom bottom', scrub: .4,
+        onUpdate: function (self) {
+          var i = Math.min(Math.floor(self.progress * 3), 2);
+          setPillar(i);
         }
-        
-        // Update count on page load
-        updateMessageCount();
+      });
+    }
+  }
 
-        // Form submission to Google Sheet
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
-            const btnIcon = document.getElementById('btnIcon');
-            const formStatus = document.getElementById('formStatus');
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            btnText.textContent = 'Sending...';
-            btnIcon.innerHTML = '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.4" stroke-dashoffset="0"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle>';
-            
-            // Get the form action URL
-            const formAction = this.action;
-            
-            // Check if Google Apps Script URL is configured
-            if (formAction === 'YOUR_GOOGLE_APPS_SCRIPT_URL' || !formAction) {
-                // Demo mode - show success message without actually sending
-                formStatus.style.display = 'block';
-                formStatus.style.background = '#d4edda';
-                formStatus.style.color = '#155724';
-                formStatus.textContent = `Thank you, ${name}! Your message has been sent.\n\nWe will get back to you at ${email} soon.`;
-                this.reset();
-                
-                submitBtn.disabled = false;
-                btnText.textContent = 'Send Message';
-                btnIcon.innerHTML = '<path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>';
-                
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    formStatus.style.display = 'none';
-                }, 5000);
-                return;
-            }
-            
-            // Submit to Google Apps Script
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('message', message);
-            
-            fetch(formAction, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            })
-            .then(() => {
-                formStatus.style.display = 'block';
-                formStatus.style.background = '#d4edda';
-                formStatus.style.color = '#155724';
-                formStatus.textContent = `Thank you, ${name}! Your message has been sent.\n\nWe will get back to you at ${email} soon.`;
-                this.reset();
-                
-                // Increment counter (ensure it never goes negative)
-                const currentCount = Math.max(0, parseInt(messageCountEl.textContent) || 0);
-                const newCount = currentCount + 1;
-                messageCountEl.textContent = newCount;
-                localStorage.setItem('messageCount', newCount);
-            })
-            .catch((error) => {
-                formStatus.style.display = 'block';
-                formStatus.style.background = '#f8d7da';
-                formStatus.style.color = '#721c24';
-                formStatus.textContent = 'Sorry, there was an error sending your message. Please try again or email directly.';
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                btnText.textContent = 'Send Message';
-                btnIcon.innerHTML = '<path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>';
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formStatus.style.display = 'none';
-                }, 5000);
-            });
-        });
+  /* ---------- PIN 2 — Region Assembly (WebGL signature) ---------- */
+  (function regionAssembly() {
+    var canvas = document.getElementById('regionCanvas');
+    var still = document.querySelector('.webgl-fallback');
+    if (!canvas || !window.THREE || !perf.heavy) {
+      if (canvas) canvas.style.display = 'none';
+      if (still) still.style.display = 'block';
+      return;
+    }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    var host = canvas.parentElement;
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(host.clientWidth, host.clientHeight, false);
 
-        // Carousel functionality
-        let currentSlide = 0;
-        const advocacyCarousel = document.getElementById('advocacyCarousel');
-        const slides = advocacyCarousel ? advocacyCarousel.querySelectorAll('.carousel-slide') : [];
-        const dots = advocacyCarousel ? advocacyCarousel.querySelectorAll('.dot') : [];
-        const track = advocacyCarousel ? advocacyCarousel.querySelector('.carousel-track') : null;
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(46, host.clientWidth / host.clientHeight, 0.1, 100);
+    camera.position.z = 6.2;
 
-        function updateCarousel() {
-            if (track) {
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
-            }
-        }
+    var group = new THREE.Group();
+    scene.add(group);
 
-        function moveSlide(direction) {
-            if (slides.length > 0) {
-                currentSlide = (currentSlide + direction + slides.length) % slides.length;
-                updateCarousel();
-            }
-        }
+    var N = 220, R = 2.5;
+    var homeA = [], homeB = [], target = [], colors = [];
+    var c1 = new THREE.Color(tok('--brand-lift'));
+    var c2 = new THREE.Color(tok('--signal'));
 
-        function goToSlide(index) {
-            if (slides.length > 0) {
-                currentSlide = index;
-                updateCarousel();
-            }
-        }
+    for (var i = 0; i < N; i++) {
+      // final position: even distribution on a sphere
+      var y = 1 - (i / (N - 1)) * 2;
+      var rad = Math.sqrt(Math.max(0, 1 - y * y));
+      var theta = Math.PI * (3 - Math.sqrt(5)) * i;
+      var fx = Math.cos(theta) * rad * R, fy = y * R, fz = Math.sin(theta) * rad * R;
+      target.push(fx, fy, fz);
 
-        // Auto-play carousel every 5 seconds
-        if (slides.length > 0) {
-            setInterval(() => {
-                moveSlide(1);
-            }, 5000);
-        }
+      // start: two separated clusters
+      var isR1 = i % 2 === 0;
+      var ox = isR1 ? -3.4 : 3.4;
+      var oy = isR1 ? 0.9 : -0.9;
+      homeA.push(fx * 0.55 + ox, fy * 0.55 + oy, fz * 0.55);
 
-        // Student Carousel functionality
-        let currentStudentSlide = 0;
-        const studentCarousel = document.getElementById('studentCarousel');
-        const studentSlides = studentCarousel ? studentCarousel.querySelectorAll('.carousel-slide') : [];
-        const studentDots = studentCarousel ? studentCarousel.querySelectorAll('.dot') : [];
-        const studentTrack = studentCarousel ? studentCarousel.querySelector('.carousel-track') : null;
+      var col = isR1 ? c1 : c2;
+      colors.push(col.r, col.g, col.b);
+    }
 
-        function updateStudentCarousel() {
-            if (studentTrack) {
-                studentTrack.style.transform = `translateX(-${currentStudentSlide * 100}%)`;
-                studentDots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentStudentSlide);
-                });
-            }
-        }
+    var pos = new Float32Array(N * 3);
+    for (var k = 0; k < N * 3; k++) pos[k] = homeA[k];
 
-        function moveStudentSlide(direction) {
-            if (studentSlides.length > 0) {
-                currentStudentSlide = (currentStudentSlide + direction + studentSlides.length) % studentSlides.length;
-                updateStudentCarousel();
-            }
-        }
+    var pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    pGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    var points = new THREE.Points(pGeo, new THREE.PointsMaterial({
+      size: 0.075, vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true
+    }));
+    group.add(points);
 
-        function goToStudentSlide(index) {
-            if (studentSlides.length > 0) {
-                currentStudentSlide = index;
-                updateStudentCarousel();
-            }
-        }
+    // wiring: connect nodes that end up near each other
+    var pairs = [];
+    for (var a = 0; a < N; a++) {
+      for (var b = a + 1; b < N; b++) {
+        var dx = target[a * 3] - target[b * 3];
+        var dy = target[a * 3 + 1] - target[b * 3 + 1];
+        var dz = target[a * 3 + 2] - target[b * 3 + 2];
+        if (dx * dx + dy * dy + dz * dz < 0.62) pairs.push(a, b);
+      }
+    }
+    var lPos = new Float32Array(pairs.length * 3);
+    var lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
+    var lMat = new THREE.LineBasicMaterial({
+      color: new THREE.Color(tok('--brand-lift')), transparent: true, opacity: 0
+    });
+    var lines = new THREE.LineSegments(lGeo, lMat);
+    group.add(lines);
 
-        // Auto-play student carousel every 5 seconds
-        setInterval(() => {
-            moveStudentSlide(1);
-        }, 5000);
-    </script>
+    var progress = 0, visible = false;
+
+    function applyProgress(p) {
+      var e = p * p * (3 - 2 * p); // smoothstep
+      var arr = pGeo.attributes.position.array;
+      for (var i2 = 0; i2 < N * 3; i2++) arr[i2] = homeA[i2] + (target[i2] - homeA[i2]) * e;
+      pGeo.attributes.position.needsUpdate = true;
+
+      var la = lGeo.attributes.position.array;
+      for (var j = 0; j < pairs.length; j++) {
+        var idx = pairs[j] * 3;
+        la[j * 3] = arr[idx]; la[j * 3 + 1] = arr[idx + 1]; la[j * 3 + 2] = arr[idx + 2];
+      }
+      lGeo.attributes.position.needsUpdate = true;
+      lMat.opacity = Math.max(0, (e - 0.45) / 0.55) * 0.3;
+      group.rotation.y = -0.6 + e * 1.5;
+      group.rotation.x = 0.18 - e * 0.1;
+    }
+    applyProgress(0);
+
+    var vis = new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0 });
+    vis.observe(host);
+
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!visible) return;
+      group.rotation.y += 0.0012;
+      renderer.render(scene, camera);
+    })();
+
+    if (window.gsap && window.ScrollTrigger) {
+      ScrollTrigger.create({
+        trigger: '.region', start: 'top top', end: 'bottom bottom', scrub: .5,
+        onUpdate: function (self) { progress = self.progress; applyProgress(progress); }
+      });
+    }
+
+    var ro = new ResizeObserver(function () {
+      renderer.setSize(host.clientWidth, host.clientHeight, false);
+      camera.aspect = host.clientWidth / host.clientHeight;
+      camera.updateProjectionMatrix();
+    });
+    ro.observe(host);
+  })();
+});
+</script>
 </body>
 </html>
