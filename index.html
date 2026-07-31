@@ -178,7 +178,7 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 /* ============================================================
    5. HERO
    ============================================================ */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-block:8rem 3rem;overflow:hidden;isolation:isolate}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;padding-block:8rem 3rem;overflow:hidden;isolation:isolate}
 .hero-bg{
   position:absolute;inset:0;z-index:-2;
   background:
@@ -417,15 +417,40 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 .reveal.is-in{animation:riseIn .9s var(--ease-cinema) forwards}
 .shown{opacity:1;animation:none}
 .ch{display:inline-block;will-change:transform}
+.wrd{display:inline-block;white-space:nowrap}
+
+/* stacked pillars — shown wherever the pinned version cannot run */
+.pillar-stack{display:none;padding-block:var(--sect)}
+.pillar-item + .pillar-item{margin-top:clamp(3rem,8vw,4.5rem)}
+.pillar-item h2{font-size:clamp(2.1rem,7vw,3.2rem);margin-bottom:1rem}
+.pillar-item p{max-width:52ch}
+.pillar-shot{position:relative;margin:1.6rem 0 0;aspect-ratio:3/2;border-radius:8px;
+  overflow:hidden;background:var(--paper-3)}
+.pillar-shot img{width:100%;height:100%;object-fit:cover}
+.pillar-shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem;
+  background:linear-gradient(0deg,rgba(var(--ink-rgb),.9),transparent);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-d1)}
+
+/* mobile navigation sheet */
+.nav-sheet{position:fixed;left:0;right:0;top:0;z-index:99;padding:4.2rem var(--pad) 1rem;
+  background:rgba(var(--ink-rgb),.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--ink-3);display:none;flex-direction:column}
+.nav-sheet[data-open='true']{display:flex}
+.nav-sheet a{display:flex;align-items:center;min-height:56px;color:var(--text-d1);
+  text-decoration:none;border-bottom:1px solid var(--ink-3);
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.nav-sheet a:last-child{border-bottom:0}
 
 /* ============================================================
    14. RESPONSIVE
    ============================================================ */
-@media (max-width:1024px){
+@media (max-width:1024px),(prefers-reduced-motion:reduce){
+  /* the pinned single-panel pillar cannot run here — swap in the stacked copy */
   .pin-swap{height:auto}
-  .pin-swap-inner{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:2rem;padding-block:var(--sect)}
-  .scene{position:relative;opacity:1;display:none}
-  .scene[data-on='true']{display:block}
+  .pin-swap-inner{display:none}
+  .pillar-stack{display:block}
+}
+@media (max-width:1024px){
   .bento>*{grid-column:span 3;grid-row:auto}
   .hero-portrait{max-width:60vw;opacity:.35}
   .connect-grid{grid-template-columns:1fr}
@@ -433,6 +458,12 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 }
 @media (max-width:720px){
   html{font-size:15.5px}
+  /* 16px is the threshold below which iOS Safari zooms the page on field focus */
+  .field input,.field textarea{font-size:16px}
+  .tag{min-height:44px;padding-inline:1rem}
+  .nav-brand{min-height:44px}
+  .footer ul a{display:inline-flex;align-items:center;min-height:44px}
+  .card>p>.link,.b-tall .link,.award-list .link,.fact dd .link,.final .link{padding-block:.9rem}
   .constellation{display:none}
   .hero{align-items:center;padding-block:7rem 3rem}
   .hero-portrait{max-width:100%;right:-10%;opacity:.22}
@@ -456,9 +487,6 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
   .reveal{opacity:1;animation:none}
   .hero h1 .word i{transform:none;animation:none}
   .constellation{display:none}
-  .pin-swap{height:auto}
-  .pin-swap-inner{position:relative;top:auto;height:auto;grid-template-columns:1fr}
-  .scene{position:relative;opacity:1}
   .region{height:auto}
   .region-inner{position:relative;top:auto;height:auto;min-height:70vh}
   .webgl-canvas{display:none}
@@ -486,8 +514,15 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
     <a href="#connect">Connect</a>
   </div>
   <a class="btn btn-primary" href="https://services10.ieee.org/idp/startSSO.ping?PartnerSpId=AnnualElection">Vote now</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Jump to sections">☰</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navSheet">☰</button>
 </nav>
+<div class="nav-sheet" id="navSheet" data-open="false">
+  <a href="#platform">Platform</a>
+  <a href="#region">The Region</a>
+  <a href="#initiatives">Initiatives</a>
+  <a href="#record">Record</a>
+  <a href="#connect">Connect</a>
+</div>
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
@@ -915,9 +950,24 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', onScroll, { passive: true });
 
   var toggle = document.getElementById('navToggle');
-  if (toggle) toggle.addEventListener('click', function () {
-    document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
-  });
+  var sheet = document.getElementById('navSheet');
+  function setMenu(open) {
+    sheet.dataset.open = String(open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    toggle.textContent = open ? '\u2715' : '\u2630';
+  }
+  if (toggle && sheet) {
+    toggle.addEventListener('click', function () {
+      setMenu(sheet.dataset.open !== 'true');
+    });
+    sheet.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && sheet.dataset.open === 'true') { setMenu(false); toggle.focus(); }
+    });
+  }
 
   /* ---------- countdown ---------- */
   var OPEN  = new Date('2026-08-17T00:00:00-04:00');
@@ -952,16 +1002,25 @@ document.addEventListener('DOMContentLoaded', function () {
   setInterval(tickClock, 1000);
 
   /* ---------- text splitting ---------- */
-  // ScrollFloat: per-character rise on section headings
-  document.querySelectorAll('[data-float]').forEach(function (el) {
-    var text = el.textContent;
+  // ScrollFloat: per-character rise, but chars are nested inside non-breaking word
+  // wrappers so a heading never breaks mid-word on a narrow screen.
+  function splitChars(el, text) {
     el.textContent = '';
-    text.split('').forEach(function (c) {
-      var s = document.createElement('span');
-      s.className = 'ch';
-      s.textContent = c === ' ' ? '\u00A0' : c;
-      el.appendChild(s);
+    text.trim().split(/\s+/).forEach(function (word, i, arr) {
+      var w = document.createElement('span');
+      w.className = 'wrd';
+      word.split('').forEach(function (c) {
+        var ch = document.createElement('span');
+        ch.className = 'ch';
+        ch.textContent = c;
+        w.appendChild(ch);
+      });
+      el.appendChild(w);
+      if (i < arr.length - 1) el.appendChild(document.createTextNode(' '));
     });
+  }
+  document.querySelectorAll('[data-float]').forEach(function (el) {
+    splitChars(el, el.textContent);
   });
 
   // ScrollReveal: per-word opacity on the manifesto
@@ -1113,12 +1172,57 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Pillars: left pin / right swap ---------- */
   var PILLARS = [
     { kicker: 'Pillar 1 — World-class education & research', title: 'Research to Revenue',
-      body: 'Extraordinary research is already happening across our universities. Trained volunteers will turn it into professional workshops — giving members real access to advances in their field, and generating revenue the region can reinvest.' },
+      body: 'Extraordinary research is already happening across our universities. Trained volunteers will turn it into professional workshops — giving members real access to advances in their field, and generating revenue the region can reinvest.',
+      img: 'https://baiieeenewr2.github.io/celus.png',
+      alt: 'Remote PCB design training program brought from CELUS in Germany to US members',
+      cap: 'Technical upskilling brought in from Region 8' },
     { kicker: 'Pillar 2 — A seamless pipeline for our next engineers', title: 'Student to Professional',
-      body: 'Graduation should not be the moment someone quietly leaves IEEE. Mentorship, industry connections and clear pathways so no one loses momentum on the walk from the classroom into a career.' },
+      body: 'Graduation should not be the moment someone quietly leaves IEEE. Mentorship, industry connections and clear pathways so no one loses momentum on the walk from the classroom into a career.',
+      img: 'https://baiieeenewr2.github.io/student_3.jpg',
+      alt: 'Students at a joint Region 1 and Region 2 student activities conference',
+      cap: 'Joint R1&R2 student activities conference' },
     { kicker: 'Pillar 3 — Every member shaping the region', title: 'Voice in Governance',
-      body: 'A member in an underserved section should have the same say as one in a major metro. As two regions become one, governance has to reflect the whole community — not just the loudest part of it.' }
+      body: 'A member in an underserved section should have the same say as one in a major metro. As two regions become one, governance has to reflect the whole community — not just the loudest part of it.',
+      img: 'https://baiieeenewr2.github.io/congressional.jpeg',
+      alt: 'Dr. Li Bai representing IEEE-USA on a congressional visit in Washington DC',
+      cap: 'IEEE-USA congressional delegation, Washington D.C.' }
   ];
+
+  // The pinned single-panel version cannot run below 1024px or under reduced motion,
+  // so build a stacked copy of all three pillars. CSS decides which one is visible,
+  // which means a resize across the breakpoint needs no JS at all.
+  (function buildPillarStack() {
+    var host = document.querySelector('.pin-swap');
+    if (!host) return;
+    var stack = document.createElement('div');
+    stack.className = 'pillar-stack wrap';
+    var lead = document.createElement('span');
+    lead.className = 'eyebrow';
+    lead.textContent = 'The platform';
+    stack.appendChild(lead);
+
+    PILLARS.forEach(function (p) {
+      var art = document.createElement('article');
+      art.className = 'pillar-item';
+      var k = document.createElement('p');
+      k.className = 'pillar-kicker';
+      k.textContent = p.kicker;
+      var h = document.createElement('h2');
+      h.textContent = p.title;
+      var b = document.createElement('p');
+      b.textContent = p.body;
+      var fig = document.createElement('figure');
+      fig.className = 'pillar-shot';
+      var im = document.createElement('img');
+      im.src = p.img; im.alt = p.alt; im.loading = 'lazy';
+      var cap = document.createElement('figcaption');
+      cap.textContent = p.cap;
+      fig.appendChild(im); fig.appendChild(cap);
+      art.appendChild(k); art.appendChild(h); art.appendChild(b); art.appendChild(fig);
+      stack.appendChild(art);
+    });
+    host.appendChild(stack);
+  })();
   var kicker = document.getElementById('pillarKicker');
   var title  = document.getElementById('pillarTitle');
   var bodyEl = document.getElementById('pillarBody');
@@ -1132,13 +1236,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var p = PILLARS[i];
     kicker.textContent = p.kicker;
     bodyEl.textContent = p.body;
-    title.textContent = '';
-    p.title.split('').forEach(function (c) {
-      var s = document.createElement('span');
-      s.className = 'ch';
-      s.textContent = c === ' ' ? '\u00A0' : c;
-      title.appendChild(s);
-    });
+    splitChars(title, p.title);
     if (window.gsap && !perf.reduce) {
       gsap.from(title.querySelectorAll('.ch'), { yPercent: 110, opacity: 0, duration: .55, ease: 'power3.out', stagger: .02 });
       gsap.from([kicker, bodyEl], { opacity: 0, y: 12, duration: .5, ease: 'power2.out' });
