@@ -1,0 +1,171 @@
+<svg width="1600" height="1066" viewBox="0 0 1600 1066" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">University research workshop lab</title>
+  <desc id="desc">A lab scene inspired by university research collaboration across quantum computing, Physical AI, and advanced manufacturing.</desc>
+  <defs>
+    <linearGradient id="bg" x1="135" y1="70" x2="1480" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7EEF4"/>
+      <stop offset="0.5" stop-color="#CEDAE6"/>
+      <stop offset="1" stop-color="#B8CCDA"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="812" y1="100" x2="812" y2="574" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9FCFE" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#D9E6F0" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="wallPanel" x1="1088" y1="290" x2="1444" y2="672" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D7DB0"/>
+      <stop offset="1" stop-color="#15354E"/>
+    </linearGradient>
+    <linearGradient id="table" x1="312" y1="698" x2="1242" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C9D3D9"/>
+      <stop offset="1" stop-color="#9EAAB2"/>
+    </linearGradient>
+    <linearGradient id="copper" x1="88" y1="148" x2="240" y2="410" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A15C12"/>
+      <stop offset="0.45" stop-color="#F5B34E"/>
+      <stop offset="1" stop-color="#7B3E09"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="290" y1="854" x2="1330" y2="854" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#93B8FF" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="#93B8FF" stop-opacity="0.7"/>
+      <stop offset="0.5" stop-color="#EAF2FF" stop-opacity="0.95"/>
+      <stop offset="0.82" stop-color="#93B8FF" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#93B8FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="240" y="220" width="1120" height="730" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#08182A" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1066" rx="44" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="450" fill="#D5E0E8" fill-opacity="0.4"/>
+
+  <g opacity="0.9">
+    <path d="M0 84h1600" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="16"/>
+    <path d="M0 132h1600" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="10"/>
+    <path d="M0 178h1600" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="8"/>
+    <path d="M968 0v440" stroke="#97AEC0" stroke-width="6"/>
+    <path d="M1186 0v410" stroke="#97AEC0" stroke-width="6"/>
+  </g>
+
+  <g opacity="0.8">
+    <rect x="1025" y="86" width="448" height="286" rx="18" fill="#7E563F" fill-opacity="0.32"/>
+    <rect x="1048" y="106" width="404" height="246" rx="14" fill="url(#glass)" stroke="#8AA6B8" stroke-width="4"/>
+    <path d="M1183 106v246" stroke="#8AA6B8" stroke-width="4"/>
+    <path d="M1318 106v246" stroke="#8AA6B8" stroke-width="4"/>
+    <path d="M1048 196h404" stroke="#8AA6B8" stroke-width="4"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="320" y="650" width="944" height="212" rx="26" fill="url(#table)"/>
+  </g>
+
+  <g opacity="0.92">
+    <ellipse cx="816" cy="792" rx="460" ry="98" fill="#EDF4FA" fill-opacity="0.46"/>
+    <path d="M338 840c124 34 268 50 438 50 216 0 410-30 560-88" stroke="url(#signal)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M290 884c160-28 364-40 522-38 198 3 369 22 518 57" stroke="url(#signal)" stroke-width="6" stroke-linecap="round" opacity="0.82"/>
+  </g>
+
+  <g>
+    <ellipse cx="176" cy="240" rx="142" ry="28" fill="#8896A4" fill-opacity="0.55"/>
+    <rect x="56" y="120" width="240" height="116" rx="48" fill="#A0A8AF"/>
+    <ellipse cx="176" cy="120" rx="120" ry="26" fill="#B6C1C9"/>
+    <rect x="86" y="236" width="180" height="188" rx="20" fill="#5B4C40"/>
+    <path d="M98 236h156v174H98z" fill="#10243A"/>
+    <path d="M118 256v158" stroke="url(#copper)" stroke-width="6"/>
+    <path d="M146 256v158" stroke="url(#copper)" stroke-width="6"/>
+    <path d="M174 256v158" stroke="url(#copper)" stroke-width="6"/>
+    <path d="M202 256v158" stroke="url(#copper)" stroke-width="6"/>
+    <path d="M230 256v158" stroke="url(#copper)" stroke-width="6"/>
+    <path d="M118 290c15-14 30-14 45 0s30 14 45 0 30-14 45 0 30 14 45 0" stroke="#F1C46A" stroke-width="4" fill="none"/>
+  </g>
+
+  <g>
+    <rect x="150" y="266" width="308" height="250" rx="12" fill="#14263B" stroke="#3D658C" stroke-width="6"/>
+    <circle cx="302" cy="390" r="10" fill="#F5B921"/>
+    <ellipse cx="302" cy="390" rx="78" ry="74" stroke="#A597FF" stroke-width="4"/>
+    <ellipse cx="302" cy="390" rx="102" ry="42" stroke="#A597FF" stroke-width="4"/>
+    <ellipse cx="302" cy="390" rx="40" ry="116" transform="rotate(33 302 390)" stroke="#A597FF" stroke-width="4"/>
+    <path d="M190 336c36-22 80-34 122-34 58 0 114 22 154 58" stroke="#6D8AE7" stroke-width="3" stroke-dasharray="6 12"/>
+    <path d="M186 450c46 22 83 34 112 36" stroke="#6D8AE7" stroke-width="3" stroke-dasharray="6 12"/>
+  </g>
+
+  <g>
+    <rect x="1138" y="310" width="326" height="232" rx="16" fill="url(#wallPanel)" opacity="0.96"/>
+    <path d="M1202 360h80l44 44-44 44h-80l-44-44 44-44z" stroke="#8AC3E8" stroke-width="6" fill="none"/>
+    <path d="M1280 362h72l38 42-38 42h-72l-38-42 38-42z" stroke="#D8F0FF" stroke-width="4" fill="none" opacity="0.9"/>
+    <path d="M1364 360h62l34 44-34 44h-62l-34-44 34-44z" stroke="#8AC3E8" stroke-width="4" fill="none" opacity="0.75"/>
+    <path d="M1158 474c72-34 152-52 240-52 25 0 46 1 64 4" stroke="#6DABFF" stroke-width="4" stroke-dasharray="8 12" opacity="0.7"/>
+    <path d="M1166 500h240" stroke="#8AC3E8" stroke-width="5" opacity="0.38"/>
+  </g>
+
+  <g>
+    <rect x="540" y="666" width="146" height="98" rx="8" fill="#1B2838"/>
+    <rect x="698" y="660" width="170" height="106" rx="8" fill="#1A2837"/>
+    <rect x="549" y="675" width="128" height="72" rx="4" fill="#0F1722" stroke="#5E7AA0" stroke-width="2"/>
+    <rect x="708" y="670" width="150" height="86" rx="4" fill="#0F1722" stroke="#5E7AA0" stroke-width="2"/>
+    <path d="M574 728c18-20 34-30 50-30 24 0 48 18 74 54" stroke="#76D79D" stroke-width="4" fill="none"/>
+    <path d="M590 702l18 24 18-14 18 20" stroke="#F5B921" stroke-width="4" fill="none"/>
+    <path d="M734 708c24-20 56-30 96-30" stroke="#8AC3E8" stroke-width="4"/>
+    <path d="M734 734c44-18 88-12 124 16" stroke="#6DABFF" stroke-width="4" fill="none"/>
+  </g>
+
+  <g>
+    <rect x="740" y="548" width="110" height="42" rx="18" fill="#D9E1E8"/>
+    <circle cx="772" cy="569" r="10" fill="#909CA8"/>
+    <circle cx="818" cy="569" r="10" fill="#909CA8"/>
+    <path d="M850 568h78c18 0 32 14 32 32v6c0 18-14 32-32 32h-12" stroke="#D9E1E8" stroke-width="26" stroke-linecap="round"/>
+    <path d="M916 638v76" stroke="#D9E1E8" stroke-width="22" stroke-linecap="round"/>
+    <path d="M916 708c0 18-14 32-32 32h-14" stroke="#D9E1E8" stroke-width="22" stroke-linecap="round"/>
+    <path d="M888 736v72" stroke="#D9E1E8" stroke-width="22" stroke-linecap="round"/>
+    <path d="M960 630v88" stroke="#C2CBD3" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="960" cy="720" r="24" fill="#AAB4BC"/>
+  </g>
+
+  <g>
+    <rect x="754" y="794" width="86" height="16" rx="8" fill="#B7BEC5"/>
+    <rect x="768" y="808" width="62" height="46" rx="12" fill="#F2F5F7"/>
+    <circle cx="786" cy="856" r="8" fill="#58616A"/>
+    <circle cx="812" cy="856" r="8" fill="#58616A"/>
+  </g>
+
+  <g>
+    <rect x="632" y="864" width="46" height="30" rx="6" fill="#EAB933"/>
+    <rect x="668" y="856" width="22" height="22" rx="4" fill="#323942"/>
+    <path d="M640 894l-12 22" stroke="#55431A" stroke-width="6" stroke-linecap="round"/>
+    <path d="M674 894l12 22" stroke="#55431A" stroke-width="6" stroke-linecap="round"/>
+    <path d="M646 864l-16 12" stroke="#55431A" stroke-width="6" stroke-linecap="round"/>
+    <path d="M682 864l16 12" stroke="#55431A" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.96">
+    <circle cx="554" cy="553" r="42" fill="#E5B89A"/>
+    <path d="M508 652c8-44 32-74 74-74s66 26 78 74" fill="#D9E0E6"/>
+    <path d="M520 542c6-34 34-56 64-56 22 0 42 10 56 28" stroke="#A87149" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="712" cy="526" r="46" fill="#7E573E"/>
+    <path d="M652 648c16-54 52-92 102-92 42 0 74 24 104 92" fill="#59718C"/>
+    <path d="M686 510c18-18 44-26 70-20" stroke="#C9D4DE" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="1342" cy="520" r="42" fill="#C88A67"/>
+    <path d="M1278 654c18-56 50-96 98-96 34 0 68 22 92 96" fill="#183B5A"/>
+    <path d="M1310 510c12 18 18 42 18 66" stroke="#10243A" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="394" cy="548" r="34" fill="#B17F5F"/>
+    <path d="M350 636c8-42 28-70 60-70 24 0 42 16 58 70" fill="#3D2833"/>
+  </g>
+
+  <g>
+    <path d="M1246 698h96v124h-96z" fill="#B9D0DE" fill-opacity="0.5" stroke="#DDEAF3" stroke-width="4"/>
+    <path d="M1214 710l62-40 64 40-62 36-64-36z" fill="#7BB6D6" fill-opacity="0.5" stroke="#CFE8F4" stroke-width="4"/>
+    <path d="M1364 724h34v114h-34z" fill="url(#copper)" opacity="0.88"/>
+    <rect x="1420" y="658" width="92" height="150" rx="20" fill="#D8E1E7"/>
+    <circle cx="1466" cy="746" r="30" fill="#10243A"/>
+    <circle cx="1466" cy="746" r="16" fill="#E9F2F8"/>
+    <path d="M1440 690h52" stroke="#9AA6B3" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="112" y="36" width="296" height="56" rx="14" fill="#10243A" fill-opacity="0.74"/>
+    <text x="142" y="72" fill="#DCE7EF" font-family="'IBM Plex Mono', monospace" font-size="24" letter-spacing="4">RESEARCH TO REVENUE</text>
+    <rect x="990" y="886" width="414" height="88" rx="18" fill="#10243A" fill-opacity="0.78"/>
+    <text x="1028" y="928" fill="#FFFFFF" font-family="'Big Shoulders Display', Impact, sans-serif" font-size="46" font-weight="700">PHYSICAL AI • QUANTUM</text>
+    <text x="1028" y="958" fill="#B8CCDA" font-family="'IBM Plex Mono', monospace" font-size="21" letter-spacing="1.8">advanced manufacturing workshops from university research</text>
+  </g>
+</svg>
