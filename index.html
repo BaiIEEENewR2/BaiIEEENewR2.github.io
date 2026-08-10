@@ -217,6 +217,8 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 .hero-story-tile img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease-cinema),filter .55s var(--ease-cinema)}
 .hero-story-tile span{position:absolute;left:0;right:0;bottom:0;padding:.75rem .85rem;background:linear-gradient(0deg,rgba(var(--ink-rgb),.9),transparent);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-d1)}
 .hero-story-tile:hover img{transform:scale(1.05);filter:saturate(1.08)}
+.hero-mobile-portrait{display:none}
+.hero-mobile-portrait img{width:100%;height:auto;max-width:340px;border-radius:8px;border:1px solid var(--ink-3);margin:0 auto;background:rgba(var(--ink-rgb),.28)}
 
 .countdown{
   display:flex;gap:1.4rem;align-items:flex-end;margin:2.4rem 0 0;
@@ -508,18 +510,13 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
   .nav-brand{min-height:44px}
   .footer ul a{display:inline-flex;align-items:center;min-height:44px}
   .card>p>.link,.b-tall .link,.award-list .link,.fact dd .link,.final .link{padding-block:.9rem}
+  .hero-media{display:none}
   .constellation{display:none}
   .hero{align-items:center;padding-block:7rem 3rem}
-  .hero-portrait{
-    right:50%;
-    transform:translateX(50%);
-    bottom:2%;
-    width:min(76vw,360px);
-    max-width:none;
-    opacity:.28;
-  }
+  .hero-portrait{display:none}
   .hero-story-strip{grid-template-columns:1fr;max-width:380px}
   .hero-story-tile{aspect-ratio:16/9}
+  .hero-mobile-portrait{display:block;max-width:380px;margin:0 0 1.4rem}
   .gal-track{gap:.75rem}
   .photo-tile{width:clamp(180px,72vw,300px)}
   .grid-3,.grid-2{grid-template-columns:1fr}
@@ -649,6 +646,10 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
       </a>
       <a class="btn btn-ghost" href="#platform">See the platform</a>
     </div>
+
+    <figure class="hero-mobile-portrait" aria-label="Candidate portrait">
+      <img src="https://baiieeenewr2.github.io/bai.png" alt="Dr. Li Bai portrait" loading="lazy">
+    </figure>
 
     <div class="countdown" id="countdown" aria-live="polite">
       <span class="cd-label" id="cdLabel">Voting opens in</span>
