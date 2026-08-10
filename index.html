@@ -376,6 +376,9 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 .form-status{margin-top:1rem;font-size:.95rem;min-height:1.45em;color:var(--text-l2)}
 .form-status[data-state='ok']{color:var(--success)}
 .form-status[data-state='err']{color:var(--error)}
+.form-admin{margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--paper-3);display:grid;gap:.55rem}
+.form-admin .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--text-l3)}
+.form-admin .meta b{color:var(--text-l1)}
 
 /* ============================================================
    12. FINAL CTA + FOOTER
@@ -396,6 +399,8 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 .qr div{text-align:left}
 .qr strong{display:block;color:var(--text-d1);font-size:.9rem}
 .qr span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text-d3)}
+.connect-grid .qr svg.qr-code{display:none}
+.connect-grid .qr img.qr-code{display:block}
 
 .qr-side-tab{
   position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:120;
@@ -606,7 +611,7 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 
     <div class="hero-story-strip" aria-label="Recent leadership highlights">
       <a class="hero-story-tile" href="#record">
-        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEDpv2-Gey03A/feedshare-shrink_800/B4EZ_nVniMHoAc-/0/1786292632191?e=1787788800&amp;v=beta&amp;t=EEHG3pziUFAZ4tej-zq5nuif6ffp1u3ZOha-uCnpl3k" alt="IEEE R1 and R2 Young Professionals Summit collaboration highlight" loading="lazy">
+        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEDpv2-Gey03A/feedshare-image-high-res/B4EZ_nVniMHoAU-/0/1786292632191?e=1787788800&amp;v=beta&amp;t=b71Wu0FwFh6jccuaLprSy_0cSJ5dWSm5dk766z5mwWk" alt="IEEE R1 and R2 Young Professionals Summit collaboration highlight" loading="lazy">
         <span>R1-R2 YP Summit win</span>
       </a>
       <a class="hero-story-tile" href="https://lbaitemple.github.io/mangdang2026/" target="_blank" rel="noopener">
@@ -912,16 +917,28 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 
       </div>
 
-      <form class="form" id="connectForm" data-endpoint="" novalidate>
+      <form class="form" id="connectForm" data-endpoint="https://script.google.com/macros/s/AKfycby30b2eBy69YzbGD7CczsUmJFXK8VvqGgq2XQZ3bGowmmDsy-x3d6wXCscU2Ya3AM9O/exec" data-sheet-url="https://docs.google.com/spreadsheets/d/16eisI2bjF8fxfUQaT2jYpCluJQlqaNnTHrcOqZH2eZE/edit?gid=0#gid=0" novalidate>
         <div class="field">
           <label for="f_name">Your name</label>
           <input id="f_name" name="name" type="text" autocomplete="name" required placeholder="Jane Okafor">
+        </div>
+        <div class="field">
+          <label for="f_email">Email</label>
+          <input id="f_email" name="email" type="email" autocomplete="email" required placeholder="jane@example.org">
+        </div>
+        <div class="field">
+          <label for="f_msg">Message</label>
+          <textarea id="f_msg" name="message" required placeholder="What would you like the region to do differently?"></textarea>
         </div>
         <div class="field">
           <button class="btn btn-primary" type="submit" id="formSubmit">Send message</button>
           <span class="form-note">Goes straight to Dr. Bai</span>
         </div>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <div class="form-admin">
+          <div class="meta" id="messageCountWrap">Messages received: <b id="messageCount">-</b></div>
+          <a class="link" id="sheetReviewLink" href="" target="_blank" rel="noopener">Review messages in Google Sheet</a>
+        </div>
       </form>
     </div>
   </div>
@@ -1211,7 +1228,7 @@ document.addEventListener('DOMContentLoaded', function () {
      GitHub Pages serves static files only, so it cannot receive a POST.
      Two supported modes:
        1. Paste a form endpoint (Formspree, Basin, Getform, Netlify Forms...)
-          into data-endpoint on the <form> and submissions post there as JSON.
+          into data-endpoint on the <form> and submissions post there directly.
        2. Leave data-endpoint empty and the button composes a pre-filled email
           to lbai@ieee.org in the sender's own mail client. Works with no setup.
   */
@@ -1219,12 +1236,48 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     var status = document.getElementById('formStatus');
     var submit = document.getElementById('formSubmit');
+    var countEl = document.getElementById('messageCount');
+    var countWrap = document.getElementById('messageCountWrap');
+    var sheetReviewLink = document.getElementById('sheetReviewLink');
+    var endpoint = (form.dataset.endpoint || '').trim();
+    var sheetUrl = (form.dataset.sheetUrl || '').trim();
     var MAILTO = 'lbai@ieee.org';
+
+    if (sheetReviewLink) {
+      if (sheetUrl) {
+        sheetReviewLink.href = sheetUrl;
+      } else {
+        sheetReviewLink.style.display = 'none';
+      }
+    }
 
     function say(msg, state) {
       status.textContent = msg;
       if (state) status.dataset.state = state; else status.removeAttribute('data-state');
     }
+
+    function setCountDisplay(value) {
+      if (!countEl) return;
+      countEl.textContent = value;
+    }
+
+    function refreshCount() {
+      if (!endpoint || !countEl) return;
+      fetch(endpoint + '?action=getCount', { method: 'GET', headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error('bad status');
+          return r.json();
+        })
+        .then(function (data) {
+          var c = (data && data.count !== undefined) ? String(data.count) : '-';
+          setCountDisplay(c);
+        })
+        .catch(function () {
+          if (countWrap) countWrap.style.display = 'none';
+        });
+    }
+
+    refreshCount();
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1233,7 +1286,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var name  = document.getElementById('f_name').value.trim();
       var email = document.getElementById('f_email').value.trim();
       var msg   = document.getElementById('f_msg').value.trim();
-      var endpoint = (form.dataset.endpoint || '').trim();
 
       if (!endpoint) {
         var subject = 'Campaign message from ' + name;
@@ -1251,12 +1303,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
       fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, message: msg })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8', 'Accept': 'application/json' },
+        body: new URLSearchParams({ name: name, email: email, message: msg }).toString()
       }).then(function (r) {
         if (!r.ok) throw new Error('bad status');
         form.reset();
         say('Thank you — your message is on its way.', 'ok');
+        refreshCount();
       }).catch(function () {
         say('That did not go through. Please email ' + MAILTO + ' instead.', 'err');
       }).then(function () {
