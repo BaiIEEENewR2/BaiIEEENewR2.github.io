@@ -212,7 +212,7 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 }
 .hero-sub{max-width:46ch;margin-bottom:2rem;color:var(--text-d2)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
-.hero-story-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1.2rem 0 1.8rem;max-width:680px}
+.hero-story-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem;margin:1.2rem 0 1.8rem;max-width:840px}
 .hero-story-tile{position:relative;display:block;overflow:hidden;border-radius:6px;border:1px solid var(--ink-3);aspect-ratio:16/10;text-decoration:none;background:var(--ink-2)}
 .hero-story-tile img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease-cinema),filter .55s var(--ease-cinema)}
 .hero-story-tile span{position:absolute;left:0;right:0;bottom:0;padding:.75rem .85rem;background:linear-gradient(0deg,rgba(var(--ink-rgb),.9),transparent);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-d1)}
@@ -323,6 +323,17 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
 .card p{font-size:1rem;color:var(--text-l2)}
 
 .bento{display:grid;gap:1rem;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto)}
+.success-feature{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);padding:0;margin-bottom:1rem}
+.success-feature-media{position:relative;min-height:360px;margin:0;overflow:hidden;background:var(--paper-3)}
+.success-feature-media img{width:100%;height:100%;object-fit:cover}
+.success-feature-media figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem 1.2rem;background:linear-gradient(0deg,rgba(var(--ink-rgb),.9),transparent);font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--text-d1)}
+.success-feature-copy{padding:clamp(1.8rem,4vw,3rem);display:flex;flex-direction:column;justify-content:center}
+.success-feature-copy h3{font-family:var(--display);font-size:clamp(2rem,4vw,3.4rem);line-height:.95;margin-bottom:1rem}
+.success-feature-copy .init-num{margin-bottom:.8rem}
+.success-metrics{display:flex;gap:1.5rem;margin:1.4rem 0;flex-wrap:wrap}
+.success-metric{display:flex;flex-direction:column;gap:.15rem}
+.success-metric strong{font-family:var(--display);font-size:2rem;line-height:1;color:var(--brand)}
+.success-metric span{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-l3)}
 .b-wide{grid-column:span 4}
 .b-tall{grid-column:span 2;grid-row:span 2}
 .b-unit{grid-column:span 2}
@@ -484,6 +495,8 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
   .pillar-stack{display:block}
 }
 @media (max-width:1024px){
+  .success-feature{grid-template-columns:1fr}
+  .success-feature-media{min-height:0;aspect-ratio:16/9}
   .bento>*{grid-column:span 3;grid-row:auto}
   .hero{align-items:center;padding-block:7rem 3rem}
   .hero-top{max-width:none}
@@ -631,6 +644,10 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
     </p>
 
     <div class="hero-story-strip" aria-label="Recent leadership highlights">
+      <a class="hero-story-tile" href="#manufacturing-success">
+        <img src="https://now.temple.edu/sites/now/files/styles/tu_image_style_thumbnail/public/media/image/20260721_Engineering_001-Web%20Res%20JPEG%20150%20DPI.jpg?h=92341b5c&amp;itok=VWo2wZKZ" alt="Stephen Maund, Dr. Li Bai, and Kyle McGinley in Temple's IDEAS Hub" loading="lazy">
+        <span>AI + robotics for PA manufacturing</span>
+      </a>
       <a class="hero-story-tile" href="#record">
         <img src="https://media.licdn.com/dms/image/v2/D4E22AQEDpv2-Gey03A/feedshare-image-high-res/B4EZ_nVniMHoAU-/0/1786292632191?e=1787788800&amp;v=beta&amp;t=b71Wu0FwFh6jccuaLprSy_0cSJ5dWSm5dk766z5mwWk" alt="IEEE R1 and R2 Young Professionals Summit collaboration highlight" loading="lazy">
         <span>R1-R2 YP Summit win</span>
@@ -805,6 +822,23 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
   <div class="wrap">
     <span class="eyebrow">The receipts</span>
     <h2 data-float style="margin-bottom:2.5rem">Twenty years, on the record</h2>
+
+    <article class="card success-feature" id="manufacturing-success">
+      <figure class="success-feature-media">
+        <img src="https://now.temple.edu/sites/now/files/media/image/20260721_Engineering_001-Web%20Res%20JPEG%20150%20DPI.jpg" alt="Stephen Maund, Dr. Li Bai, and Temple engineering student Kyle McGinley in the IDEAS Hub" loading="lazy">
+        <figcaption>Stephen Maund, Dr. Li Bai, and Kyle McGinley · Photo: Ryan S. Brandenberg</figcaption>
+      </figure>
+      <div class="success-feature-copy">
+        <span class="init-num">Industry engagement success · July 2026</span>
+        <h3>Leading AI + robotics to advance Pennsylvania manufacturing</h3>
+        <p>Dr. Bai leads Temple's partnership with alumni-owned Demco Automation to make custom robotic manufacturing systems more accessible to Pennsylvania businesses. The initiative brings AI-driven design, hands-on student training, and direct industry mentorship together around real manufacturing challenges.</p>
+        <div class="success-metrics" aria-label="Initiative funding">
+          <span class="success-metric"><strong>$69,530</strong><span>State innovation grant</span></span>
+          <span class="success-metric"><strong>$163K+</strong><span>Total initiative value</span></span>
+        </div>
+        <p><a class="link" href="https://now.temple.edu/news/2026-07-22/temple-partners-local-business-support-manufacturing-pennsylvania" target="_blank" rel="noopener">Read the Temple Now story →</a></p>
+      </div>
+    </article>
 
     <div class="bento">
       <article class="card b-wide">
