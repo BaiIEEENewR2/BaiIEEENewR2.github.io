@@ -536,10 +536,13 @@ h3{font-family:var(--body);font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;li
   .grid-3,.grid-2{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(2,1fr)}
   .bento>*{grid-column:span 6;grid-row:auto}
-  .webgl-canvas{display:none}
-  .webgl-fallback{display:block}
-  .region{height:auto}
-  .region-inner{position:relative;top:auto;height:auto;min-height:80vh;padding-block:var(--sect)}
+  .webgl-canvas{display:block}
+  .webgl-fallback{display:none}
+  .region{height:180vh;height:180svh}
+  .region-inner{position:sticky;top:0;height:100vh;height:100svh;min-height:100svh;padding-block:0}
+  .region-copy{max-width:390px}
+  .region-copy p{max-width:34ch;font-size:.94rem}
+  .region-legend{gap:.75rem 1rem;margin-top:1.4rem}
   .nav-links{display:none}
   .nav-toggle{display:inline-flex}
   .footer-grid{grid-template-columns:1fr}
@@ -1083,6 +1086,7 @@ document.addEventListener('DOMContentLoaded', function () {
     hover:   matchMedia('(hover: hover)').matches
   };
   perf.heavy = !perf.mobile && !perf.lowCore && !perf.reduce;
+  perf.regionMode = perf.reduce ? 'off' : (perf.mobile ? 'mobile' : (perf.heavy ? 'desktop' : 'off'));
   document.documentElement.dataset.motion = perf.reduce ? 'reduce' : (perf.heavy ? 'full' : 'lite');
 
   var css = getComputedStyle(document.documentElement);
@@ -1524,25 +1528,34 @@ document.addEventListener('DOMContentLoaded', function () {
   (function regionAssembly() {
     var canvas = document.getElementById('regionCanvas');
     var still = document.querySelector('.webgl-fallback');
-    if (!canvas || !window.THREE || !perf.heavy) {
+    if (!canvas || !window.THREE || perf.regionMode === 'off') {
       if (canvas) canvas.style.display = 'none';
       if (still) still.style.display = 'block';
       return;
     }
 
     var host = canvas.parentElement;
-    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    var mobileMode = perf.regionMode === 'mobile';
+    var renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !mobileMode });
+    } catch (err) {
+      canvas.style.display = 'none';
+      if (still) still.style.display = 'block';
+      return;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, mobileMode ? 1.25 : 2));
     renderer.setSize(host.clientWidth, host.clientHeight, false);
 
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(46, host.clientWidth / host.clientHeight, 0.1, 100);
-    camera.position.z = 6.2;
+    camera.position.z = mobileMode ? 10.8 : 6.2;
 
     var group = new THREE.Group();
     scene.add(group);
 
-    var N = 220, R = 2.5;
+    var N = mobileMode ? 112 : 220;
+    var R = mobileMode ? 1.9 : 2.5;
     var homeA = [], homeB = [], target = [], colors = [];
     var c1 = new THREE.Color(tok('--brand-lift'));
     var c2 = new THREE.Color(tok('--signal'));
@@ -1557,9 +1570,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // start: two separated clusters
       var isR1 = i % 2 === 0;
-      var ox = isR1 ? -3.4 : 3.4;
-      var oy = isR1 ? 0.9 : -0.9;
-      homeA.push(fx * 0.55 + ox, fy * 0.55 + oy, fz * 0.55);
+      var ox = mobileMode ? (isR1 ? -0.45 : 0.45) : (isR1 ? -3.4 : 3.4);
+      var oy = mobileMode ? (isR1 ? 2.35 : -2.35) : (isR1 ? 0.9 : -0.9);
+      var startScale = mobileMode ? 0.46 : 0.55;
+      homeA.push(fx * startScale + ox, fy * startScale + oy, fz * startScale);
 
       var col = isR1 ? c1 : c2;
       colors.push(col.r, col.g, col.b);
@@ -1572,26 +1586,35 @@ document.addEventListener('DOMContentLoaded', function () {
     pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     pGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
     var points = new THREE.Points(pGeo, new THREE.PointsMaterial({
-      size: 0.075, vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true
+      size: mobileMode ? 0.14 : 0.075,
+      vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true
     }));
     group.add(points);
 
     // wiring: connect nodes that end up near each other
-    var pairs = [];
+    var pairs = [], lineColors = [];
+    var maxLinkDistance = mobileMode ? 1.35 : 0.62;
     for (var a = 0; a < N; a++) {
       for (var b = a + 1; b < N; b++) {
         var dx = target[a * 3] - target[b * 3];
         var dy = target[a * 3 + 1] - target[b * 3 + 1];
         var dz = target[a * 3 + 2] - target[b * 3 + 2];
-        if (dx * dx + dy * dy + dz * dz < 0.62) pairs.push(a, b);
+        if (dx * dx + dy * dy + dz * dz < maxLinkDistance && (!mobileMode || a % 2 === b % 2)) {
+          pairs.push(a, b);
+          if (mobileMode) {
+            lineColors.push(colors[a * 3], colors[a * 3 + 1], colors[a * 3 + 2]);
+            lineColors.push(colors[b * 3], colors[b * 3 + 1], colors[b * 3 + 2]);
+          }
+        }
       }
     }
     var lPos = new Float32Array(pairs.length * 3);
     var lGeo = new THREE.BufferGeometry();
     lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
-    var lMat = new THREE.LineBasicMaterial({
-      color: new THREE.Color(tok('--brand-lift')), transparent: true, opacity: 0
-    });
+    if (mobileMode) lGeo.setAttribute('color', new THREE.Float32BufferAttribute(lineColors, 3));
+    var lMat = mobileMode
+      ? new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.12 })
+      : new THREE.LineBasicMaterial({ color: new THREE.Color(tok('--brand-lift')), transparent: true, opacity: 0 });
     var lines = new THREE.LineSegments(lGeo, lMat);
     group.add(lines);
 
@@ -1609,7 +1632,7 @@ document.addEventListener('DOMContentLoaded', function () {
         la[j * 3] = arr[idx]; la[j * 3 + 1] = arr[idx + 1]; la[j * 3 + 2] = arr[idx + 2];
       }
       lGeo.attributes.position.needsUpdate = true;
-      lMat.opacity = Math.max(0, (e - 0.45) / 0.55) * 0.3;
+      lMat.opacity = mobileMode ? 0.12 + e * 0.16 : Math.max(0, (e - 0.45) / 0.55) * 0.3;
       group.rotation.y = -0.6 + e * 1.5;
       group.rotation.x = 0.18 - e * 0.1;
       renderer.render(scene, camera);
@@ -1619,10 +1642,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var vis = new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0 });
     vis.observe(host);
 
-    (function loop() {
+    var lastFrame = 0;
+    (function loop(now) {
       requestAnimationFrame(loop);
       if (!visible) return;
-      group.rotation.y += 0.0012;
+      if (mobileMode && now - lastFrame < 33) return;
+      lastFrame = now;
+      group.rotation.y += mobileMode ? 0.001 : 0.0012;
       renderer.render(scene, camera);
     })();
 
@@ -1632,6 +1658,20 @@ document.addEventListener('DOMContentLoaded', function () {
         onUpdate: function (self) { progress = self.progress; applyProgress(progress); },
         onLeaveBack: function () { progress = 0; applyProgress(progress); }
       });
+    } else {
+      var scrollRaf = null;
+      var syncToScroll = function () {
+        if (scrollRaf) return;
+        scrollRaf = requestAnimationFrame(function () {
+          var rect = document.querySelector('.region').getBoundingClientRect();
+          var distance = Math.max(1, rect.height - window.innerHeight);
+          progress = Math.max(0, Math.min(1, -rect.top / distance));
+          applyProgress(progress);
+          scrollRaf = null;
+        });
+      };
+      syncToScroll();
+      window.addEventListener('scroll', syncToScroll, { passive: true });
     }
 
     var ro = new ResizeObserver(function () {
