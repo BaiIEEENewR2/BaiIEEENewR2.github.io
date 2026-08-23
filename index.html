@@ -1612,6 +1612,7 @@ document.addEventListener('DOMContentLoaded', function () {
       lMat.opacity = Math.max(0, (e - 0.45) / 0.55) * 0.3;
       group.rotation.y = -0.6 + e * 1.5;
       group.rotation.x = 0.18 - e * 0.1;
+      renderer.render(scene, camera);
     }
     applyProgress(0);
 
@@ -1628,7 +1629,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.gsap && window.ScrollTrigger) {
       ScrollTrigger.create({
         trigger: '.region', start: 'top top', end: 'bottom bottom', scrub: .5,
-        onUpdate: function (self) { progress = self.progress; applyProgress(progress); }
+        onUpdate: function (self) { progress = self.progress; applyProgress(progress); },
+        onLeaveBack: function () { progress = 0; applyProgress(progress); }
       });
     }
 
